@@ -15,17 +15,6 @@ const gameController: IController = new GameController(gameModel, gameView, ioSe
 gameController.run()
 
 /*
-        Student model = retriveStudentFromDatabase();
-        StudentView view = new StudentView();
-        StudentController controller = new StudentController(model, view);
-        controller.updateView();
-        controller.setStudentName("Vikram Sharma");
-        controller.updateView();
-
-        TODO: вот это интересно сделано, только updateView запускать из run
- */
-
-/*
 Связь между компонентами
 Представленный ниже поток коммуникаций гарантирует, что каждый компонент отвечает за определенный аспект функциональности приложения, что приводит к более удобной в обслуживании и масштабируемой архитектуре.
 
@@ -45,30 +34,3 @@ gameController.run()
 //     реагирует на это событие изменяя Mодель, посредством вызова соответствующего метода.
 //     После изменения Модель использует событие о том что она изменилась, и все подписанные на это события
 // Представления, получив его, обращаются к Модели за обновленными данными, после чего их и отображают
-
-
-// Counter counter = new Counter(count); // model
-// Controller controller = new Controller(counter);
-// IConsoleView view = new ConsoleView(controller, counter);
-// controller.Run(view);
-
-// Controller myController = new Controller(new View(), new Model());
-// myController.View.show();
-// myController.Model.Value = "2";
-// myController.View.show();
-// Console.ReadLine();
-
-// IController ctr = new Controller();
-// int input =int.Parse(args[0]);
-// IView view=new View()
-// {
-//     GetID = input
-// };
-//
-// ctr.RequestView(view);
-// view =ctr.ResponseView();
-// view.DisplayId();
-
-
-// https://stackoverflow.com/questions/1108247/mvc-like-design-for-console-applications
-//     https://ru.stackoverflow.com/questions/816048/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F-%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-mvc-%D0%BD%D0%B0-es6

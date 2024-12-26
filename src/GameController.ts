@@ -1,8 +1,6 @@
 import {IController} from "./IController"
 import {IModel} from "./IModel"
-// import {ActionData} from "./ActionData"
 import {IView} from "./IView"
-import {ActionData} from "./ActionData"
 import {IIOService} from "./IIOService"
 
 export class GameController implements IController {
@@ -26,11 +24,11 @@ export class GameController implements IController {
     public async run() {
 
         const actionData = this._model.getStartData()
-        this._view.displayScreen(actionData)
+        this._view.update(actionData)
 
         while (this._isRunning) {
             const responseData = await this._ioService.getInput("You answer > ")
-            this._view.displayScreen(responseData)
+            this._view.update(responseData)
             if (responseData.inputData?.toLowerCase() === 'exit') {
                 this._isRunning = false
             }
