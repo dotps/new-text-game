@@ -30,16 +30,13 @@ export class ConsoleController implements IController {
     }
 
     async read(action: ActionData): Promise<ActionData> {
-        // this._ioService.question(action.text + ' ', (inputData: string) => {
-        //     const answer = {text: `Hello ${inputData}!`}
-        //     this.write(answer)
-        //     // this._ioService.close()
-        // })
         const inputData: string = await this._ioService.question(action.text + ' ')
-        // console.log(inputData)
         return {text: `Hello ${inputData}!`, inputData: inputData}
-        // return new ActionData(`Hello ${inputData}!`, inputData)
-        // TODO: передать в модель ответ
+    }
+
+    async getInput(): Promise<ActionData> {
+        const inputData: string = await this._ioService.question("You answer > ")
+        return {text: `Hello ${inputData}!`, inputData: inputData}
     }
 
     write(message: any): void {
@@ -49,24 +46,17 @@ export class ConsoleController implements IController {
     public async run() {
 
         // Паолучить данные из model
-        const startData = this._model.getStartData()
+        const actionData = this._model.getStartData()
         // послать эти данные во view
+        this._view.displayScreen(actionData)
 
         while (this._isRunning) {
-
-            const action: ActionData = { text: "Who are you?" }
-            // const action = new ActionData('Who are you? (Type "exit" to quit)')
-            const response = await this.read(action)
-            //
+            // const response = await this.read(actionData)
+            const response = await this.getInput()
             console.log(response)
-            //
             if (response.inputData?.toLowerCase() === 'exit') {
                 this._isRunning = false
-                // break
             }
-
-            // this._view.getInput()
-        //
         }
 
         this._ioService.close()

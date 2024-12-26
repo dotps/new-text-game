@@ -1,4 +1,6 @@
+import {ActionData} from "./ActionData"
+
 export interface IView {
-    getInput(): void
     displayText(text: string): void
+    displayScreen(action: ActionData): void
 }

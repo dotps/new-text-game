@@ -1,10 +1,14 @@
 import {IView} from "./IView";
+import {ActionData} from "./ActionData"
 
 export class View implements IView {
-    displayText(text: string): void {
-        console.log(text)
+    displayScreen(action: ActionData): void {
+        this.displayText(action.text)
+        this.displayText(action.elements)
     }
-    getInput(): void {
-
+    displayText(text?: string): void {
+        if (!text)
+            return
+        console.log(text)
     }
 }
