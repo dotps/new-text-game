@@ -15,8 +15,4 @@ const gameView: IView = new View()
 const ioService: IIOService = new IOService()
 const gameController: IController = new GameController(gameModel, gameView, ioService)
 
-const stateMachine = new StateMachine();
-stateMachine.enter(StartGameState);
-stateMachine.enter(ActionState);
-
 gameController.run()
