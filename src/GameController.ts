@@ -2,6 +2,7 @@ import {IController} from "./IController"
 import {IModel} from "./IModel"
 import {IView} from "./IView"
 import {IIOService} from "./IIOService"
+import {StateMachine} from "./States/StateMachine"
 
 export class GameController implements IController {
 
@@ -14,6 +15,7 @@ export class GameController implements IController {
         this._model = model
         this._view = view
         this._ioService = ioService
+        // this._stateMachine = new StateMachine()
         this.init()
     }
 

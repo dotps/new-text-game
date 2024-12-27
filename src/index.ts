@@ -6,13 +6,13 @@ import {IModel} from "./IModel";
 import {Model} from "./Model";
 import {IOService} from "./IOService"
 import {IIOService} from "./IIOService"
-import {StateMachine} from "./StateMachine"
-import {StartGameState} from "./StartGameState"
-import {ActionState} from "./ActionState"
+import {StateMachine} from "./States/StateMachine"
+import {StartGameState} from "./States/StartGameState"
+import {ActionState} from "./States/ActionState"
 
 const gameModel: IModel = new Model()
 const gameView: IView = new View()
 const ioService: IIOService = new IOService()
-const gameController: IController = new GameController(gameModel, gameView, ioService)
+const game: IController = new GameController(gameModel, gameView, ioService)
 
-gameController.run()
+game.run()
