@@ -10,6 +10,9 @@ export class StateMachine {
         this._states.set(ActionState, new ActionState());
     }
 
+    public enter(stateType: new () => IState): void {
+        this.changeState(stateType)
+    }
 
     public changeState(stateType: new () => IState): void {
 
