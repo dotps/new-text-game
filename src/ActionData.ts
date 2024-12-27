@@ -13,4 +13,4 @@ export type ActionData = {
     text: string
     elements?: string,
     inputData?: string
-};
+}

@@ -16,7 +16,7 @@ export class BootstrapState implements IState {
 
     public enter(): void {
         console.log("enter " + this.constructor.name)
-        // this._stateMachine.enter(LoadProgressState)
+        this._stateMachine.enter(LoadProgressState)
     }
 
     public exit(): void {
