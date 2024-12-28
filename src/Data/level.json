@@ -1,0 +1,53 @@
+{
+  "locations": [
+    {
+      "id": "start",
+      "title": "Начало игры",
+      "description": "Ты стоишь на развилке",
+      "actions": [
+        {
+          "command": "left",
+          "title": "Идти налево",
+          "description": "В далеке виднеется лес",
+          "nextLocationId": "edgeForest"
+        },
+        {
+          "command": "right",
+          "title": "Повернуть направо",
+          "description": "",
+          "nextLocationId": "roadToVillage"
+        },
+        {
+          "command": "look around",
+          "title": "Осмотреться",
+          "description": "",
+          "nextLocationId": null
+        }
+      ]
+    },
+    {
+      "id": "edgeForest",
+      "description": "Вы на границе очень дремучего леса",
+      "actions": [
+        {
+          "command": "back",
+          "title": "Вернутся на развилку",
+          "description": "",
+          "nextLocationId": "start"
+        },
+        {
+          "command": "explore",
+          "title": "Исследовать лес",
+          "description": "",
+          "nextLocationId": "forest"
+        },
+        {
+          "command": "setup camp",
+          "title": "Разбить лагерь",
+          "description": "",
+          "nextLocationId": null
+        }
+      ]
+    }
+  ]
+}
