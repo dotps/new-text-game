@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
-    <option name="projectFiles" value="$PROJECT_DIR$/src/ActionData.ts;D:/OSPanel/domains/new-text-game/src/ConsoleController.ts;D:/OSPanel/domains/new-text-game/src/IController.ts;D:/OSPanel/domains/new-text-game/src/IModel.ts;D:/OSPanel/domains/new-text-game/src/index.ts;D:/OSPanel/domains/new-text-game/src/IView.ts;D:/OSPanel/domains/new-text-game/src/model.ts;D:/OSPanel/domains/new-text-game/src/view.ts;D:/OSPanel/domains/new-text-game/package-lock.json;D:/OSPanel/domains/new-text-game/package.json;D:/OSPanel/domains/new-text-game/tsconfig.json" />
-  </component>
-</project>

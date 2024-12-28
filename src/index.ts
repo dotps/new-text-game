@@ -12,7 +12,8 @@ import {ActionState} from "./States/ActionState"
 
 const gameModel: IModel = new Model()
 const gameView: IView = new View()
+const stateMachine = new StateMachine(gameModel)
 const ioService: IIOService = new IOService()
-const game: IController = new GameController(gameModel, gameView, ioService)
+const game: IController = new GameController(gameModel, gameView, stateMachine, ioService)
 
 game.run()
