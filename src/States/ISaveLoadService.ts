@@ -1,7 +1,8 @@
 import {GameProgressData} from "./SaveLoadService"
+import {ActionData} from "../ActionData"
 
 export interface ISaveLoadService {
-    save(): void
-
-    load(): GameProgressData | null
+    saveProgress(): void
+    loadProgress(): GameProgressData | null
+    loadLevel(): ActionData
 }

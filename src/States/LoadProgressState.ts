@@ -2,6 +2,7 @@ import {StateMachine} from "./StateMachine"
 import {ISaveLoadService} from "./ISaveLoadService"
 import {SaveLoadService} from "./SaveLoadService"
 import {IModel} from "../IModel"
+import {LoadLevelState} from "./LoadLevelState"
 
 export class LoadProgressState implements IState {
 
@@ -17,10 +18,9 @@ export class LoadProgressState implements IState {
 
     enter(): void {
         console.log("enter " + this.constructor.name)
-        const progress = this._saveLoadService.load() ?? this.initProgress();
-        console.log("progress", progress)
-        this._model.progress = progress;
-        // this._stateMachine.enter(LoadLevelState)
+        this._model.progress = this._saveLoadService.loadProgress() ?? this.initProgress()
+        console.log("progress", this._model.progress)
+        this._stateMachine.enter(LoadLevelState)
     }
 
     private initProgress() {

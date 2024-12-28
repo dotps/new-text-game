@@ -1,11 +1,18 @@
 import {ISaveLoadService} from "./ISaveLoadService"
+import {ActionData} from "../ActionData"
 
 export class SaveLoadService implements ISaveLoadService {
-    save(): void {
+    loadLevel(): ActionData {
+        return {
+            text: "Level 1"
+
+        }
+    }
+    saveProgress(): void {
 
     }
 
-    load(): GameProgressData | null {
+    loadProgress(): GameProgressData | null {
         return null
     }
 }
