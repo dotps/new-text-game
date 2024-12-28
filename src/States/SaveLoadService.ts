@@ -18,5 +18,5 @@ export class SaveLoadService implements ISaveLoadService {
 }
 
 export type GameProgressData = {
-
+    currentLocation: string
 }

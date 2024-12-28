@@ -7,7 +7,10 @@ import {GameProgressData} from "./States/SaveLoadService";
 export class Model implements IModel {
 
     private _stateMachine = new StateMachine(this)
-    public progress: GameProgressData = {}
+    public progress: GameProgressData = {
+        currentLocation: ""
+    }
+    // progress - состояние игры
 
     constructor() {
         this._stateMachine.enter(BootstrapState)
