@@ -1,6 +1,6 @@
 import {StateMachine} from "./StateMachine"
-import {ISaveLoadService} from "./ISaveLoadService"
-import {SaveLoadService} from "./SaveLoadService"
+import {ISaveLoadService} from "../Services/ISaveLoadService"
+import {SaveLoadService} from "../Services/SaveLoadService"
 import {IModel} from "../Models/IModel"
 import {LoadLevelState} from "./LoadLevelState"
 
@@ -10,10 +10,10 @@ export class LoadProgressState implements IState {
     private _saveLoadService: ISaveLoadService
     private _model: IModel
 
-    constructor(stateMachine: StateMachine, model: IModel) {
+    constructor(stateMachine: StateMachine, model: IModel, saveLoadService: ISaveLoadService) {
         this._stateMachine = stateMachine
         this._model = model
-        this._saveLoadService = new SaveLoadService()
+        this._saveLoadService = saveLoadService
     }
 
     enter(): void {

@@ -8,15 +8,15 @@ export class SaveLoadService implements ISaveLoadService {
 
         }
     }
-    saveProgress(): void {
-
+    saveProgress(progress: GameProgressData): boolean {
+        return true
     }
 
-    loadProgress(): GameProgressData | null {
-        return null
+    loadProgress(): GameProgressData {
+        return new GameProgressData()
     }
 }
 
-export type GameProgressData = {
-    currentLocation: string
+export class GameProgressData {
+    public currentLocation: string = ""
 }

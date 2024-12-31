@@ -4,6 +4,7 @@ import {IView} from "../Views/IView"
 import {IIOService} from "../Services/IIOService"
 import {StateMachine} from "../States/StateMachine"
 import {BootstrapState} from "../States/BootstrapState";
+import {LoadProgressState} from "../States/LoadProgressState";
 
 export class GameController implements IController {
 
@@ -18,14 +19,11 @@ export class GameController implements IController {
         this._view = view
         this._stateMachine = stateMachine
         this._ioService = ioService
-        this.init()
-    }
-
-    init() {
-        this._stateMachine.enter(BootstrapState)
     }
 
     public async run() {
+
+        this._stateMachine.enter(LoadProgressState)
 
         const actionData = this._model.getStartData()
         this._view.update(actionData)

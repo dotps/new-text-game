@@ -1,7 +1,7 @@
 import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
-import {SaveLoadService} from "./SaveLoadService"
-import {ISaveLoadService} from "./ISaveLoadService"
+import {SaveLoadService} from "../Services/SaveLoadService"
+import {ISaveLoadService} from "../Services/ISaveLoadService"
 
 export class LoadLevelState implements IState {
 
@@ -9,16 +9,16 @@ export class LoadLevelState implements IState {
     private _saveLoadService: ISaveLoadService
     private _model: IModel
 
-    constructor(stateMachine: StateMachine, model: IModel) {
+    constructor(stateMachine: StateMachine, model: IModel, saveLoadService: ISaveLoadService) {
         this._stateMachine = stateMachine
         this._model = model
-        this._saveLoadService = new SaveLoadService()
+        this._saveLoadService = saveLoadService
     }
 
     enter(): void {
         console.log("enter " + this.constructor.name)
         // TODO: реализовать загрузку данных уровня
-        this._saveLoadService.loadProgress()
+        this._model.progress = this._saveLoadService.loadProgress()
     }
 
     exit(): void {
