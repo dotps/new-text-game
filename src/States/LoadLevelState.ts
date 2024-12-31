@@ -1,5 +1,5 @@
 import {StateMachine} from "./StateMachine"
-import {IModel} from "../IModel"
+import {IModel} from "../Models/IModel"
 import {SaveLoadService} from "./SaveLoadService"
 import {ISaveLoadService} from "./ISaveLoadService"
 

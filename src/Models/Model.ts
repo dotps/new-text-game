@@ -1,8 +1,8 @@
 import {IModel} from "./IModel";
-import {ActionData} from "./ActionData"
-import {StateMachine} from "./States/StateMachine"
-import {BootstrapState} from "./States/BootstrapState"
-import {GameProgressData} from "./States/SaveLoadService";
+import {ActionData} from "../Data/ActionData"
+import {StateMachine} from "../States/StateMachine"
+import {BootstrapState} from "../States/BootstrapState"
+import {GameProgressData} from "../States/SaveLoadService";
 
 export class Model implements IModel {
 

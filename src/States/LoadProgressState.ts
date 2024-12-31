@@ -1,7 +1,7 @@
 import {StateMachine} from "./StateMachine"
 import {ISaveLoadService} from "./ISaveLoadService"
 import {SaveLoadService} from "./SaveLoadService"
-import {IModel} from "../IModel"
+import {IModel} from "../Models/IModel"
 import {LoadLevelState} from "./LoadLevelState"
 
 export class LoadProgressState implements IState {

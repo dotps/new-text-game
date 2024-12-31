@@ -1,6 +1,6 @@
 import {createInterface} from "node:readline/promises"
 import {IIOService} from "./IIOService"
-import {ActionData} from "./ActionData"
+import {ActionData} from "../Data/ActionData"
 
 export class IOService implements IIOService {
 

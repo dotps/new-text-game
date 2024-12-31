@@ -2,7 +2,7 @@ import {ActionState} from "./ActionState"
 import {LoadProgressState} from "./LoadProgressState"
 import {BootstrapState} from "./BootstrapState"
 import {LoadLevelState} from "./LoadLevelState"
-import {IModel} from "../IModel"
+import {IModel} from "../Models/IModel"
 
 export class StateMachine {
     private _states: Map<new (...args: any[]) => IState, IState> = new Map()

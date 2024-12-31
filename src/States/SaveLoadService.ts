@@ -1,5 +1,5 @@
 import {ISaveLoadService} from "./ISaveLoadService"
-import {ActionData} from "../ActionData"
+import {ActionData} from "../Data/ActionData"
 
 export class SaveLoadService implements ISaveLoadService {
     loadLevel(): ActionData {

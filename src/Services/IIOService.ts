@@ -1,4 +1,4 @@
-import {ActionData} from "./ActionData"
+import {ActionData} from "../Data/ActionData"
 
 export interface IIOService {
     ioService: any

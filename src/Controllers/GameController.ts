@@ -1,9 +1,9 @@
 import {IController} from "./IController"
-import {IModel} from "./IModel"
-import {IView} from "./IView"
-import {IIOService} from "./IIOService"
-import {StateMachine} from "./States/StateMachine"
-import {BootstrapState} from "./States/BootstrapState";
+import {IModel} from "../Models/IModel"
+import {IView} from "../Views/IView"
+import {IIOService} from "../Services/IIOService"
+import {StateMachine} from "../States/StateMachine"
+import {BootstrapState} from "../States/BootstrapState";
 
 export class GameController implements IController {
 

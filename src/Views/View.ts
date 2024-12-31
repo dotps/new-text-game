@@ -1,5 +1,5 @@
 import {IView} from "./IView";
-import {ActionData} from "./ActionData"
+import {ActionData} from "../Data/ActionData"
 
 export class View implements IView {
     update(action: ActionData): void {

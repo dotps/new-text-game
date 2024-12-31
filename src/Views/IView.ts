@@ -1,4 +1,4 @@
-import {ActionData} from "./ActionData"
+import {ActionData} from "../Data/ActionData"
 
 export interface IView {
     displayText(text: string): void

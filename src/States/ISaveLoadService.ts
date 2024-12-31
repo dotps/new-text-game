@@ -1,5 +1,5 @@
 import {GameProgressData} from "./SaveLoadService"
-import {ActionData} from "../ActionData"
+import {ActionData} from "../Data/ActionData"
 
 export interface ISaveLoadService {
     saveProgress(): void
