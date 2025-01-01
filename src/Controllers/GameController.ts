@@ -27,6 +27,7 @@ export class GameController implements IController {
 
         this._stateMachine.enter(BootstrapState)
 
+        /*
         const actionData = this._model.getStartData()
         this._view.update(actionData)
 
@@ -39,6 +40,7 @@ export class GameController implements IController {
         }
 
         this._ioService.close()
+         */
     }
 }
 

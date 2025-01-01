@@ -1,10 +1,10 @@
-import {createInterface} from "node:readline/promises"
+import {createInterface, Interface} from "node:readline/promises"
 import {IIOService} from "./IIOService"
 import {ActionData} from "../Data/ActionData"
 
 export class IOService implements IIOService {
 
-    ioService: any
+    ioService: Interface
 
     constructor() {
         this.ioService = createInterface({

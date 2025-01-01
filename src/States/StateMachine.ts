@@ -8,6 +8,9 @@ import {ISaveLoadService} from "../Services/ISaveLoadService";
 import {IOService} from "../Services/IOService";
 import {IService} from "../Services/IService";
 import {Services} from "../Services/Services";
+import {InputState} from "./InputState";
+import {IIOService} from "../Services/IIOService";
+import {ExitState} from "./ExitState";
 
 export class StateMachine {
 
@@ -16,9 +19,14 @@ export class StateMachine {
 
     constructor(model: IModel, services: Services) {
         this._states.set(BootstrapState, new BootstrapState(this, services))
+
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
+        const inputOutputService: IIOService = services.get(IOService)
+
         this._states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
         this._states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
+        this._states.set(InputState, new InputState(this, model, inputOutputService))
+        this._states.set(ExitState, new ExitState(inputOutputService))
         // this._states.set(StartGameState, new StartGameState())
         // this._states.set(ActionState, new ActionState())
     }
