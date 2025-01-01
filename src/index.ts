@@ -12,7 +12,6 @@ const gameModel: IModel = new Model()
 const gameView: IView = new View()
 const services = new Services()
 const stateMachine = new StateMachine(gameModel, services)
-const ioService = services.get(IOService);
-const game: IController = new GameController(gameModel, gameView, stateMachine, ioService)
+const game: IController = new GameController(gameModel, gameView, stateMachine, services)
 
 game.run()
