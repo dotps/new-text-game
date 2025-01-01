@@ -3,6 +3,7 @@ import {ISaveLoadService} from "../Services/ISaveLoadService"
 import {SaveLoadService} from "../Services/SaveLoadService"
 import {IModel} from "../Models/IModel"
 import {LoadLevelState} from "./LoadLevelState"
+import {IService} from "../Services/IService";
 
 export class LoadProgressState implements IState {
 

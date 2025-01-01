@@ -1,20 +1,19 @@
 import {IController} from "./IController"
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
-import {IIOService} from "../Services/IIOService"
 import {StateMachine} from "../States/StateMachine"
 import {BootstrapState} from "../States/BootstrapState";
-import {LoadProgressState} from "../States/LoadProgressState";
+import {IOService} from "../Services/IOService";
 
 export class GameController implements IController {
 
     private _model: IModel
-    private _ioService: IIOService
+    private _ioService: IOService
     private _view: IView
     private _isRunning = true
     private _stateMachine: StateMachine;
 
-    constructor(model: IModel, view: IView, stateMachine: StateMachine, ioService: IIOService) {
+    constructor(model: IModel, view: IView, stateMachine: StateMachine, ioService: IOService) {
         this._model = model
         this._view = view
         this._stateMachine = stateMachine
@@ -23,7 +22,7 @@ export class GameController implements IController {
 
     public async run() {
 
-        this._stateMachine.enter(LoadProgressState)
+        this._stateMachine.enter(BootstrapState)
 
         const actionData = this._model.getStartData()
         this._view.update(actionData)

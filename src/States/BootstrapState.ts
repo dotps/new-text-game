@@ -1,17 +1,26 @@
 import {StateMachine} from "./StateMachine"
 import {LoadProgressState} from "./LoadProgressState"
+import {IService} from "../Services/IService";
+import {ISaveLoadService} from "../Services/ISaveLoadService";
+import {SaveLoadService} from "../Services/SaveLoadService";
+import {IOService} from "../Services/IOService";
+import {Services} from "../Services/Services";
 
 export class BootstrapState implements IState {
 
     private _stateMachine: StateMachine
+    private _services: Services;
 
-    constructor(stateMachine: StateMachine) {
+    constructor(stateMachine: StateMachine, services: Services) {
         this._stateMachine = stateMachine
-        this.initServices();
+        this._services = services
+
+        this.initServices()
     }
 
     private initServices() {
-        // TODO: инициализировать все зависимости и сервисы
+        this._services.register(SaveLoadService, new SaveLoadService())
+        this._services.register(IOService, new IOService())
     }
 
     public enter(): void {

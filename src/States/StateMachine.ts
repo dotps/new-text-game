@@ -6,17 +6,25 @@ import {IModel} from "../Models/IModel"
 import {SaveLoadService} from "../Services/SaveLoadService";
 import {ISaveLoadService} from "../Services/ISaveLoadService";
 import {IOService} from "../Services/IOService";
+import {IService} from "../Services/IService";
+import {Services} from "../Services/Services";
 
 export class StateMachine {
     private _states: Map<new (...args: any[]) => IState, IState> = new Map()
     private _current: IState | null = null
+    private _services: Map<{ new(...args: any[]): IService }, IService>
 
-    constructor(model: IModel) {
+    constructor(model: IModel, services: Services) {
 
-        const saveLoadService: ISaveLoadService = new SaveLoadService()
-        const inputOutputService: IOService = new IOService()
+        this._services = services;
 
-        // this._states.set(BootstrapState, new BootstrapState(this))
+        // const inputOutputService: IOService = new IOService()
+
+        this._states.set(BootstrapState, new BootstrapState(this, this._services))
+
+        // const saveLoadService: ISaveLoadService = new SaveLoadService()
+        const saveLoadService: IService | undefined = this._services.get(SaveLoadService)
+
         this._states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
         this._states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
         // this._states.set(StartGameState, new StartGameState())

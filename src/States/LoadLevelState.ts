@@ -2,6 +2,7 @@ import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
 import {SaveLoadService} from "../Services/SaveLoadService"
 import {ISaveLoadService} from "../Services/ISaveLoadService"
+import {IService} from "../Services/IService";
 
 export class LoadLevelState implements IState {
 
@@ -9,7 +10,7 @@ export class LoadLevelState implements IState {
     private _saveLoadService: ISaveLoadService
     private _model: IModel
 
-    constructor(stateMachine: StateMachine, model: IModel, saveLoadService: ISaveLoadService) {
+    constructor(stateMachine: StateMachine, model: IModel, saveLoadService: IService | undefined) {
         this._stateMachine = stateMachine
         this._model = model
         this._saveLoadService = saveLoadService
