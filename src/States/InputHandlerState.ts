@@ -1,9 +1,10 @@
 import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
 import {IOService} from "../Services/IOService";
-import {InputHandlerState} from "./InputHandlerState";
+import {ExitState} from "./ExitState";
+import {InputState} from "./InputState";
 
-export class InputState implements IState {
+export class InputHandlerState implements IState {
 
     private _stateMachine: StateMachine
     private _model: IModel
@@ -19,19 +20,19 @@ export class InputState implements IState {
     async enter(): Promise<void> {
         console.log("enter " + this.constructor.name)
 
-        const responseData = await this._inputOutputService.getInput("You answer > ")
-        console.log(responseData)
+        if (this._model.currentInput === "") return
 
-        if (responseData) {
-            this._model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
-            this._stateMachine.enter(InputHandlerState)
-        }
-        else {
-            this._stateMachine.enter(InputState)
+        switch (this._model.currentInput) {
+            case "exit":
+                this._stateMachine.enter(ExitState)
+                break
+            default:
+                this._stateMachine.enter(InputState)
         }
     }
 
     exit(): void {
         console.log("exit " + this.constructor.name)
+        this._model.currentInput = ""
     }
 }

@@ -11,6 +11,7 @@ import {Services} from "../Services/Services";
 import {InputState} from "./InputState";
 import {IIOService} from "../Services/IIOService";
 import {ExitState} from "./ExitState";
+import {InputHandlerState} from "./InputHandlerState";
 
 export class StateMachine {
 
@@ -26,7 +27,8 @@ export class StateMachine {
         this._states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
         this._states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
         this._states.set(InputState, new InputState(this, model, inputOutputService))
-        this._states.set(ExitState, new ExitState(inputOutputService))
+        this._states.set(InputHandlerState, new InputHandlerState(this, model, inputOutputService))
+        this._states.set(ExitState, new ExitState())
         // this._states.set(StartGameState, new StartGameState())
         // this._states.set(ActionState, new ActionState())
     }
@@ -39,7 +41,8 @@ export class StateMachine {
         this._current?.exit()
         const state = this._states.get(stateType)
         if (state) {
-            state.enter()
+            this._current = state
+            this._current.enter()
         } else {
             console.error(`State ${stateType.name} not found!`)
         }

@@ -1,7 +1,5 @@
 import {StateMachine} from "./StateMachine"
 import {LoadProgressState} from "./LoadProgressState"
-import {IService} from "../Services/IService";
-import {ISaveLoadService} from "../Services/ISaveLoadService";
 import {SaveLoadService} from "../Services/SaveLoadService";
 import {IOService} from "../Services/IOService";
 import {Services} from "../Services/Services";

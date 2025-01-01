@@ -9,6 +9,8 @@ export class Model implements IModel {
     public progress: GameProgressData = {
         currentLocation: ""
     }
+
+    public currentInput: string = ""
     // progress - состояние игры
 
     constructor() {
