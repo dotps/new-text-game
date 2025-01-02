@@ -12,6 +12,7 @@ import {InputState} from "./InputState";
 import {IIOService} from "../Services/IIOService";
 import {ExitState} from "./ExitState";
 import {InputHandlerState} from "./InputHandlerState";
+import {StartGameState} from "./StartGameState";
 
 export class StateMachine {
 
@@ -29,7 +30,7 @@ export class StateMachine {
         this._states.set(InputState, new InputState(this, model, inputOutputService))
         this._states.set(InputHandlerState, new InputHandlerState(this, model, inputOutputService))
         this._states.set(ExitState, new ExitState())
-        // this._states.set(StartGameState, new StartGameState())
+        this._states.set(StartGameState, new StartGameState(this, model))
         // this._states.set(ActionState, new ActionState())
     }
 
