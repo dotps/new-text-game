@@ -1,8 +1,12 @@
 import {ActionData} from "../Data/ActionData"
-import {GameProgressData} from "../Services/SaveLoadService"
+
+import {GameProgressData} from "../Data/GameProgressData";
+import {GameData} from "../Data/GameData";
 
 export interface IModel {
-    currentInput: string;
-    progress: GameProgressData
+    gameData: GameData;
+    currentInput: string
+    progressData: GameProgressData
     getStartData(): ActionData
+    applyAction(): void
 }

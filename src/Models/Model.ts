@@ -2,22 +2,21 @@ import {IModel} from "./IModel";
 import {ActionData} from "../Data/ActionData"
 import {StateMachine} from "../States/StateMachine"
 import {BootstrapState} from "../States/BootstrapState"
-import {GameProgressData} from "../Services/SaveLoadService";
+
+import {GameProgressData} from "../Data/GameProgressData";
+import {GameData, ILocation} from "../Data/GameData";
 
 export class Model implements IModel {
-
-    public progress: GameProgressData = {
-        currentLocation: ""
-    }
-
     public currentInput: string = ""
-    // progress - состояние игры
+    public progressData: GameProgressData = new GameProgressData()
+    public gameData: GameData = new GameData()
 
-    constructor() {
-
+    applyAction(): void {
+        // this.progress.currentLocation.
     }
 
     getStartData(): ActionData {
         return {text: "Who are you?"}
     }
+
 }

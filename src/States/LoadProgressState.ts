@@ -19,8 +19,8 @@ export class LoadProgressState implements IState {
 
     enter(): void {
         console.log("enter " + this.constructor.name)
-        this._model.progress = this._saveLoadService.loadProgress() ?? this.initProgress()
-        console.log("progress", this._model.progress)
+        this._model.progressData = this._saveLoadService.loadProgress() ?? this.initProgress()
+        console.log("progress", this._model.progressData)
         this._stateMachine.enter(LoadLevelState)
     }
 

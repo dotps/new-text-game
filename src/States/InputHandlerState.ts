@@ -22,12 +22,15 @@ export class InputHandlerState implements IState {
 
         if (this._model.currentInput === "") return
 
+        // TODO: проверить в модели соответствия введенной команды и доступных действий на текущей локации
+
         switch (this._model.currentInput) {
             case "exit":
                 this._stateMachine.enter(ExitState)
                 break
             default:
-                this._stateMachine.enter(InputState)
+                this._model.applyAction()
+                // this._stateMachine.enter(InputState)
         }
     }
 

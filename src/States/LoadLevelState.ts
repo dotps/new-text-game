@@ -20,7 +20,9 @@ export class LoadLevelState implements IState {
     enter(): void {
         console.log("enter " + this.constructor.name)
         // TODO: тут использовать метод, а не присаивание публичному полу
-        this._model.progress = this._saveLoadService.loadProgress()
+        // this._model.progress = this._saveLoadService.loadProgress()
+        this._model.gameData = this._saveLoadService.loadGameData()
+        console.log(this._model.gameData)
         this._stateMachine.enter(InputState)
     }
 
