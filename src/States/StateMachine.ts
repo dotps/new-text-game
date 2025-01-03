@@ -3,17 +3,18 @@ import {LoadProgressState} from "./LoadProgressState"
 import {BootstrapState} from "./BootstrapState"
 import {LoadLevelState} from "./LoadLevelState"
 import {IModel} from "../Models/IModel"
-import {SaveLoadService} from "../Services/SaveLoadService";
-import {ISaveLoadService} from "../Services/ISaveLoadService";
-import {IOService} from "../Services/IOService";
-import {IService} from "../Services/IService";
-import {Services} from "../Services/Services";
-import {InputState} from "./InputState";
-import {IIOService} from "../Services/IIOService";
-import {ExitState} from "./ExitState";
-import {InputHandlerState} from "./InputHandlerState";
-import {StartGameState} from "./StartGameState";
-import {IView} from "../Views/IView";
+import {SaveLoadService} from "../Services/SaveLoadService"
+import {ISaveLoadService} from "../Services/ISaveLoadService"
+import {IOService} from "../Services/IOService"
+import {Services} from "../Services/Services"
+import {InputState} from "./InputState"
+import {IIOService} from "../Services/IIOService"
+import {ExitState} from "./ExitState"
+import {InputHandlerState} from "./InputHandlerState"
+import {StartGameState} from "./StartGameState"
+import {IView} from "../Views/IView"
+import {LoggerService} from "../Utils/LoggerService"
+import {ILoggerService} from "../Utils/ILoggerService"
 
 export class StateMachine {
 

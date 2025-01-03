@@ -5,6 +5,7 @@ import {IModel} from "../Models/IModel"
 import {LoadLevelState} from "./LoadLevelState"
 import {IService} from "../Services/IService";
 import {GameProgressData} from "../Data/GameProgressData";
+import {Logger} from "../Utils/Logger"
 
 export class LoadProgressState implements IState {
 
@@ -19,9 +20,9 @@ export class LoadProgressState implements IState {
     }
 
     enter(): void {
-        console.log("enter " + this.constructor.name)
+        Logger.log("enter " + this.constructor.name)
         this._model.progressData = this._saveLoadService.loadProgress() ?? this.initProgress()
-        console.log("progress", this._model.progressData)
+        Logger.log(this._model.progressData)
         this._stateMachine.enter(LoadLevelState)
     }
 
@@ -30,7 +31,7 @@ export class LoadProgressState implements IState {
     }
 
     exit(): void {
-        console.log("exit " + this.constructor.name)
+        Logger.log("exit " + this.constructor.name)
     }
 
 }

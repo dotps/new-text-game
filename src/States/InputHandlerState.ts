@@ -3,6 +3,7 @@ import {IModel} from "../Models/IModel"
 import {IOService} from "../Services/IOService";
 import {ExitState} from "./ExitState";
 import {InputState} from "./InputState";
+import {Logger} from "../Utils/Logger"
 
 export class InputHandlerState implements IState {
 
@@ -18,7 +19,7 @@ export class InputHandlerState implements IState {
     }
 
     async enter(): Promise<void> {
-        console.log("enter " + this.constructor.name)
+        Logger.log("enter " + this.constructor.name)
 
         if (this._model.currentInput === "") return
 
@@ -35,7 +36,7 @@ export class InputHandlerState implements IState {
     }
 
     exit(): void {
-        console.log("exit " + this.constructor.name)
+        Logger.log("exit " + this.constructor.name)
         this._model.currentInput = ""
     }
 }

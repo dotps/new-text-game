@@ -2,6 +2,7 @@ import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
 import {IOService} from "../Services/IOService";
 import {InputHandlerState} from "./InputHandlerState";
+import {Logger} from "../Utils/Logger"
 
 export class InputState implements IState {
 
@@ -17,10 +18,10 @@ export class InputState implements IState {
     }
 
     async enter(): Promise<void> {
-        console.log("enter " + this.constructor.name)
+        Logger.log("enter " + this.constructor.name)
 
         const responseData = await this._inputOutputService.getInput("> ")
-        console.log(responseData)
+        Logger.log(responseData)
 
         if (responseData) {
             this._model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
@@ -32,6 +33,6 @@ export class InputState implements IState {
     }
 
     exit(): void {
-        console.log("exit " + this.constructor.name)
+        Logger.log("exit " + this.constructor.name)
     }
 }

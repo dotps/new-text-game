@@ -2,6 +2,7 @@ import {InputState} from "./InputState";
 import {StateMachine} from "./StateMachine";
 import {IModel} from "../Models/IModel";
 import {IView} from "../Views/IView";
+import {Logger} from "../Utils/Logger"
 
 export class StartGameState implements IState {
     private _stateMachine: StateMachine;
@@ -15,12 +16,12 @@ export class StartGameState implements IState {
     }
     
     enter(): void {
-        console.log("enter " + this.constructor.name)
+        Logger.log("enter " + this.constructor.name)
         const location = this._model.getCurrentLocation()
         this._view.displayLocation(location)
         this._stateMachine.enter(InputState)
     }
     exit(): void {
-        console.log("exit " + this.constructor.name)
+        Logger.log("exit " + this.constructor.name)
     }
 }

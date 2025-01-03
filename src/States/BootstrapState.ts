@@ -3,6 +3,7 @@ import {LoadProgressState} from "./LoadProgressState"
 import {SaveLoadService} from "../Services/SaveLoadService";
 import {IOService} from "../Services/IOService";
 import {Services} from "../Services/Services";
+import {Logger} from "../Utils/Logger"
 
 export class BootstrapState implements IState {
 
@@ -22,11 +23,11 @@ export class BootstrapState implements IState {
     }
 
     public enter(): void {
-        console.log("enter " + this.constructor.name)
+        Logger.log("enter " + this.constructor.name)
         this._stateMachine.enter(LoadProgressState)
     }
 
     public exit(): void {
-        console.log("exit " +  + this.constructor.name)
+        Logger.log("exit " +  + this.constructor.name)
     }
 }

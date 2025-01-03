@@ -15,7 +15,6 @@ export class SaveLoadService implements ISaveLoadService {
     }
 
     loadGameData(): GameData {
-        console.log("loadLevel")
         // TODO: add try catch
         const data = fs.readFileSync("./Data/level.json", "utf-8")
         const jsonData = JSON.parse(data)
