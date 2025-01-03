@@ -13,14 +13,15 @@ import {IIOService} from "../Services/IIOService";
 import {ExitState} from "./ExitState";
 import {InputHandlerState} from "./InputHandlerState";
 import {StartGameState} from "./StartGameState";
+import {IView} from "../Views/IView";
 
 export class StateMachine {
 
     private _states: Map<new (...args: any[]) => IState, IState> = new Map()
     private _current: IState | null = null
 
-    constructor(model: IModel, services: Services) {
-        this._states.set(BootstrapState, new BootstrapState(this, services))
+    constructor(model: IModel, view: IView, services: Services) {
+        // this._states.set(BootstrapState, new BootstrapState(this, services))
 
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
         const inputOutputService: IIOService = services.get(IOService)
@@ -30,7 +31,7 @@ export class StateMachine {
         this._states.set(InputState, new InputState(this, model, inputOutputService))
         this._states.set(InputHandlerState, new InputHandlerState(this, model, inputOutputService))
         this._states.set(ExitState, new ExitState())
-        this._states.set(StartGameState, new StartGameState(this, model))
+        this._states.set(StartGameState, new StartGameState(this, model, view))
         // this._states.set(ActionState, new ActionState())
     }
 

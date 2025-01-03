@@ -19,7 +19,7 @@ export class InputState implements IState {
     async enter(): Promise<void> {
         console.log("enter " + this.constructor.name)
 
-        const responseData = await this._inputOutputService.getInput("You answer > ")
+        const responseData = await this._inputOutputService.getInput("> ")
         console.log(responseData)
 
         if (responseData) {

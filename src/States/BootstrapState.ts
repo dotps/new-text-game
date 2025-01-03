@@ -18,7 +18,7 @@ export class BootstrapState implements IState {
 
     private initServices() {
         this._services.register(SaveLoadService, new SaveLoadService())
-        this._services.register(IOService, new IOService())
+        // this._services.register(IOService, new IOService())
     }
 
     public enter(): void {

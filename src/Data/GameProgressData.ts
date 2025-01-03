@@ -1,3 +1,7 @@
+import {ILocation} from "./GameData";
+
 export class GameProgressData {
-    public currentLocation: string = ""
+    public currentLocationId: string = "start"
+    // public currentLocation: ILocation = {id: this.currentLocationId, actions: [], description: "", title: ""}
+    // public currentLocation: ILocation = {id: "start", actions: [], description: "", title: ""}
 }

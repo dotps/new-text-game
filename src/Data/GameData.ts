@@ -12,6 +12,8 @@
 //     actions: Action[] = []
 // }
 
+import {log} from "node:util";
+
 export interface IAction {
     command: string
     title: string
@@ -28,4 +30,17 @@ export interface ILocation {
 
 export class GameData {
     locations: ILocation[] = []
+
+    getLocation(locationId: string): ILocation {
+        const location = this.locations.find(location => location.id === locationId)
+        if (!location) {
+            console.error("Location not exist")
+            return {id: "start", actions: [], description: "", title: ""}
+        }
+
+        return location
+    }
+
+    //TODO: переделать ILocation на класс Location
+
 }

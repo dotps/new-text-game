@@ -21,4 +21,10 @@ export class IOService implements IIOService {
     close(): void {
         this.ioService.close()
     }
+
+    displayText(text?: string): void {
+        if (!text)
+            return
+        console.log(text)
+    }
 }

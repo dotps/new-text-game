@@ -7,11 +7,17 @@ import {Model} from "./Models/Model";
 import {IOService} from "./Services/IOService"
 import {StateMachine} from "./States/StateMachine"
 import {Services} from "./Services/Services";
+import {SaveLoadService} from "./Services/SaveLoadService";
 
 const gameModel: IModel = new Model()
-const gameView: IView = new View()
+
 const services = new Services()
-const stateMachine = new StateMachine(gameModel, services)
+services.register(IOService, new IOService())
+services.register(SaveLoadService, new SaveLoadService())
+
+const gameView: IView = new View(services.get(IOService))
+// const gameView: IView = new View(new IOService())
+const stateMachine = new StateMachine(gameModel, gameView, services)
 const game: IController = new GameController(gameModel, gameView, stateMachine, services)
 
 game.run()

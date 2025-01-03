@@ -19,4 +19,14 @@ export class Model implements IModel {
         return {text: "Who are you?"}
     }
 
+    getLocation(id: string = "") {
+        return  (id === "")
+            ? this.gameData.locations
+            : this.gameData.locations
+    }
+
+    getCurrentLocation(): ILocation {
+        return this.gameData.getLocation(this.progressData.currentLocationId)
+    }
+
 }

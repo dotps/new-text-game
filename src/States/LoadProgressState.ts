@@ -4,6 +4,7 @@ import {SaveLoadService} from "../Services/SaveLoadService"
 import {IModel} from "../Models/IModel"
 import {LoadLevelState} from "./LoadLevelState"
 import {IService} from "../Services/IService";
+import {GameProgressData} from "../Data/GameProgressData";
 
 export class LoadProgressState implements IState {
 
@@ -25,10 +26,9 @@ export class LoadProgressState implements IState {
     }
 
     private initProgress() {
-        return {
-            levelId: 0,
-        }
+        return new GameProgressData()
     }
+
     exit(): void {
         console.log("exit " + this.constructor.name)
     }

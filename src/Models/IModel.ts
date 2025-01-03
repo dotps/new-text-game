@@ -1,7 +1,7 @@
 import {ActionData} from "../Data/ActionData"
 
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData} from "../Data/GameData";
+import {GameData, ILocation} from "../Data/GameData";
 
 export interface IModel {
     gameData: GameData;
@@ -9,4 +9,5 @@ export interface IModel {
     progressData: GameProgressData
     getStartData(): ActionData
     applyAction(): void
+    getCurrentLocation(): ILocation;
 }
