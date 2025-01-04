@@ -30,6 +30,8 @@ export class InputHandlerState implements IState {
                 this._stateMachine.enter(ExitState)
                 break
             default:
+                // Если currentInput сответствует команде, то применить эту команду
+
                 this._model.applyAction()
                 // this._stateMachine.enter(InputState)
         }

@@ -12,6 +12,7 @@ export class Model implements IModel {
     public gameData: GameData = new GameData()
 
     applyAction(): void {
+        console.log("applyAction")
         // this.progress.currentLocation.
     }
 
