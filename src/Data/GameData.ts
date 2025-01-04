@@ -1,49 +1,36 @@
-export interface IAction {
-    title: string
-    description: string
-    command: string
-    params: ICommandParams[]
+export class Action {
+    constructor(
+        public command: string = "",
+        public title: string = "",
+        public description: string = "",
+        public params: CommandParams[] = [],
+    ) {}
 }
 
-export class Action implements IAction {
-    title: string = ""
-    description: string = ""
-    command: string = ""
-    params: ICommandParams[] = []
+export class CommandParams {
+    constructor(
+        public name: string = "",
+        public value: string = "",
+    ) {}
 }
 
-interface ICommandParams {
-    name: string
-    value: string
-}
-
-export interface ILocation {
-    id: string
-    title: string
-    description: string
-    actions: IAction[]
-}
-
-export class Location implements ILocation {
-    id: string = ""
-    title: string = ""
-    description: string = ""
-    actions: Action[] = []
+export class Location {
+    constructor(
+        public id: string = "start",
+        public title: string = "",
+        public description: string = "",
+        public actions: Action[] = [],
+    ) {}
 }
 
 export class GameData {
     locations: Location[] = []
 
-    getLocation(locationId: string): ILocation {
+    getLocation(locationId: string): Location {
         const location = this.locations.find(location => location.id === locationId)
         if (!location) {
-            console.error("Location not exist")
-            return {id: "start", actions: [], description: "", title: ""}
+            throw new Error(`Location ${locationId} not found!`);
         }
-
         return location
     }
-
-    //TODO: переделать ILocation на класс Location
-
 }
