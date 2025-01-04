@@ -1,24 +1,20 @@
-// export class GameData {
-//     public locations: Location[] = []
-// }
-//
-// class Action {
-// }
-//
-// export class Location {
-//     id: string = ""
-//     title: string = ""
-//     description: string = ""
-//     actions: Action[] = []
-// }
-
-import {log} from "node:util";
-
 export interface IAction {
-    command: string
     title: string
     description: string
-    nextLocationId: string | null
+    command: string
+    params: ICommandParams[]
+}
+
+export class Action implements IAction {
+    title: string = ""
+    description: string = ""
+    command: string = ""
+    params: ICommandParams[] = []
+}
+
+interface ICommandParams {
+    name: string
+    value: string
 }
 
 export interface ILocation {
@@ -28,8 +24,15 @@ export interface ILocation {
     actions: IAction[]
 }
 
+export class Location implements ILocation {
+    id: string = ""
+    title: string = ""
+    description: string = ""
+    actions: Action[] = []
+}
+
 export class GameData {
-    locations: ILocation[] = []
+    locations: Location[] = []
 
     getLocation(locationId: string): ILocation {
         const location = this.locations.find(location => location.id === locationId)
