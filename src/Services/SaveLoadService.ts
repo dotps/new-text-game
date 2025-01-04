@@ -1,7 +1,7 @@
 import {ISaveLoadService} from "./ISaveLoadService"
 import {GameProgressData} from "../Data/GameProgressData";
 import * as fs from "node:fs";
-import {Action, GameData, Location} from "../Data/GameData";
+import {Action, GameData, IAction, ILocation, Location} from "../Data/GameData";
 
 export class SaveLoadService implements ISaveLoadService {
 
@@ -21,8 +21,8 @@ export class SaveLoadService implements ISaveLoadService {
         const gameData = new GameData()
 
         // TODO: сделать обработку несуществующих полей
-        gameData.locations = jsonData.locations.map((location: any) => {
-            const actions: Action[] = location.actions.map((action: any) => new Action(
+        gameData.locations = jsonData.locations.map((location: ILocation) => {
+            const actions: Action[] = location.actions.map((action: IAction) => new Action(
                 action.command,
                 action.title,
                 action.description,
