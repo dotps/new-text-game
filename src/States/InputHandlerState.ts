@@ -41,7 +41,7 @@ export class InputHandlerState implements IState {
                 const action = this._model.getCurrentAction(input)
                 console.log(action)
 
-                // TODO: вызвать команду
+                // TODO: получить команду из model и вызвать ее
         }
     }
 
