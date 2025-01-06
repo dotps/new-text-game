@@ -31,6 +31,9 @@ export class InputHandlerState implements IState {
                 break
             default:
                 // Если currentInput сответствует команде, то применить эту команду
+                console.log(this._model.currentInput)
+                // TODO: привести в число, проверить на возможность выполнения (в ведены поспустимые символы)
+                //  и запустить команду
 
                 this._model.applyAction()
                 // this._stateMachine.enter(InputState)

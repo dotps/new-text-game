@@ -1,29 +1,18 @@
-export class MoveLeftCommand implements ICommand {
-    description = "MoveLeft";
-    result = "MoveLeft Result";
+import {IModel} from "../Models/IModel"
+
+export class NextLocationCommand implements ICommand {
+    description = "NextLocation"
+    result = "Move to Next Location"
+    private _model: IModel
+
+    constructor(model: IModel) {
+        this._model = model
+    }
 
     execute() {
-        console.log(this.description);
-        console.log(this.result);
+        console.log(this.description)
+        console.log(this.result)
+        this._model.setLocation("village")
     }
 }
 
-export class MoveRightCommand implements ICommand {
-    description = "MoveRight";
-    result = "MoveRight Result";
-
-    execute() {
-        console.log(this.description);
-        console.log(this.result);
-    }
-}
-
-export class MoveBackCommand implements ICommand {
-    description = "MoveBack";
-    result = "MoveBack Result";
-
-    execute() {
-        console.log(this.description);
-        console.log(this.result);
-    }
-}

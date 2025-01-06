@@ -4,7 +4,7 @@ import {SaveLoadService} from "../Services/SaveLoadService"
 import {ISaveLoadService} from "../Services/ISaveLoadService"
 import {IService} from "../Services/IService";
 import {InputState} from "./InputState";
-import {StartGameState} from "./StartGameState";
+import {LocationState} from "./LocationState";
 import {Logger} from "../Utils/Logger"
 
 export class LoadLevelState implements IState {
@@ -21,9 +21,8 @@ export class LoadLevelState implements IState {
 
     enter(): void {
         Logger.log("enter " + this.constructor.name)
-        // TODO: тут использовать метод, а не присаивание публичному полу
-        this._model.gameData = this._saveLoadService.loadGameData()
-        this._stateMachine.enter(StartGameState)
+        this._model.setGameData(this._saveLoadService.loadGameData())
+        this._stateMachine.enter(LocationState)
     }
 
     exit(): void {

@@ -1,18 +1,18 @@
-import {InputState} from "./InputState";
-import {StateMachine} from "./StateMachine";
-import {IModel} from "../Models/IModel";
-import {IView} from "../Views/IView";
+import {InputState} from "./InputState"
+import {StateMachine} from "./StateMachine"
+import {IModel} from "../Models/IModel"
+import {IView} from "../Views/IView"
 import {Logger} from "../Utils/Logger"
 
-export class StartGameState implements IState {
-    private _stateMachine: StateMachine;
-    private _model: IModel;
-    private _view: IView;
+export class LocationState implements IState {
+    private _stateMachine: StateMachine
+    private _model: IModel
+    private _view: IView
 
     constructor(stateMachine: StateMachine, model: IModel, view: IView) {
         this._stateMachine = stateMachine
         this._model = model
-        this._view = view;
+        this._view = view
     }
     
     enter(): void {

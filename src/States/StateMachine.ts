@@ -11,7 +11,7 @@ import {InputState} from "./InputState"
 import {IIOService} from "../Services/IIOService"
 import {ExitState} from "./ExitState"
 import {InputHandlerState} from "./InputHandlerState"
-import {StartGameState} from "./StartGameState"
+import {LocationState} from "./LocationState"
 import {IView} from "../Views/IView"
 import {LoggerService} from "../Utils/LoggerService"
 import {ILoggerService} from "../Utils/ILoggerService"
@@ -32,7 +32,7 @@ export class StateMachine {
         this._states.set(InputState, new InputState(this, model, inputOutputService))
         this._states.set(InputHandlerState, new InputHandlerState(this, model, inputOutputService))
         this._states.set(ExitState, new ExitState())
-        this._states.set(StartGameState, new StartGameState(this, model, view))
+        this._states.set(LocationState, new LocationState(this, model, view))
         // this._states.set(ActionState, new ActionState())
     }
 
