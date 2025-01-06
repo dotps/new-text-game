@@ -8,7 +8,6 @@ export class Model implements IModel {
     private _progressData: GameProgressData
     private _gameData: GameData
     private _currentLocation: ILocation | null = null
-
     constructor() {
         this._progressData = new GameProgressData()
         this._gameData = new GameData()
@@ -40,6 +39,17 @@ export class Model implements IModel {
 
     getCurrentActions(): IAction[] {
         return this._currentLocation?.actions || []
+    }
+
+    getCurrentAction(input: number): IAction {
+        const index: number = input - 1
+        const action = this._currentLocation?.actions[index]
+        if (action) {
+            return action
+        }
+        else {
+            throw Error(`Action input=${input}, index=${index} not found!`)
+        }
     }
 
     setGameData(gameData: GameData) {

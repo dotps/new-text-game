@@ -37,6 +37,11 @@ export class InputHandlerState implements IState {
                     this._stateMachine.enter(InputState)
                     return
                 }
+
+                const action = this._model.getCurrentAction(input)
+                console.log(action)
+
+                // TODO: вызвать команду
         }
     }
 

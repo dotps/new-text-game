@@ -11,4 +11,6 @@ export interface IModel {
     getCurrentActions(): IAction[]
     setLocation(locationId: string): void
     setGameData(gameData: GameData): void
+
+    getCurrentAction(input: number): IAction
 }
