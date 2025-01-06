@@ -1,46 +1,49 @@
 import {IModel} from "./IModel";
-import {ActionData} from "../Data/ActionData"
-import {StateMachine} from "../States/StateMachine"
-import {BootstrapState} from "../States/BootstrapState"
 
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, ILocation} from "../Data/GameData";
+import {GameData, IAction, ILocation} from "../Data/GameData";
 
 export class Model implements IModel {
     public currentInput: string = ""
-    public progressData: GameProgressData = new GameProgressData()
-    public _gameData: GameData = new GameData()
+    private _progressData: GameProgressData
+    private _gameData: GameData
+    private _currentLocation: ILocation | null = null
+
+    constructor() {
+        this._progressData = new GameProgressData()
+        this._gameData = new GameData()
+    }
 
     public get gameData(): GameData {
-        return this._gameData;
+        return this._gameData
     }
 
-    applyAction(): void {
-        console.log("applyAction")
-        // this.progress.currentLocation.
+    public get progressData(): GameProgressData {
+        return this._progressData
     }
+
+    public set progressData(progressData: GameProgressData) {
+        this._progressData = progressData
+    }
+
     setLocation(locationId: string): void {
-        // TODO: проверить есть ли locationId в gameData
-        this.progressData.currentLocationId = locationId
+        this._currentLocation = this._gameData.getLocation(locationId)
+        this._progressData.currentLocationId = locationId
     }
-
-    getStartData(): ActionData {
-        return {text: "Who are you?"}
-    }
-
-    // getLocation(id: string = "") {
-    //     return  (id === "")
-    //         ? this._gameData.locations
-    //         : this._gameData.locations
-    // }
 
     getCurrentLocation(): ILocation {
-        return this._gameData.getLocation(this.progressData.currentLocationId)
+        if (!this._currentLocation) {
+            this._currentLocation = this._gameData.getLocation(this.progressData.currentLocationId)
+        }
+        return this._currentLocation
+    }
+
+    getCurrentActions(): IAction[] {
+        return this._currentLocation?.actions || []
     }
 
     setGameData(gameData: GameData) {
         this._gameData = gameData
         this._gameData.initCommands()
     }
-
 }

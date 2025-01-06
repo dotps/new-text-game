@@ -23,25 +23,29 @@ export class InputHandlerState implements IState {
 
         if (this._model.currentInput === "") return
 
-        // TODO: проверить в модели соответствия введенной команды и доступных действий на текущей локации
-
         switch (this._model.currentInput) {
             case "exit":
                 this._stateMachine.enter(ExitState)
                 break
             default:
-                // Если currentInput сответствует команде, то применить эту команду
-                console.log(this._model.currentInput)
-                // TODO: привести в число, проверить на возможность выполнения (в ведены поспустимые символы)
-                //  и запустить команду
+                const input = parseInt(this._model.currentInput)
+                const currentActions = this._model.getCurrentActions()
+                const countCurrentActions = currentActions.length
 
-                this._model.applyAction()
-                // this._stateMachine.enter(InputState)
+                if (this.isNotCorrectInput(input, countCurrentActions)) {
+                    this._inputOutputService.displayText("Неверный ввод. Введите число от 1 до " + countCurrentActions)
+                    this._stateMachine.enter(InputState)
+                    return
+                }
         }
     }
 
     exit(): void {
         Logger.log("exit " + this.constructor.name)
         this._model.currentInput = ""
+    }
+
+    private isNotCorrectInput(input: number, countCurrentCommands: number): boolean {
+        return isNaN(input) || input < 1 || input > countCurrentCommands
     }
 }

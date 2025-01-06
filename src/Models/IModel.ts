@@ -1,16 +1,14 @@
 import {ActionData} from "../Data/ActionData"
 
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, ILocation} from "../Data/GameData";
+import {GameData, IAction, ILocation} from "../Data/GameData";
 
 export interface IModel {
-    _gameData: GameData;
+    gameData: GameData
     currentInput: string
     progressData: GameProgressData
-    getStartData(): ActionData
-    applyAction(): void
-    getCurrentLocation(): ILocation;
+    getCurrentLocation(): ILocation
+    getCurrentActions(): IAction[]
     setLocation(locationId: string): void
-    // initCommands(): void
     setGameData(gameData: GameData): void
 }

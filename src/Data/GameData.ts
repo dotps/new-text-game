@@ -57,10 +57,10 @@ export class GameData {
     //         this.initCommands()
     // }
 
-    getLocation(locationId: string): Location {
+    getLocation(locationId: string): ILocation {
         const location = this.locations.find(location => location.id === locationId)
         if (!location) {
-            throw new Error(`Location ${locationId} not found!`);
+            throw new Error(`Location ${locationId} not found!`)
         }
         return location
     }
@@ -83,5 +83,15 @@ export class GameData {
         else {
             throw new Error(`Command ${commandName} not found!`);
         }
+    }
+
+    getCountCommands(): number {
+        console.log(this.commands)
+        return Object.keys(this.commands).length
+    }
+
+    getCountActions(): number {
+        console.log(this.commands)
+        return Object.keys(this.commands).length
     }
 }
