@@ -2,9 +2,11 @@ export class Action implements IAction {
     command: string
     title: string
     description: string
-    params: CommandParams[]
-    
-    constructor(command: string, title: string, description: string, params: CommandParams[]) {
+    // params: CommandParams[]
+    params: Record<string, string>
+
+    // constructor(command: string, title: string, description: string, params: CommandParams[]) {
+    constructor(command: string, title: string, description: string, params: Record<string, string>) {
         this.command = command
         this.title = title
         this.description = description
@@ -45,7 +47,8 @@ export interface IAction {
     command: string
     title: string
     description: string
-    params: CommandParams[]
+    // params: CommandParams[]
+    params: Record<string, string>
 }
 
 export class GameData {

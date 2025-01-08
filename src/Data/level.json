@@ -6,26 +6,26 @@
       "description": "Ты стоишь на развилке",
       "actions": [
         {
-          "command": "nextLocation",
+          "command": "NEXT_LOCATION_COMMAND",
           "title": "Идти налево",
           "description": "В далеке виднеется лес",
-          "params": [
-            {"nextLocationId": "edgeForest"}
-          ]
+          "params": {
+            "nextLocationId": "edgeForest"
+          }
         },
         {
-          "command": "nextLocation",
+          "command": "NEXT_LOCATION_COMMAND",
           "title": "Повернуть направо",
           "description": "",
-          "params": [
-            {"nextLocationId": "roadToVillage"}
-          ]
+          "params": {
+            "nextLocationId": "roadToVillage"
+          }
         },
         {
-          "command": "lookAround",
+          "command": "LOOK_AROUND_COMMAND",
           "title": "Осмотреться",
           "description": "",
-          "params": []
+          "params": {}
         }
       ]
     },
@@ -34,24 +34,24 @@
       "description": "Вы на границе очень дремучего леса",
       "actions": [
         {
-          "command": "back",
+          "command": "BACK_COMMAND",
           "title": "Вернутся на развилку",
           "description": "",
-          "params": [
-            {"nextLocationId": "start"}
-          ]
+          "params": {
+            "nextLocationId": "start"
+          }
         },
         {
-          "command": "explore",
+          "command": "EXPLORE_COMMAND",
           "title": "Исследовать лес",
           "description": "",
-          "params": []
+          "params": {}
         },
         {
-          "command": "setupCamp",
+          "command": "SETUP_CAMP_COMMAND",
           "title": "Разбить лагерь",
           "description": "",
-          "params": []
+          "params": {}
         }
       ]
     }

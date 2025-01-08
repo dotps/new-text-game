@@ -12,7 +12,6 @@ export class Model implements IModel {
         this._progressData = new GameProgressData()
         this._gameData = new GameData()
     }
-
     public get gameData(): GameData {
         return this._gameData
     }
@@ -23,6 +22,10 @@ export class Model implements IModel {
 
     public set progressData(progressData: GameProgressData) {
         this._progressData = progressData
+    }
+
+    resetCurrentInput(): void {
+        this.currentInput = ""
     }
 
     setLocation(locationId: string): void {
@@ -39,17 +42,6 @@ export class Model implements IModel {
 
     getCurrentActions(): IAction[] {
         return this._currentLocation?.actions || []
-    }
-
-    getCurrentAction(input: number): IAction {
-        const index: number = input - 1
-        const action = this._currentLocation?.actions[index]
-        if (action) {
-            return action
-        }
-        else {
-            throw Error(`Action input=${input}, index=${index} not found!`)
-        }
     }
 
     setGameData(gameData: GameData) {

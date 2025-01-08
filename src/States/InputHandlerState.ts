@@ -1,10 +1,11 @@
 import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
-import {InputOutputService} from "../Services/InputOutputService";
 import {ExitState} from "./ExitState";
 import {InputState} from "./InputState";
 import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
+import {commands} from "../Commands/Commands"
+import {CommandFactory} from "../Commands/CommandFactory"
 
 export class InputHandlerState implements IState {
 
@@ -24,36 +25,50 @@ export class InputHandlerState implements IState {
         if (this.model.currentInput === "") return
 
         switch (this.model.currentInput) {
-            case "exit":
+            case commands.EXIT_COMMAND:
                 this.stateMachine.enter(ExitState)
                 break
             default:
-                const input = parseInt(this.model.currentInput)
-                const currentActions = this.model.getCurrentActions()
-                const countCurrentActions = currentActions.length
+                this.handleInput()
+        }
+    }
 
-                if (this.isNotCorrectInput(input, countCurrentActions)) {
-                    this.view.displayText("Неверный ввод. Введите число от 1 до " + countCurrentActions)
-                    this.stateMachine.enter(InputState)
-                    return
-                }
+    private handleInput() {
+        const input = parseInt(this.model.currentInput)
+        const currentActions = this.model.getCurrentActions()
+        const countCurrentActions = currentActions.length
 
-                const action = this.model.getCurrentAction(input)
-                console.log(action)
-                // TODO: по идее не нужно засовывать логику с выбором 1..3 в model, это нужно обрабатывать здесь
-                // т.е все действия из локации и проверяем на 1..3
-                // при этом 1..3 уже используется во view нужно в одно место засунуть
-                // попробовать заложить логику 1..3 в сам класс Action
+        if (this.isNotCorrectInput(input, countCurrentActions)) {
+            this.view.displayText(`Неверный ввод. Введите число от 1 до ` + countCurrentActions + ` или "${commands.EXIT_COMMAND}" для выхода`)
+            this.stateMachine.enter(InputState)
+            return
+        }
 
+        const inputAction = currentActions[input-1]
+
+        if (!inputAction) {
+            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${commands.EXIT_COMMAND}" для выхода`)
+            this.stateMachine.enter(InputState)
+            return
+        }
+
+        const command = CommandFactory.createCommand(inputAction, this.model, this.stateMachine)
+
+        if (command) {
+            command.execute()
+        }
+        else {
+            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${commands.EXIT_COMMAND}" для выхода`)
+            this.stateMachine.enter(InputState)
         }
     }
 
     exit(): void {
         Logger.log("exit " + this.constructor.name)
-        this.model.currentInput = ""
+        this.model.resetCurrentInput()
     }
 
-    private isNotCorrectInput(input: number, countCurrentCommands: number): boolean {
-        return isNaN(input) || input < 1 || input > countCurrentCommands
+    private isNotCorrectInput(input: number, countCurrentActions: number): boolean {
+        return isNaN(input) || input < 1 || input > countCurrentActions
     }
 }
