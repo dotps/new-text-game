@@ -1,41 +1,27 @@
 import {IView} from "./IView";
-import {ActionData} from "../Data/ActionData"
 import {IAction, ILocation} from "../Data/GameData"
-import {IIOService} from "../Services/IIOService"
-import {IOService} from "../Services/IOService"
+import {IInputOuotputService} from "../Services/IInputOuotputService"
 
 export class View implements IView {
-    private _inputOutputService: IIOService
+    private inputOutputService: IInputOuotputService
 
-    constructor(inputOutputService: IIOService) {
-        this._inputOutputService = inputOutputService
+    constructor(inputOutputService: IInputOuotputService) {
+        this.inputOutputService = inputOutputService
     }
 
-    // inject(inputOutputService: IIOService) {
-    //     this._inputOutputService = inputOutputService
-    // }
+    displayText(text: string): void {
+        this.inputOutputService.displayText(text)
+    }
 
-    public displayLocation(location: ILocation): void {
-        this._inputOutputService.displayText(location.description)
+    displayLocation(location: ILocation): void {
+        this.inputOutputService.displayText(location.description)
         this.displayActions(location.actions)
     }
 
-    public displayActions(actions: IAction[]): void {
-        this._inputOutputService.displayText(`Доступные действия (введите 1..${actions.length}):`)
+    displayActions(actions: IAction[]): void {
+        this.inputOutputService.displayText(`Доступные действия (введите 1..${actions.length}):`)
         actions.forEach((action, index) => {
-            this._inputOutputService.displayText(`${index+1}. ${action.title}`)
+            this.inputOutputService.displayText(`${index+1}. ${action.title}`)
         })
     }
-
-    update(action: ActionData): void {
-        // this.displayText(action.text)
-        // this.displayText(action.elements)
-        this._inputOutputService.displayText(action.text)
-        this._inputOutputService.displayText(action.elements)
-    }
-    // displayText(text?: string): void {
-    //     if (!text)
-    //         return
-    //     console.log(text)
-    // }
 }
