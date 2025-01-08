@@ -1,34 +1,34 @@
 import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
-import {IOService} from "../Services/IOService";
+import {InputOutputService} from "../Services/InputOutputService";
 import {InputHandlerState} from "./InputHandlerState";
 import {Logger} from "../Utils/Logger"
+import {IInputOuotputService} from "../Services/IInputOuotputService"
 
 export class InputState implements IState {
 
-    private _stateMachine: StateMachine
-    private _model: IModel
-    private _inputOutputService: IOService
-    private _isRunning: boolean = true
+    private stateMachine: StateMachine
+    private model: IModel
+    private inputOutputService: IInputOuotputService
 
-    constructor(stateMachine: StateMachine, model: IModel, inputOutputService: IOService) {
-        this._stateMachine = stateMachine
-        this._model = model
-        this._inputOutputService = inputOutputService;
+    constructor(stateMachine: StateMachine, model: IModel, inputOutputService: IInputOuotputService) {
+        this.stateMachine = stateMachine
+        this.model = model
+        this.inputOutputService = inputOutputService;
     }
 
     async enter(): Promise<void> {
         Logger.log("enter " + this.constructor.name)
 
-        const responseData = await this._inputOutputService.getInput("> ")
+        const responseData = await this.inputOutputService.getInput("> ")
         Logger.log(responseData)
 
         if (responseData) {
-            this._model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
-            this._stateMachine.enter(InputHandlerState)
+            this.model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
+            this.stateMachine.enter(InputHandlerState)
         }
         else {
-            this._stateMachine.enter(InputState)
+            this.stateMachine.enter(InputState)
         }
     }
 

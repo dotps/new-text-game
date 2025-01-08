@@ -1,8 +1,8 @@
 import {createInterface, Interface} from "node:readline/promises"
-import {IIOService} from "./IIOService"
+import {IInputOuotputService} from "./IInputOuotputService"
 import {ActionData} from "../Data/ActionData"
 
-export class IOService implements IIOService {
+export class InputOutputService implements IInputOuotputService {
 
     ioService: Interface
 
@@ -16,6 +16,7 @@ export class IOService implements IIOService {
     async getInput(text: string): Promise<ActionData> {
         const inputData: string = await this.ioService.question(text)
         return {text: `Hello ${inputData}!`, inputData: inputData}
+        // TODO: тут можно избавиться от объекта
     }
 
     close(): void {

@@ -5,10 +5,10 @@ import {LoadLevelState} from "./LoadLevelState"
 import {IModel} from "../Models/IModel"
 import {SaveLoadService} from "../Services/SaveLoadService"
 import {ISaveLoadService} from "../Services/ISaveLoadService"
-import {IOService} from "../Services/IOService"
+import {InputOutputService} from "../Services/InputOutputService"
 import {Services} from "../Services/Services"
 import {InputState} from "./InputState"
-import {IIOService} from "../Services/IIOService"
+import {IInputOuotputService} from "../Services/IInputOuotputService"
 import {ExitState} from "./ExitState"
 import {InputHandlerState} from "./InputHandlerState"
 import {LocationState} from "./LocationState"
@@ -22,15 +22,14 @@ export class StateMachine {
     private _current: IState | null = null
 
     constructor(model: IModel, view: IView, services: Services) {
-        // this._states.set(BootstrapState, new BootstrapState(this, services))
 
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
-        const inputOutputService: IIOService = services.get(IOService)
+        const inputOutputService: IInputOuotputService = services.get(InputOutputService)
 
         this._states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
         this._states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
         this._states.set(InputState, new InputState(this, model, inputOutputService))
-        this._states.set(InputHandlerState, new InputHandlerState(this, model, inputOutputService))
+        this._states.set(InputHandlerState, new InputHandlerState(this, model, view))
         this._states.set(ExitState, new ExitState())
         this._states.set(LocationState, new LocationState(this, model, view))
         // this._states.set(ActionState, new ActionState())

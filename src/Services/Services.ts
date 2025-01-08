@@ -1,6 +1,6 @@
 import {IService} from "./IService";
 import {Logger} from "../Utils/Logger"
-import {IOService} from "./IOService"
+import {InputOutputService} from "./InputOutputService"
 import {SaveLoadService} from "./SaveLoadService"
 import {LoggerService} from "../Utils/LoggerService"
 import {ConsoleLogger} from "../Utils/ConsoleLogger"
@@ -9,7 +9,7 @@ export class Services {
     container: Map<{ new(...args: any[]): IService }, IService> = new Map()
 
     constructor() {
-        this.register(IOService, new IOService())
+        this.register(InputOutputService, new InputOutputService())
         this.register(SaveLoadService, new SaveLoadService())
         this.register(LoggerService, new LoggerService(new ConsoleLogger(false)))
         Logger.init(this.get(LoggerService))

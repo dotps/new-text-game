@@ -3,14 +3,14 @@ import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {StateMachine} from "../States/StateMachine"
 import {BootstrapState} from "../States/BootstrapState";
-import {IOService} from "../Services/IOService";
+import {InputOutputService} from "../Services/InputOutputService";
 import {Services} from "../Services/Services";
 import {LoadProgressState} from "../States/LoadProgressState";
 
 export class GameController implements IController {
 
     private _model: IModel
-    private _ioService: IOService
+    private _ioService: InputOutputService
     private _view: IView
     private _isRunning = true
     private _stateMachine: StateMachine;
@@ -21,7 +21,7 @@ export class GameController implements IController {
         this._view = view
         this._stateMachine = stateMachine
         this._services = services
-        this._ioService = services.get(IOService)
+        this._ioService = services.get(InputOutputService)
     }
 
     public async run() {

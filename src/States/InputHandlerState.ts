@@ -1,53 +1,56 @@
 import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
-import {IOService} from "../Services/IOService";
+import {InputOutputService} from "../Services/InputOutputService";
 import {ExitState} from "./ExitState";
 import {InputState} from "./InputState";
 import {Logger} from "../Utils/Logger"
+import {IView} from "../Views/IView"
 
 export class InputHandlerState implements IState {
 
-    private _stateMachine: StateMachine
-    private _model: IModel
-    private _inputOutputService: IOService
-    private _isRunning: boolean = true
+    private stateMachine: StateMachine
+    private model: IModel
+    private view: IView
 
-    constructor(stateMachine: StateMachine, model: IModel, inputOutputService: IOService) {
-        this._stateMachine = stateMachine
-        this._model = model
-        this._inputOutputService = inputOutputService;
+    constructor(stateMachine: StateMachine, model: IModel, view: IView) {
+        this.stateMachine = stateMachine
+        this.model = model
+        this.view = view
     }
 
     async enter(): Promise<void> {
         Logger.log("enter " + this.constructor.name)
 
-        if (this._model.currentInput === "") return
+        if (this.model.currentInput === "") return
 
-        switch (this._model.currentInput) {
+        switch (this.model.currentInput) {
             case "exit":
-                this._stateMachine.enter(ExitState)
+                this.stateMachine.enter(ExitState)
                 break
             default:
-                const input = parseInt(this._model.currentInput)
-                const currentActions = this._model.getCurrentActions()
+                const input = parseInt(this.model.currentInput)
+                const currentActions = this.model.getCurrentActions()
                 const countCurrentActions = currentActions.length
 
                 if (this.isNotCorrectInput(input, countCurrentActions)) {
-                    this._inputOutputService.displayText("Неверный ввод. Введите число от 1 до " + countCurrentActions)
-                    this._stateMachine.enter(InputState)
+                    this.view.displayText("Неверный ввод. Введите число от 1 до " + countCurrentActions)
+                    this.stateMachine.enter(InputState)
                     return
                 }
 
-                const action = this._model.getCurrentAction(input)
+                const action = this.model.getCurrentAction(input)
                 console.log(action)
+                // TODO: по идее не нужно засовывать логику с выбором 1..3 в model, это нужно обрабатывать здесь
+                // т.е все действия из локации и проверяем на 1..3
+                // при этом 1..3 уже используется во view нужно в одно место засунуть
+                // попробовать заложить логику 1..3 в сам класс Action
 
-                // TODO: получить команду из model и вызвать ее
         }
     }
 
     exit(): void {
         Logger.log("exit " + this.constructor.name)
-        this._model.currentInput = ""
+        this.model.currentInput = ""
     }
 
     private isNotCorrectInput(input: number, countCurrentCommands: number): boolean {
