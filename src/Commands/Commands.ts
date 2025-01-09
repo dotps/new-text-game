@@ -2,13 +2,14 @@ import {IModel} from "../Models/IModel"
 import {IAction} from "../Data/GameData"
 import {LocationState} from "../States/LocationState"
 import {StateMachine} from "../States/StateMachine"
+import {IStateMachine} from "../States/IStateMachine"
 
 export class NextLocationCommand implements ICommand {
     private readonly action: IAction
     private readonly model: IModel
-    private readonly stateMachine: StateMachine
+    private readonly stateMachine: IStateMachine
 
-    constructor(action: IAction, model: IModel, stateMachine: StateMachine) {
+    constructor(action: IAction, model: IModel, stateMachine: IStateMachine) {
         this.action = action
         this.model = model
         this.stateMachine = stateMachine

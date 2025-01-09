@@ -1,6 +1,4 @@
-import {ActionState} from "./ActionState"
 import {LoadProgressState} from "./LoadProgressState"
-import {BootstrapState} from "./BootstrapState"
 import {LoadLevelState} from "./LoadLevelState"
 import {IModel} from "../Models/IModel"
 import {SaveLoadService} from "../Services/SaveLoadService"
@@ -13,10 +11,9 @@ import {ExitState} from "./ExitState"
 import {InputHandlerState} from "./InputHandlerState"
 import {LocationState} from "./LocationState"
 import {IView} from "../Views/IView"
-import {LoggerService} from "../Utils/LoggerService"
-import {ILoggerService} from "../Utils/ILoggerService"
+import {IStateMachine} from "./IStateMachine"
 
-export class StateMachine {
+export class StateMachine implements IStateMachine {
 
     private _states: Map<new (...args: any[]) => IState, IState> = new Map()
     private _current: IState | null = null
@@ -35,11 +32,11 @@ export class StateMachine {
         // this._states.set(ActionState, new ActionState())
     }
 
-    public enter(stateType: new (...args: any[]) => IState): void {
+    enter(stateType: new (...args: any[]) => IState): void {
         this.changeState(stateType)
     }
 
-    public changeState(stateType: new (...args: any[]) => IState): void {
+    changeState(stateType: new (...args: any[]) => IState): void {
         this._current?.exit()
         const state = this._states.get(stateType)
         if (state) {

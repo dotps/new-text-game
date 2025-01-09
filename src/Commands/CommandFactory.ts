@@ -1,10 +1,10 @@
 import {ExitGameCommand, NextLocationCommand} from "./Commands"
 import {IModel} from "../Models/IModel"
 import {IAction} from "../Data/GameData"
-import {StateMachine} from "../States/StateMachine"
+import {IStateMachine} from "../States/IStateMachine"
 
 export class CommandFactory {
-    static createCommand(action: IAction, model: IModel, stateMachine: StateMachine): ICommand | null {
+    static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine): ICommand | null {
         switch (action.command) {
             case "EXIT_GAME_COMMAND":
                 return new ExitGameCommand(model)

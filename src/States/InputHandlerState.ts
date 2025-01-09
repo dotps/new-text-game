@@ -6,14 +6,15 @@ import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
 import {commands} from "../Commands/Commands"
 import {CommandFactory} from "../Commands/CommandFactory"
+import {IStateMachine} from "./IStateMachine"
 
 export class InputHandlerState implements IState {
 
-    private stateMachine: StateMachine
-    private model: IModel
+    private readonly stateMachine: IStateMachine
+    private readonly model: IModel
     private view: IView
 
-    constructor(stateMachine: StateMachine, model: IModel, view: IView) {
+    constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
         this.stateMachine = stateMachine
         this.model = model
         this.view = view
@@ -56,6 +57,7 @@ export class InputHandlerState implements IState {
 
         if (command) {
             command.execute()
+            // const result = command.execute()
         }
         else {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${commands.EXIT_COMMAND}" для выхода`)
