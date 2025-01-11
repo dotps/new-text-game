@@ -53,6 +53,7 @@ export class InputHandlerState implements IState {
             return
         }
 
+        // TODO: реализовать обращение к списку команд текущей локации, который создается при смене локации
         const command = CommandFactory.createCommand(inputAction, this.model, this.stateMachine)
 
         if (command) {
