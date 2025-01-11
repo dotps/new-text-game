@@ -1,0 +1,95 @@
+{
+  "locations": [
+    {
+      "id": "start",
+      "title": "Начало",
+      "description": "Вы просыпаетесь в центре густого леса, окруженного туманом. Единственный звук, который вы слышите, — это ветер, шелестящий в листве деревьев. Перед вами две тропинки. Одна ведет направо, другая — налево.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Направо",
+          "description": "",
+          "params": {
+            "nextLocationId": "branch-1"
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Направо",
+          "description": "",
+          "params": {
+            "nextLocationId": "branch-2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "branch-1",
+      "title": "Ветка 1: Направо",
+      "description": "Вы поворачиваете направо и идёте по узкой тропинке. Через некоторое время перед вами появляется старый мост, ведущий через бурную реку.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Перейти через мост",
+          "description": "",
+          "params": {
+            "nextLocationId": "branch-1-bridge",
+            "isGameOver": true
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Вернуться назад",
+          "description": "",
+          "params": {
+            "nextLocationId": "start",
+            "mustDisableDescription": "true"
+          }
+        }
+      ]
+    },
+    {
+      "id": "branch-1-bridge",
+      "title": "Перейти через мост",
+      "description": "Вы смело идёте по скрипящим доскам моста, но в середине пути слышите треск. Мост обрушивается под вами, и вы падаете в холодную воду реки. Вы теряете сознание...",
+      "actions": []
+    },
+    {
+      "id": "branch-2",
+      "title": "Ветка 2: Налево",
+      "description": "Вы сворачиваете налево, и тропинка выводит вас к небольшой хижине. Из окна виден тусклый свет, а дверь приоткрыта.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Войти в хижину",
+          "description": "",
+          "params": {
+            "nextLocationId": "branch-2-enter-house",
+            "isGameOver": true
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Постучать в дверь",
+          "description": "",
+          "params": {
+            "nextLocationId": "branch-2-knock-door",
+            "isGameOver": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "branch-2-enter-house",
+      "title": "Войти в хижину",
+      "description": "Вы решаете войти в хижину, но как только переступаете порог, дверь захлопывается за вашей спиной. Внутри пусто, только звук капающей воды раздается в тишине. Кажется, что вы попали в ловушку.",
+      "actions": []
+    },
+    {
+      "id": "branch-2-knock-door",
+      "title": "Постучать в дверь",
+      "description": "Вы стучите в дверь, и через мгновение её открывает пожилая женщина с добрым взглядом. Она предлагает вам войти и отдохнуть. Вы чувствуете себя в безопасности и продолжаете путь с новыми силами.",
+      "actions": []
+    }
+  ]
+}
