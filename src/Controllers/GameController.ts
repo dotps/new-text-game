@@ -1,30 +1,26 @@
 import {IController} from "./IController"
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
-import {StateMachine} from "../States/StateMachine"
-import {InputOutputService} from "../Services/InputOutputService";
 import {Services} from "../Services/Services";
 import {LoadProgressState} from "../States/LoadProgressState";
+import {IStateMachine} from "../States/IStateMachine"
 
 export class GameController implements IController {
 
-    private _model: IModel
-    private _ioService: InputOutputService
-    private _view: IView
-    private _isRunning = true
-    private _stateMachine: StateMachine;
-    private _services: Services;
+    private model: IModel
+    private view: IView
+    private stateMachine: IStateMachine;
+    private services: Services;
 
-    constructor(model: IModel, view: IView, stateMachine: StateMachine, services: Services) {
-        this._model = model
-        this._view = view
-        this._stateMachine = stateMachine
-        this._services = services
-        this._ioService = services.get(InputOutputService)
+    constructor(model: IModel, view: IView, stateMachine: IStateMachine, services: Services) {
+        this.model = model
+        this.view = view
+        this.stateMachine = stateMachine
+        this.services = services
     }
 
     public async run() {
-        this._stateMachine.enter(LoadProgressState)
+        this.stateMachine.enter(LoadProgressState)
     }
 }
 
