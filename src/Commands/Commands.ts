@@ -1,7 +1,6 @@
 import {IModel} from "../Models/IModel"
 import {IAction} from "../Data/GameData"
 import {LocationState} from "../States/LocationState"
-import {StateMachine} from "../States/StateMachine"
 import {IStateMachine} from "../States/IStateMachine"
 
 export class NextLocationCommand implements ICommand {
