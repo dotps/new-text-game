@@ -13,10 +13,10 @@ export class SaveLoadService implements ISaveLoadService {
         return new GameProgressData()
     }
 
-    loadGameData(): GameData {
+    loadGameData(levelPath: string): GameData {
 
         // TODO: add try catch
-        const data = fs.readFileSync("./Data/level.json", "utf-8")
+        const data = fs.readFileSync(levelPath, "utf-8")
         const jsonData = JSON.parse(data)
         const gameData = new GameData()
 

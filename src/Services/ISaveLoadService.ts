@@ -5,5 +5,5 @@ import {GameData} from "../Data/GameData";
 export interface ISaveLoadService extends IService {
     saveProgress(progress: GameProgressData): boolean
     loadProgress(): GameProgressData
-    loadGameData(): GameData
+    loadGameData(levelPath: string): GameData
 }

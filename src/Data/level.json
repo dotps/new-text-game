@@ -54,6 +54,32 @@
           "params": {}
         }
       ]
+    },
+    {
+      "id": "edgeForest",
+      "description": "Вы на границе очень дремучего леса",
+      "actions": [
+        {
+          "command": "BACK_COMMAND",
+          "title": "Вернутся на развилку",
+          "description": "",
+          "params": {
+            "nextLocationId": "start"
+          }
+        },
+        {
+          "command": "EXPLORE_COMMAND",
+          "title": "Исследовать лес",
+          "description": "",
+          "params": {}
+        },
+        {
+          "command": "SETUP_CAMP_COMMAND",
+          "title": "Разбить лагерь",
+          "description": "",
+          "params": {}
+        }
+      ]
     }
   ]
 }

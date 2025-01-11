@@ -30,11 +30,11 @@ export class InputHandlerState implements IState {
                 this.stateMachine.enter(ExitState)
                 break
             default:
-                this.handleInput()
+                this.handleNumberInput()
         }
     }
 
-    private handleInput() {
+    private handleNumberInput() {
         const input = parseInt(this.model.currentInput)
         const currentActions = this.model.getCurrentActions()
         const countCurrentActions = currentActions.length
@@ -57,7 +57,6 @@ export class InputHandlerState implements IState {
 
         if (command) {
             command.execute()
-            // const result = command.execute()
         }
         else {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${commands.EXIT_COMMAND}" для выхода`)

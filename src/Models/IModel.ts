@@ -1,5 +1,3 @@
-import {ActionData} from "../Data/ActionData"
-
 import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation} from "../Data/GameData";
 
@@ -11,6 +9,5 @@ export interface IModel {
     getCurrentActions(): IAction[]
     setLocation(locationId: string): void
     setGameData(gameData: GameData): void
-
     resetCurrentInput(): void
 }
