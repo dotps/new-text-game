@@ -1,17 +1,16 @@
-import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
-import {InputOutputService} from "../Services/InputOutputService";
 import {InputHandlerState} from "./InputHandlerState";
 import {Logger} from "../Utils/Logger"
 import {IInputOuotputService} from "../Services/IInputOuotputService"
+import {IStateMachine} from "./IStateMachine"
 
 export class InputState implements IState {
 
-    private stateMachine: StateMachine
+    private stateMachine: IStateMachine
     private model: IModel
     private inputOutputService: IInputOuotputService
 
-    constructor(stateMachine: StateMachine, model: IModel, inputOutputService: IInputOuotputService) {
+    constructor(stateMachine: IStateMachine, model: IModel, inputOutputService: IInputOuotputService) {
         this.stateMachine = stateMachine
         this.model = model
         this.inputOutputService = inputOutputService;
@@ -21,7 +20,6 @@ export class InputState implements IState {
         Logger.log("enter " + this.constructor.name)
 
         const responseData = await this.inputOutputService.getInput("> ")
-        Logger.log(responseData)
 
         if (responseData) {
             this.model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
