@@ -19,6 +19,9 @@ export class View implements IView {
     }
 
     displayActions(actions: IAction[]): void {
+
+        if (actions.length === 0) return // TODO: протестировать данный код
+
         this.inputOutputService.displayText(`Доступные действия (введите 1..${actions.length}):`)
         actions.forEach((action, index) => {
             this.inputOutputService.displayText(`${index+1}. ${action.title}`)
