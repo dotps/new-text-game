@@ -29,12 +29,13 @@
       "description": "Вы поворачиваете направо и идёте по узкой тропинке. Через некоторое время перед вами появляется старый мост, ведущий через бурную реку.",
       "actions": [
         {
-          "command": "NEXT_LOCATION_COMMAND",
+          "command_": "NEXT_LOCATION_COMMAND",
+          "command": "GAME_OVER_LOCATION_COMMAND",
           "title": "Перейти через мост",
           "description": "",
           "params": {
             "nextLocationId": "branch-1-bridge",
-            "isGameOver": true
+            "isGameOver_": true
           }
         },
         {

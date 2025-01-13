@@ -10,4 +10,5 @@ export interface IModel {
     setLocation(locationId: string): void
     setGameData(gameData: GameData): void
     resetCurrentInput(): void
+    gameOver(): void
 }

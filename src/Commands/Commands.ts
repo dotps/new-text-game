@@ -17,11 +17,13 @@ export class NextLocationCommand implements ICommand {
     execute() {
         const params = this.action?.params;
         const nextLocationId = params?.nextLocationId || null
+        const isGameOver = params?.isGameOver === "true"
 
         if (!nextLocationId) {
             throw new Error(`${this.constructor.name} command param nextLocationId not found!`)
         }
 
+        if (isGameOver) this.model.gameOver()
         this.model.setLocation(nextLocationId)
         this.stateMachine.enter(LocationState)
     }
