@@ -20,7 +20,7 @@ export class View implements IView {
 
     displayActions(actions: IAction[]): void {
 
-        if (actions.length === 0) return // TODO: протестировать данный код
+        if (actions.length === 0) return
 
         this.inputOutputService.displayText(`Доступные действия (введите 1..${actions.length}):`)
         actions.forEach((action, index) => {
