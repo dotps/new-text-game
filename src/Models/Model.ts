@@ -8,7 +8,7 @@ export class Model implements IModel {
     private _progressData: GameProgressData
     private _gameData: GameData
     private _currentLocation: ILocation | null = null
-    private isGameOver: boolean = false
+    private _isGameOver: boolean = false
 
     constructor() {
         this._progressData = new GameProgressData()
@@ -51,7 +51,12 @@ export class Model implements IModel {
     }
 
     gameOver(): void {
-        this.isGameOver = true
-        // TODO: реализовать конец игры
+        this._isGameOver = true
     }
+
+    public get isGameOver(): boolean {
+        return this._isGameOver
+        TODO: реализовать конец игры
+    }
+
 }
