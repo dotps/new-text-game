@@ -29,22 +29,15 @@ export class Model implements IModel {
         this.currentInput = ""
     }
 
-    // setLocation(locationId: string, params: LocationParams): void {
-    //     this._currentLocation = this._gameData.getLocation(locationId)
-    //     this._currentLocation.params = params
-    //     this._progressData.currentLocationId = locationId
-    // }
-
     setLocation(params: LocationParams): void {
-        this._currentLocation = this._gameData.getLocation(params.locationId)
-        this._currentLocation.params = params
+        this._currentLocation = this._gameData.getLocation(params)
         this._progressData.currentLocationId = params.locationId
-        console.log(this._currentLocation)
     }
 
     getCurrentLocation(): ILocation {
         if (!this._currentLocation) {
-            this._currentLocation = this._gameData.getLocation(this.progressData.currentLocationId)
+            const locationParams = new LocationParams({locationId: this.progressData.currentLocationId})
+            this._currentLocation = this._gameData.getLocation(locationParams)
         }
         return this._currentLocation
     }

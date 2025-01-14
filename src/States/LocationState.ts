@@ -21,11 +21,6 @@ export class LocationState implements IState {
 
         const location = this.model.getCurrentLocation()
 
-        // console.log(location)
-        // location.params.isDisableDescription = true
-
-        // TODO: реализовать отключение описания isDisableDescription
-
         this.view.displayLocation(location)
 
         if (this.model.isGameOver()) {

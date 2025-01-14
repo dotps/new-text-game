@@ -29,13 +29,11 @@ export class Location implements ILocation {
         this.actions = actions
         this.params = params
 
-        // TODO: так не работает конструктор не вызывается повторно, нужно где-то в другом месте делать
-        console.log("====")
-        console.log(this.params.description)
-        console.log("====")
+        this.changeLocationDataFromAction(this.params)
+    }
 
+    private changeLocationDataFromAction(params: LocationParams) {
         if (this.params?.description) {
-            console.log("+++++++++++++++++")
             this.description = this.params.description
         }
     }
@@ -47,7 +45,7 @@ export class LocationParams {
     readonly isGameOver: boolean
     readonly description: string
 
-    constructor(params: IActionParams = {}) {
+    constructor(params: IActionParams) {
         this.isDisableDescription = params?.isDisableDescription === true
         this.locationId = params?.locationId?.toString() || "start"
         this.isGameOver = params?.isGameOver === true
@@ -78,13 +76,14 @@ export class GameData {
     locations: ILocation[] = []
     commands: Record<string, IAction> = {}
 
-    getLocation(locationId: string): ILocation {
-        const location = this.locations.find(location => location.id === locationId)
+    getLocation(locationParams: LocationParams): ILocation {
+        const location = this.locations.find(location => location.id === locationParams.locationId)
         if (!location) {
-            throw new Error(`Location ${locationId} not found!`)
+            throw new Error(`Location ${locationParams.locationId} not found!`)
         }
-        return location
+        return new Location(location.id, location.title, location.description, location.actions, locationParams)
     }
+
     // TODO: разобраться с командами, вроде уже ненужный функционал
     initCommands(): void {
         if (!this.locations) return
