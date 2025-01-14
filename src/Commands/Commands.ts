@@ -15,15 +15,8 @@ export class NextLocationCommand implements ICommand {
     }
 
     execute() {
-        // const params = this.action?.params
-        // const locationId = this.action?.params?.locationId?.toString()
-        // const isDisableDescription = this.action?.params?.isDisableDescription === true
-        // const locationDescription = this.action?.params?.description.toString()
-        // const isGameOver = this.action?.params?.isGameOver === true
-        // const params = new LocationParams(locationId, isDisableDescription, isGameOver)
         const locationParams = new LocationParams(this.action?.params)
 
-        // const stateParams = this.action?.stateParams
         // const nextLocationId = params?.locationId || null
         // const isGameOver = params?.isGameOver ? true : false
 

@@ -26,7 +26,6 @@ export class SaveLoadService implements ISaveLoadService {
                 action.title,
                 action.description,
                 action.params,
-                action.stateParams
             ))
             return new Location(location.id, location.title, location.description, actions, new LocationParams());
         })

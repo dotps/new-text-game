@@ -44,8 +44,7 @@
           "description": "",
           "params": {
             "locationId": "start",
-            "description": "Вы решаете не рисковать и возвращаетесь к развилке.",
-            "isDisableDescription": true
+            "description": "Вы решаете не рисковать и возвращаетесь к развилке."
           }
         }
       ]

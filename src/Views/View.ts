@@ -14,8 +14,7 @@ export class View implements IView {
     }
 
     displayLocation(location: ILocation): void {
-        // if (!location.params.isDisableDescription)
-            this.inputOutputService.displayText(location.description)
+        this.inputOutputService.displayText(location.description)
         this.displayActions(location.actions)
     }
 

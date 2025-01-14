@@ -3,14 +3,12 @@ export class Action implements IAction {
     title: string
     description: string
     params: IActionParams
-    stateParams: Record<string, string>
 
-    constructor(command: string, title: string, description: string, params: IActionParams, stateParams: Record<string, string>) {
+    constructor(command: string, title: string, description: string, params: IActionParams) {
         this.command = command
         this.title = title
         this.description = description
         this.params = params
-        this.stateParams = stateParams
     }
 }
 
@@ -41,12 +39,10 @@ export class Location implements ILocation {
 
 export class LocationParams {
     readonly locationId: string
-    readonly isDisableDescription: boolean
     readonly isGameOver: boolean
     readonly description: string
 
-    constructor(params: IActionParams) {
-        this.isDisableDescription = params?.isDisableDescription === true
+    constructor(params: IActionParams = {}) {
         this.locationId = params?.locationId?.toString() || "start"
         this.isGameOver = params?.isGameOver === true
         this.description = params?.description?.toString()
@@ -69,7 +65,6 @@ export interface IAction {
     title: string
     description: string
     params: IActionParams
-    stateParams: Record<string, string>
 }
 
 export class GameData {
