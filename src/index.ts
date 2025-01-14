@@ -15,3 +15,5 @@ const stateMachine = new StateMachine(gameModel, gameView, services)
 const game: IController = new GameController(gameModel, gameView, stateMachine, services)
 
 game.run()
+
+// TODO: почистить от ненужного кода
