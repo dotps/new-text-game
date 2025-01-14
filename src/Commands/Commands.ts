@@ -15,19 +15,7 @@ export class NextLocationCommand implements ICommand {
     }
 
     execute() {
-        const locationParams = new LocationParams(this.action?.params)
-
-        // const nextLocationId = params?.locationId || null
-        // const isGameOver = params?.isGameOver ? true : false
-
-        // if (!nextLocationId) {
-        if (!locationParams.locationId) {
-            throw new Error(`${this.constructor.name} required action params not found!`)
-        }
-
-        // if (isGameOver) this.model.gameOver()
-
-        this.model.setLocation(locationParams)
+        this.model.setLocation(new LocationParams(this.action?.params))
         this.stateMachine.enter(LocationState)
     }
 }
@@ -40,7 +28,7 @@ export class ExitGameCommand implements ICommand {
     }
 
     execute() {
-        //this._model.setLocation("village")
+
     }
 
 }

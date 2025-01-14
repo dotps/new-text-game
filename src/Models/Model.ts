@@ -32,6 +32,9 @@ export class Model implements IModel {
     setLocation(params: LocationParams): void {
         this._currentLocation = this._gameData.getLocation(params)
         this._progressData.currentLocationId = params.locationId
+
+        if (params.isGameOver)
+            this.gameOver()
     }
 
     getCurrentLocation(): ILocation {
