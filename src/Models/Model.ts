@@ -1,7 +1,7 @@
 import {IModel} from "./IModel";
 
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, IAction, ILocation} from "../Data/GameData";
+import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 
 export class Model implements IModel {
     public currentInput: string = ""
@@ -29,9 +29,17 @@ export class Model implements IModel {
         this.currentInput = ""
     }
 
-    setLocation(locationId: string): void {
-        this._currentLocation = this._gameData.getLocation(locationId)
-        this._progressData.currentLocationId = locationId
+    // setLocation(locationId: string, params: LocationParams): void {
+    //     this._currentLocation = this._gameData.getLocation(locationId)
+    //     this._currentLocation.params = params
+    //     this._progressData.currentLocationId = locationId
+    // }
+
+    setLocation(params: LocationParams): void {
+        this._currentLocation = this._gameData.getLocation(params.locationId)
+        this._currentLocation.params = params
+        this._progressData.currentLocationId = params.locationId
+        console.log(this._currentLocation)
     }
 
     getCurrentLocation(): ILocation {
@@ -54,9 +62,9 @@ export class Model implements IModel {
         this._isGameOver = true
     }
 
-    public get isGameOver(): boolean {
+    public isGameOver(): boolean {
         return this._isGameOver
-        TODO: реализовать конец игры
+        // TODO: реализовать конец игры
     }
 
 }

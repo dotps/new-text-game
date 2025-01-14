@@ -10,7 +10,7 @@
           "title": "Направо",
           "description": "",
           "params": {
-            "nextLocationId": "branch-1"
+            "locationId": "branch-1"
           }
         },
         {
@@ -18,7 +18,7 @@
           "title": "Направо",
           "description": "",
           "params": {
-            "nextLocationId": "branch-2"
+            "locationId": "branch-2"
           }
         }
       ]
@@ -29,13 +29,13 @@
       "description": "Вы поворачиваете направо и идёте по узкой тропинке. Через некоторое время перед вами появляется старый мост, ведущий через бурную реку.",
       "actions": [
         {
-          "command_": "NEXT_LOCATION_COMMAND",
-          "command": "GAME_OVER_LOCATION_COMMAND",
+          "command": "NEXT_LOCATION_COMMAND",
+          "command_": "GAME_OVER_LOCATION_COMMAND",
           "title": "Перейти через мост",
           "description": "",
           "params": {
-            "nextLocationId": "branch-1-bridge",
-            "isGameOver_": true
+            "locationId": "branch-1-bridge",
+            "isGameOver": true
           }
         },
         {
@@ -43,8 +43,9 @@
           "title": "Вернуться назад",
           "description": "",
           "params": {
-            "nextLocationId": "start",
-            "mustDisableDescription": "true"
+            "locationId": "start",
+            "description": "Вы решаете не рисковать и возвращаетесь к развилке.",
+            "isDisableDescription": true
           }
         }
       ]
@@ -65,7 +66,7 @@
           "title": "Войти в хижину",
           "description": "",
           "params": {
-            "nextLocationId": "branch-2-enter-house",
+            "locationId": "branch-2-enter-house",
             "isGameOver": true
           }
         },
@@ -74,7 +75,7 @@
           "title": "Постучать в дверь",
           "description": "",
           "params": {
-            "nextLocationId": "branch-2-knock-door",
+            "locationId": "branch-2-knock-door",
             "isGameOver": true
           }
         }

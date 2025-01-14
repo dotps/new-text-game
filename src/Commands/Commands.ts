@@ -1,5 +1,5 @@
 import {IModel} from "../Models/IModel"
-import {IAction} from "../Data/GameData"
+import {IAction, LocationParams} from "../Data/GameData"
 import {LocationState} from "../States/LocationState"
 import {IStateMachine} from "../States/IStateMachine"
 
@@ -15,16 +15,26 @@ export class NextLocationCommand implements ICommand {
     }
 
     execute() {
-        const params = this.action?.params;
-        const nextLocationId = params?.nextLocationId || null
-        const isGameOver = params?.isGameOver === "true"
+        // const params = this.action?.params
+        // const locationId = this.action?.params?.locationId?.toString()
+        // const isDisableDescription = this.action?.params?.isDisableDescription === true
+        // const locationDescription = this.action?.params?.description.toString()
+        // const isGameOver = this.action?.params?.isGameOver === true
+        // const params = new LocationParams(locationId, isDisableDescription, isGameOver)
+        const locationParams = new LocationParams(this.action?.params)
 
-        if (!nextLocationId) {
-            throw new Error(`${this.constructor.name} command param nextLocationId not found!`)
+        // const stateParams = this.action?.stateParams
+        // const nextLocationId = params?.locationId || null
+        // const isGameOver = params?.isGameOver ? true : false
+
+        // if (!nextLocationId) {
+        if (!locationParams.locationId) {
+            throw new Error(`${this.constructor.name} required action params not found!`)
         }
 
-        if (isGameOver) this.model.gameOver()
-        this.model.setLocation(nextLocationId)
+        // if (isGameOver) this.model.gameOver()
+
+        this.model.setLocation(locationParams)
         this.stateMachine.enter(LocationState)
     }
 }

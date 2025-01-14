@@ -12,6 +12,7 @@ import {InputHandlerState} from "./InputHandlerState"
 import {LocationState} from "./LocationState"
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
+import {GameOverState} from "./GameOverState"
 
 export class StateMachine implements IStateMachine {
 
@@ -27,6 +28,7 @@ export class StateMachine implements IStateMachine {
         this.states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
         this.states.set(InputState, new InputState(this, model, inputOutputService))
         this.states.set(InputHandlerState, new InputHandlerState(this, model, view))
+        this.states.set(GameOverState, new GameOverState(this, view))
         this.states.set(ExitState, new ExitState())
         this.states.set(LocationState, new LocationState(this, model, view))
     }
