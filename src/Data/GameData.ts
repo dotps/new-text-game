@@ -31,21 +31,21 @@ export class Location implements ILocation {
     }
 
     private changeLocationDataFromAction(params: LocationParams) {
-        if (this.params?.description) {
-            this.description = this.params.description
+        if (this.params?.locationDescription) {
+            this.description = this.params.locationDescription
         }
     }
 }
 
 export class LocationParams {
     readonly locationId: string
+    readonly locationDescription: string
     readonly isGameOver: boolean
-    readonly description: string
 
     constructor(params: IActionParams = {}) {
         this.locationId = params?.locationId?.toString() || "start"
+        this.locationDescription = params?.locationDescription?.toString()
         this.isGameOver = params?.isGameOver === true
-        this.description = params?.description?.toString()
     }
 }
 export interface IActionParams {

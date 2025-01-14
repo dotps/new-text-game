@@ -42,6 +42,7 @@ export class InputHandlerState implements IState {
         if (this.isNotCorrectInput(input, countCurrentActions)) {
             const actionsInputText = countCurrentActions > 0 ? `число от 1 до ${countCurrentActions} или ` : ``
             this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${commands.EXIT_COMMAND}" для выхода`)
+            this.view.displayActions(currentActions)
             this.stateMachine.enter(InputState)
             return
         }

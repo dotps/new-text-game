@@ -30,7 +30,6 @@
       "actions": [
         {
           "command": "NEXT_LOCATION_COMMAND",
-          "command_": "GAME_OVER_LOCATION_COMMAND",
           "title": "Перейти через мост",
           "description": "",
           "params": {
@@ -44,7 +43,7 @@
           "description": "",
           "params": {
             "locationId": "start",
-            "description": "Вы решаете не рисковать и возвращаетесь к развилке."
+            "locationDescription": "Вы решаете не рисковать и возвращаетесь к развилке."
           }
         }
       ]
