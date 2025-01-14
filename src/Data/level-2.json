@@ -76,6 +76,14 @@
             "locationId": "branch-2-knock-door",
             "isGameOver": true
           }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Пройти мимо дома",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-pass-house"
+          }
         }
       ]
     },
@@ -90,6 +98,31 @@
       "title": "Постучать в дверь",
       "description": "Вы стучите в дверь, и через мгновение её открывает пожилая женщина с добрым взглядом. Она предлагает вам войти и отдохнуть. Вы чувствуете себя в безопасности и продолжаете путь с новыми силами.",
       "actions": []
+    },
+    {
+      "id": "branch-2-pass-house",
+      "title": "Пройти мимо дома",
+      "description": "Вы прошли мимо дома и увидели узкую тропинку в лес",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Пойти по тропинке",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-path-to-forest"
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Вернутся назад",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-pass-house",
+            "locationDescription": "Вы вернулись к дому, споткнулись и сломали ногу.",
+            "isGameOver": true
+          }
+        }
+      ]
     }
   ]
 }
