@@ -4,6 +4,7 @@ import {IView} from "../Views/IView"
 import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {GameOverState} from "./GameOverState"
+import {ILocation} from "../Data/GameData"
 
 export class LocationState implements IState {
     private stateMachine: IStateMachine
@@ -21,7 +22,8 @@ export class LocationState implements IState {
 
         const location = this.model.getCurrentLocation()
 
-        this.view.displayLocation(location)
+        // this.view.displayLocation(location)
+        this.displayLocation(location)
 
         if (this.model.isGameOver()) {
             this.stateMachine.enter(GameOverState)
@@ -34,4 +36,12 @@ export class LocationState implements IState {
     exit(): void {
         Logger.log("exit " + this.constructor.name)
     }
+
+    displayLocation(location: ILocation) {
+        this.view.displayText(location.description)
+        if (!this.model.isGameOver()) {
+            this.view.displayActions(location.actions)
+        }
+    }
+
 }
