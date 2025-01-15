@@ -134,8 +134,7 @@
           "title": "Пойти дальше по тропинке",
           "description": "",
           "params": {
-            "locationId": "branch-2-path-in-forest",
-            "isGameOver": true
+            "locationId": "branch-2-path-in-forest"
           }
         },
         {
@@ -162,6 +161,14 @@
             "locationDescription": "Вы побежали вквозь чащу леса обратно на поляну, но волк вас догнал.",
             "isGameOver": true
           }
+        },
+        {
+          "command": "BATTLE_COMMAND",
+          "title": "Вступить в схватку",
+          "description": "",
+          "params": {
+            "enemyId": "wolf"
+          }
         }
       ]
     },
@@ -174,9 +181,16 @@
           "command": "TAKE_THING_COMMAND",
           "title": "Ножницы",
           "description": "",
+          "messageAfterExecute": "Вы выбрали ножницы и продолжили путь по тропинке",
           "params": {
             "thingId": "scissors",
-            "thingTitle": "Ножницы"
+            "thingTitle": "Ножницы",
+            "action": {
+              "command": "NEXT_LOCATION_COMMAND",
+              "params": {
+                "locationId": "branch-2-path-in-forest"
+              }
+            }
           }
         },
         {
@@ -199,9 +213,16 @@
           "command": "TAKE_THING_COMMAND",
           "title": "Камень",
           "description": "",
+          "messageAfterExecute": "Вы выбрали камень и продолжили путь по тропинке",
           "params": {
             "thingId": "stone",
-            "thingTitle": "Камень"
+            "thingTitle": "Камень",
+            "action": {
+              "command": "NEXT_LOCATION_COMMAND",
+              "params": {
+                "locationId": "branch-2-path-in-forest"
+              }
+            }
           }
         },
         {
@@ -213,6 +234,12 @@
           }
         }
       ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "wolf",
+      "title": "Волк"
     }
   ]
 }

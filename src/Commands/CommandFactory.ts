@@ -1,4 +1,4 @@
-import {ExitGameCommand, NextLocationCommand, TakeThingCommand} from "./Commands"
+import {BattleCommand, ExitGameCommand, NextLocationCommand, TakeThingCommand} from "./Commands"
 import {IModel} from "../Models/IModel"
 import {IAction} from "../Data/GameData"
 import {IStateMachine} from "../States/IStateMachine"
@@ -14,6 +14,8 @@ export class CommandFactory {
             case "TAKE_THING_COMMAND":
                 // return new TakeThingCommand(action, model.inventory, stateMachine)
                 return new TakeThingCommand(action, model, stateMachine, view)
+            case "BATTLE_COMMAND":
+                return new BattleCommand(action, model, stateMachine, view)
             default:
                 return null
         }
