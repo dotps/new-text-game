@@ -15,8 +15,9 @@ export class View implements IView {
 
     displayLocation(location: ILocation): void {
         this.inputOutputService.displayText(location.description)
-        this.displayActions(location.actions)
-        // TODO: решить где будет логика решения отображать ли действия локации если игра окончена
+        if (!location.params.isGameOver) {
+            this.displayActions(location.actions)
+        }
     }
 
     displayActions(actions: IAction[]): void {
