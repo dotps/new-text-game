@@ -123,6 +123,96 @@
           }
         }
       ]
+    },
+    {
+      "id": "branch-2-path-to-forest",
+      "title": "Тропинка",
+      "description": "Пройдя по тропинке вы очутились на поляне",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Пойти дальше по тропинке",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-path-in-forest",
+            "isGameOver": true
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Осмотреться",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-forest-glade"
+          }
+        }
+      ]
+    },
+    {
+      "id": "branch-2-path-in-forest",
+      "title": "Тропинка",
+      "description": "Решив идти дальше, вы встречаете волка, что будете делать?",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Убежать",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-forest-glade",
+            "locationDescription": "Вы побежали вквозь чащу леса обратно на поляну, но волк вас догнал.",
+            "isGameOver": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "branch-2-forest-glade",
+      "title": "Поляна",
+      "description": "Вы осмотрели поляну и обнаружили ножницы, бумагу и камень. Что вы возмете с собой?",
+      "actions": [
+        {
+          "command": "TAKE_THING_COMMAND",
+          "title": "Ножницы",
+          "description": "",
+          "params": {
+            "thingId": "scissors",
+            "thingTitle": "Ножницы"
+          }
+        },
+        {
+          "command": "TAKE_THING_COMMAND",
+          "title": "Бумагу",
+          "description": "",
+          "messageAfterExecute": "Вы выбрали бумагу и продолжили путь по тропинке",
+          "params": {
+            "thingId": "paper",
+            "thingTitle": "Бумага",
+            "action": {
+              "command": "NEXT_LOCATION_COMMAND",
+              "params": {
+                "locationId": "branch-2-path-in-forest"
+              }
+            }
+          }
+        },
+        {
+          "command": "TAKE_THING_COMMAND",
+          "title": "Камень",
+          "description": "",
+          "params": {
+            "thingId": "stone",
+            "thingTitle": "Камень"
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Ничего не брать и идти дальше",
+          "description": "",
+          "params": {
+            "locationId": "branch-2-path-in-forest"
+          }
+        }
+      ]
     }
   ]
 }

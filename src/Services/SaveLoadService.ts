@@ -22,10 +22,11 @@ export class SaveLoadService implements ISaveLoadService {
 
         gameData.locations = jsonData.locations.map((location: ILocation) => {
             const actions: Action[] = location.actions.map((action: IAction) => new Action(
-                action.command,
-                action.title,
-                action.description,
-                action.params,
+                action?.command,
+                action?.title,
+                action?.description,
+                action?.messageAfterExecute,
+                action?.params,
             ))
             return new Location(location.id, location.title, location.description, actions, new LocationParams());
         })

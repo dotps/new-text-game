@@ -1,9 +1,14 @@
 import {IModel} from "../Models/IModel"
-import {IAction, LocationParams} from "../Data/GameData"
+import {Action, IAction, LocationParams, Thing} from "../Data/GameData"
 import {LocationState} from "../States/LocationState"
 import {IStateMachine} from "../States/IStateMachine"
+import {IInventory} from "../Models/Inventory/IInventory"
+import {CommandFactory} from "./CommandFactory"
+import {Logger} from "../Utils/Logger"
+import {IView} from "../Views/IView"
 
 export class NextLocationCommand implements ICommand {
+
     private readonly action: IAction
     private readonly model: IModel
     private readonly stateMachine: IStateMachine
@@ -21,6 +26,7 @@ export class NextLocationCommand implements ICommand {
 }
 
 export class ExitGameCommand implements ICommand {
+
     private model: IModel
 
     constructor(model: IModel) {
@@ -29,6 +35,40 @@ export class ExitGameCommand implements ICommand {
 
     execute() {
 
+    }
+
+}
+
+export class TakeThingCommand implements ICommand {
+
+    private readonly action: IAction
+    private readonly stateMachine: IStateMachine
+    private readonly view: IView
+    private readonly model: IModel
+    // private inventory: IInventory
+
+    // constructor(action: IAction, inventory: IInventory, stateMachine: IStateMachine) {
+    constructor(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView) {
+        // this.inventory = inventory
+        this.model = model
+        this.action = action
+        this.stateMachine = stateMachine
+        this.view = view
+    }
+
+    execute(): void {
+        Logger.log(this.constructor.name)
+
+        this.model.inventory.add(new Thing(this.action?.params))
+        this.view.displayText(this.action?.messageAfterExecute)
+
+        const actionParams = this.action?.params?.action as IAction
+        const action = new Action(actionParams?.command, actionParams?.title, actionParams?.description, actionParams?.messageAfterExecute, actionParams?.params)
+
+        if (action?.command) {
+            const command = CommandFactory.createCommand(action, this.model, this.stateMachine, this.view)
+            if (command) command.execute()
+        }
     }
 
 }

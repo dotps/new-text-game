@@ -2,14 +2,17 @@ export class Action implements IAction {
     command: string
     title: string
     description: string
+    messageAfterExecute: string
     params: IActionParams
 
-    constructor(command: string, title: string, description: string, params: IActionParams) {
+    constructor(command: string, title: string, description: string, messageAfterExecute: string, params: IActionParams) {
         this.command = command
         this.title = title
         this.description = description
+        this.messageAfterExecute = messageAfterExecute
         this.params = params
     }
+
 }
 
 export class Location implements ILocation {
@@ -48,8 +51,28 @@ export class LocationParams {
         this.isGameOver = params?.isGameOver === true
     }
 }
+
+export class Thing implements IThing {
+    readonly id: string
+    readonly title: string
+    readonly action: IAction
+
+    constructor(params: IActionParams = {}) {
+        this.id = params?.thingId?.toString()
+        this.title = params?.thingTitle?.toString()
+        const actionParams = params.action as IAction
+        this.action = new Action(actionParams?.command, actionParams?.title, actionParams?.description, actionParams?.messageAfterExecute, actionParams?.params)
+    }
+}
+
+export interface IThing {
+    id: string
+    title: string
+    action: IAction
+}
+
 export interface IActionParams {
-    [key: string]: string | number | boolean
+    [key: string]: string | number | boolean | IAction
 }
 
 export interface ILocation {
@@ -64,6 +87,7 @@ export interface IAction {
     command: string
     title: string
     description: string
+    messageAfterExecute: string
     params: IActionParams
 }
 

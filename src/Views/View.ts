@@ -14,10 +14,12 @@ export class View implements IView {
     }
 
     displayLocation(location: ILocation): void {
+        this.inputOutputService.displayText("=====================================================")
         this.inputOutputService.displayText(location.description)
         if (!location.params.isGameOver) {
             this.displayActions(location.actions)
         }
+        this.inputOutputService.displayText("=====================================================")
     }
 
     displayActions(actions: IAction[]): void {

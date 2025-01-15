@@ -1,10 +1,14 @@
 import {IModel} from "./IModel";
 
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
+import {GameData, IAction, ILocation, IThing, LocationParams} from "../Data/GameData";
+import {IInventory} from "./Inventory/IInventory"
+import {Inventory} from "./Inventory/Inventory"
 
 export class Model implements IModel {
-    public currentInput: string = ""
+
+    currentInput: string = ""
+    inventory: IInventory
     private _progressData: GameProgressData
     private _gameData: GameData
     private _currentLocation: ILocation | null = null
@@ -13,6 +17,7 @@ export class Model implements IModel {
     constructor() {
         this._progressData = new GameProgressData()
         this._gameData = new GameData()
+        this.inventory = new Inventory(this._progressData.things)
     }
     public get gameData(): GameData {
         return this._gameData
@@ -60,7 +65,11 @@ export class Model implements IModel {
 
     public isGameOver(): boolean {
         return this._isGameOver
-        // TODO: реализовать конец игры
     }
+
+    // takeThing(thing: IThing): void {
+    //     // this._progressData.inventory.push(thing)
+    //     // console.log(this._progressData.inventory)
+    // }
 
 }

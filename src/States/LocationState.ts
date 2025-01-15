@@ -21,7 +21,6 @@ export class LocationState implements IState {
         Logger.log("enter " + this.constructor.name)
 
         const location = this.model.getCurrentLocation()
-
         this.view.displayLocation(location)
 
         if (this.model.isGameOver()) {
