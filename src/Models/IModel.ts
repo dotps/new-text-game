@@ -22,6 +22,4 @@ export interface IModel {
     setCurrentEnemy(id: string): void
     getCurrentEnemy(): IEnemy | null
     getThing(id: string): IThing | null
-
-    setBattleLocation(): void
 }

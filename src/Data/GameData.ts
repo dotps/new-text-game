@@ -42,6 +42,10 @@ export class Location implements ILocation {
             this.description = this.params.locationDescription
         }
     }
+
+    setActions(actions: IAction[]) {
+        this.actions = actions
+    }
 }
 
 export class LocationParams {
@@ -66,6 +70,8 @@ export interface ILocation {
     description: string
     actions: IAction[]
     params: LocationParams
+
+    setActions(actions: IAction[]): void
 }
 
 export interface IAction {

@@ -15,7 +15,6 @@ export class Model implements IModel {
     private _currentLocation: ILocation | null = null
     private _isGameOver: boolean = false
     private currentEnemy: IEnemy | null = null
-    private battleLocationId = "battle"
 
     constructor() {
         this._progressData = new GameProgressData()
@@ -93,10 +92,5 @@ export class Model implements IModel {
 
     getLocationParams(id: string): LocationParams {
         return new LocationParams({locationId: id})
-    }
-
-    setBattleLocation(): void {
-        const battleLocation = this.getLocationParams(this.battleLocationId)
-        this.setCurrentLocation(battleLocation)
     }
 }

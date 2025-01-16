@@ -12,7 +12,7 @@ export class BattleState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
     private view: IView
-    // private battleLocationId = "battle"
+    private battleLocationId = "battle"
 
     constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
         this.stateMachine = stateMachine
@@ -30,11 +30,8 @@ export class BattleState implements IState {
             return
         }
 
-        // const battleLocation = this.model.getLocationParams(this.battleLocationId)
-        // this.model.setCurrentLocation(battleLocation)
-        console.log(this.model.getCurrentLocation())
-        this.model.setBattleLocation()
-        console.log(this.model.getCurrentLocation())
+        // this.model.setBattleLocation()
+        // console.log(this.model.getCurrentLocation())
 
         this.view.displayEnemy(enemy)
 
@@ -53,7 +50,18 @@ export class BattleState implements IState {
         }
         actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Убежать`, "", "Вы решили бежать от противника.", actionParams))
 
-        this.view.displayActions(actions)
+        // this.model.setBattleLocation(actions)
+        // console.log(this.model.getCurrentLocation())
+
+        // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
+        const battleLocationParams = this.model.getLocationParams(this.battleLocationId)
+        this.model.setCurrentLocation(battleLocationParams)
+        const battleLocation = this.model.getCurrentLocation()
+        battleLocation.setActions(actions)
+
+        // console.log(this.model.getCurrentLocation())
+
+        // this.view.displayActions(actions)
 
         // if (this.model.isGameOver()) {
         //     this.stateMachine.enter(GameOverState)
@@ -68,8 +76,9 @@ export class BattleState implements IState {
         // TODO: в BattleState если enemy = null, то писать что враг убежал и продолжать игру
         // TODO: при выходе из BattleState enemy в модели должен удалятся
 
-        this.stateMachine.enter(BattlePlayerTurnState)
+        // this.stateMachine.enter(BattlePlayerTurnState)
         // this.stateMachine.enter(InputState)
+        this.stateMachine.enter(LocationState)
     }
 
     exit(): void {
