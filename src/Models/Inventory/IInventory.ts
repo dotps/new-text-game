@@ -1,7 +1,7 @@
-import {IThing} from "../../Data/GameData"
+import {IThing} from "../Things/IThing"
 
 export interface IInventory {
-    // things: IThing[]
-    add(thing: IThing): void
+    add(thing: IThing | null): void
     get(id: string): IThing | null
+    getAll(): IThing[]
 }

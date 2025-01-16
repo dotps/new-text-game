@@ -184,7 +184,6 @@
           "messageAfterExecute": "Вы выбрали ножницы и продолжили путь по тропинке",
           "params": {
             "thingId": "scissors",
-            "thingTitle": "Ножницы",
             "action": {
               "command": "NEXT_LOCATION_COMMAND",
               "params": {
@@ -200,7 +199,6 @@
           "messageAfterExecute": "Вы выбрали бумагу и продолжили путь по тропинке",
           "params": {
             "thingId": "paper",
-            "thingTitle": "Бумага",
             "action": {
               "command": "NEXT_LOCATION_COMMAND",
               "params": {
@@ -216,7 +214,6 @@
           "messageAfterExecute": "Вы выбрали камень и продолжили путь по тропинке",
           "params": {
             "thingId": "stone",
-            "thingTitle": "Камень",
             "action": {
               "command": "NEXT_LOCATION_COMMAND",
               "params": {
@@ -234,12 +231,38 @@
           }
         }
       ]
+    },
+    {
+      "id": "battle",
+      "title": "Бой",
+      "description": "",
+      "actions": []
     }
   ],
   "enemies": [
     {
       "id": "wolf",
       "title": "Волк"
+    }
+  ],
+  "things": [
+    {
+      "id": "paper",
+      "title": "Бумага",
+      "damage": 0,
+      "damageText": "Вы так сильно испугались, что бумага вам непременно пригодится."
+    },
+    {
+      "id": "stone",
+      "title": "Камень",
+      "damage": 1,
+      "damageText": "Вы кинули камень."
+    },
+    {
+      "id": "scissors",
+      "title": "Ножницы",
+      "damage": 0,
+      "damageText": "Вам не удалось подстричь противника."
     }
   ]
 }

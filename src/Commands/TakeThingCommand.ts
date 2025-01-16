@@ -1,9 +1,10 @@
-import {Action, IAction, Thing} from "../Data/GameData"
+import {Action, IAction} from "../Data/GameData"
 import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
 import {IModel} from "../Models/IModel"
 import {Logger} from "../Utils/Logger"
 import {CommandFactory} from "../Factories/CommandFactory"
+import {Thing} from "../Models/Things/Thing"
 
 export class TakeThingCommand implements ICommand {
 
@@ -25,7 +26,10 @@ export class TakeThingCommand implements ICommand {
     execute(): void {
         Logger.log(this.constructor.name)
 
-        this.model.inventory.add(new Thing(this.action?.params))
+        const thingId = this?.action?.params?.thingId?.toString()
+        const thing = this.model.getThing(thingId)
+
+        this.model.inventory.add(thing)
         this.view.displayText(this.action?.messageAfterExecute)
 
         const actionParams = this.action?.params?.action as IAction

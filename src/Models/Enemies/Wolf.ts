@@ -1,4 +1,5 @@
-import {IEnemy, IEnemyParams} from "./IEnemy"
+import {IEnemy} from "./IEnemy"
+import {IEnemyParams} from "./IEnemyParams"
 
 export class Wolf implements IEnemy {
     readonly id: string

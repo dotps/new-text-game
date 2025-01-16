@@ -1,13 +1,13 @@
 import {IModel} from "./IModel";
 
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, IAction, ILocation, IThing, LocationParams} from "../Data/GameData";
+import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {Inventory} from "./Inventory/Inventory"
 import {IEnemy} from "./Enemies/IEnemy"
+import {IThing} from "./Things/IThing"
 
 export class Model implements IModel {
-
     currentInput: string = ""
     inventory: IInventory
     private _progressData: GameProgressData
@@ -15,6 +15,7 @@ export class Model implements IModel {
     private _currentLocation: ILocation | null = null
     private _isGameOver: boolean = false
     private currentEnemy: IEnemy | null = null
+    private battleLocationId = "battle"
 
     constructor() {
         this._progressData = new GameProgressData()
@@ -36,7 +37,7 @@ export class Model implements IModel {
         this.currentInput = ""
     }
 
-    setLocation(params: LocationParams): void {
+    setCurrentLocation(params: LocationParams): void {
         this._currentLocation = this._gameData.getLocation(params)
         this._progressData.currentLocationId = params.locationId
 
@@ -78,11 +79,24 @@ export class Model implements IModel {
     //     return this._gameData.getEnemy(id)
     // }
 
-    setCurrentEnemy(enemyId: string): void {
-        this.currentEnemy = this._gameData.getEnemy(enemyId)
+    setCurrentEnemy(id: string): void {
+        this.currentEnemy = this._gameData.getEnemy(id)
     }
 
     getCurrentEnemy(): IEnemy | null {
         return this.currentEnemy
+    }
+
+    getThing(id: string): IThing | null {
+        return this._gameData.getThing(id)
+    }
+
+    getLocationParams(id: string): LocationParams {
+        return new LocationParams({locationId: id})
+    }
+
+    setBattleLocation(): void {
+        const battleLocation = this.getLocationParams(this.battleLocationId)
+        this.setCurrentLocation(battleLocation)
     }
 }

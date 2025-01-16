@@ -16,7 +16,7 @@ export class NextLocationCommand implements ICommand {
     }
 
     execute() {
-        this.model.setLocation(new LocationParams(this.action?.params))
+        this.model.setCurrentLocation(new LocationParams(this.action?.params))
         this.stateMachine.enter(LocationState)
     }
 }

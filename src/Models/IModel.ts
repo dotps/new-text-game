@@ -1,7 +1,8 @@
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, IAction, ILocation, IThing, LocationParams} from "../Data/GameData";
+import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {IEnemy} from "./Enemies/IEnemy"
+import {IThing} from "./Things/IThing"
 
 export interface IModel {
     inventory: IInventory
@@ -10,14 +11,17 @@ export interface IModel {
     progressData: GameProgressData
     getCurrentLocation(): ILocation
     getCurrentActions(): IAction[]
-
-    setLocation(params: LocationParams): void
+    getLocationParams(id: string): LocationParams
+    setCurrentLocation(params: LocationParams): void
     setGameData(gameData: GameData): void
     resetCurrentInput(): void
     gameOver(): void
     isGameOver(): boolean
     // getEnemy(id: string): IEnemy | null
     // takeThing(thing: IThing): void
-    setCurrentEnemy(enemyId: string): void
+    setCurrentEnemy(id: string): void
     getCurrentEnemy(): IEnemy | null
+    getThing(id: string): IThing | null
+
+    setBattleLocation(): void
 }

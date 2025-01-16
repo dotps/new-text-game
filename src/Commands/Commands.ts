@@ -1,4 +1,8 @@
-export enum commands {
-    EXIT_COMMAND = "exit"
+export enum Commands {
+    EXIT = "exit",
+    EXIT_GAME_COMMAND = "EXIT_GAME_COMMAND",
+    NEXT_LOCATION_COMMAND = "NEXT_LOCATION_COMMAND",
+    TAKE_THING_COMMAND = "TAKE_THING_COMMAND",
+    BATTLE_COMMAND = "BATTLE_COMMAND",
 }
 

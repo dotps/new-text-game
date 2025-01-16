@@ -1,5 +1,6 @@
 import {IEnemy} from "../Models/Enemies/IEnemy"
 import {Logger} from "../Utils/Logger"
+import {IThing} from "../Models/Things/IThing"
 
 export class Action implements IAction {
     command: string
@@ -55,25 +56,6 @@ export class LocationParams {
     }
 }
 
-export class Thing implements IThing {
-    readonly id: string
-    readonly title: string
-    readonly action: IAction
-
-    constructor(params: IActionParams = {}) {
-        this.id = params?.thingId?.toString()
-        this.title = params?.thingTitle?.toString()
-        const actionParams = params.action as IAction
-        this.action = new Action(actionParams?.command, actionParams?.title, actionParams?.description, actionParams?.messageAfterExecute, actionParams?.params)
-    }
-}
-
-export interface IThing {
-    id: string
-    title: string
-    action: IAction
-}
-
 export interface IActionParams {
     [key: string]: string | number | boolean | IAction
 }
@@ -98,6 +80,7 @@ export class GameData {
     locations: ILocation[] = []
     enemies: IEnemy[] = []
     commands: Record<string, IAction> = {}
+    things: IThing[] = []
 
     getLocation(locationParams: LocationParams): ILocation {
         const location = this.locations.find(location => location.id === locationParams.locationId)
@@ -114,6 +97,15 @@ export class GameData {
             return null
         }
         return enemy
+    }
+
+    getThing(id: string): IThing | null {
+        let thing = this.things.find(thing => thing.id === id)
+        if (!thing) {
+            Logger.error(`thing ${id} not found!`)
+            return null
+        }
+        return thing
     }
 
     // TODO: разобраться с командами, вроде уже ненужный функционал

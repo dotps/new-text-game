@@ -1,14 +1,16 @@
-import { IThing } from "../../Data/GameData";
 import {IInventory} from "./IInventory"
+import {IThing} from "../Things/IThing"
 
 export class Inventory implements IInventory {
-    private things: IThing[]
+
+    private readonly things: IThing[] = []
 
     constructor(things: IThing[]) {
         this.things = things
     }
 
-    add(thing: IThing): void {
+    add(thing: IThing | null): void {
+        if (!thing) return
         this.things.push(thing)
     }
 
@@ -19,5 +21,9 @@ export class Inventory implements IInventory {
             return null
         }
         return thing
+    }
+
+    getAll(): IThing[] {
+        return this.things
     }
 }

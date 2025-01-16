@@ -2,8 +2,11 @@ import {ISaveLoadService} from "./ISaveLoadService"
 import {GameProgressData} from "../Data/GameProgressData";
 import * as fs from "node:fs";
 import {Action, GameData, IAction, ILocation, Location, LocationParams} from "../Data/GameData";
-import {IEnemy, IEnemyParams} from "../Models/Enemies/IEnemy"
+import {IEnemy} from "../Models/Enemies/IEnemy"
 import {EnemyFactory} from "../Factories/EnemyFactory"
+import {IEnemyParams} from "../Models/Enemies/IEnemyParams"
+import {IThingParams} from "../Models/Things/IThingParams"
+import {ThingFactory} from "../Factories/ThingFactory"
 
 export class SaveLoadService implements ISaveLoadService {
 
@@ -35,6 +38,10 @@ export class SaveLoadService implements ISaveLoadService {
 
         gameData.enemies = jsonData.enemies.map((enemy: IEnemyParams) => {
             return EnemyFactory.createEnemy(enemy)
+        })
+
+        gameData.things = jsonData.things.map((thing: IThingParams) => {
+            return ThingFactory.createThing(thing)
         })
 
         return gameData

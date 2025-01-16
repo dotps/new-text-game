@@ -4,7 +4,7 @@ import {ExitState} from "./ExitState";
 import {InputState} from "./InputState";
 import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
-import {commands} from "../Commands/Commands"
+import {Commands} from "../Commands/Commands"
 import {CommandFactory} from "../Factories/CommandFactory"
 import {IStateMachine} from "./IStateMachine"
 
@@ -26,7 +26,7 @@ export class InputHandlerState implements IState {
         if (this.model.currentInput === "") return
 
         switch (this.model.currentInput) {
-            case commands.EXIT_COMMAND:
+            case Commands.EXIT:
                 this.stateMachine.enter(ExitState)
                 break
             default:
@@ -41,7 +41,7 @@ export class InputHandlerState implements IState {
 
         if (this.isNotCorrectInput(input, countCurrentActions)) {
             const actionsInputText = countCurrentActions > 0 ? `число от 1 до ${countCurrentActions} или ` : ``
-            this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${commands.EXIT_COMMAND}" для выхода`)
+            this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${Commands.EXIT}" для выхода`)
             this.view.displayActions(currentActions)
             this.stateMachine.enter(InputState)
             return
@@ -50,7 +50,7 @@ export class InputHandlerState implements IState {
         const inputAction = currentActions[input-1]
 
         if (!inputAction) {
-            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${commands.EXIT_COMMAND}" для выхода`)
+            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
             this.stateMachine.enter(InputState)
             return
         }
@@ -61,7 +61,7 @@ export class InputHandlerState implements IState {
             command.execute()
         }
         else {
-            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${commands.EXIT_COMMAND}" для выхода`)
+            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
             this.stateMachine.enter(InputState)
         }
     }
