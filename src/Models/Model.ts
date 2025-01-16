@@ -16,11 +16,13 @@ export class Model implements IModel {
     private _currentLocation: ILocation | null = null
     private _isGameOver: boolean = false
     private currentEnemy: IEnemy | null = null
+    private player: Player
 
     constructor() {
         this._progressData = new GameProgressData()
         this._gameData = new GameData()
         this.inventory = new Inventory(this._progressData.things)
+        this.player = new Player({health: 1})
     }
     public get gameData(): GameData {
         return this._gameData
@@ -64,9 +66,11 @@ export class Model implements IModel {
 
     gameOver(): void {
         this._isGameOver = true
+        this.player.health = 0
     }
 
     public isGameOver(): boolean {
+        if (this.player.health <= 0) this._isGameOver = true
         return this._isGameOver
     }
 
@@ -96,7 +100,7 @@ export class Model implements IModel {
     }
 
     getPlayer(): IEnemy {
-        return new Player({})
+        return this.player
     }
 
 }

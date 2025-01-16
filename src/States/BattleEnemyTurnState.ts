@@ -3,6 +3,9 @@ import {IView} from "../Views/IView"
 import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {InputBattleState} from "./InputBattleState"
+import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
+import {GameOverState} from "./GameOverState"
+import {LocationState} from "./LocationState"
 
 export class BattleEnemyTurnState implements IState {
     private stateMachine: IStateMachine
@@ -26,8 +29,12 @@ export class BattleEnemyTurnState implements IState {
             this.view.displayText(damageEffectMessage)
         }
 
-            //this.view.displayLocation(battleLocation)
-        this.stateMachine.enter(InputBattleState)
+        if (this.model.isGameOver()) {
+            this.stateMachine.enter(GameOverState)
+            return
+        }
+
+        this.stateMachine.enter(BattlePlayerTurnState)
     }
 
     exit(): void {

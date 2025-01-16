@@ -5,7 +5,7 @@ export interface IEnemy {
     title: string
     damage: number
     damageText: string
-    // health: number
+    health: number
 
     takeDamage(thing: IThing | null): string
 }
