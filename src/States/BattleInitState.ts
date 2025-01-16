@@ -9,8 +9,10 @@ import {Commands} from "../Commands/Commands"
 import {InputState} from "./InputState"
 import {InputBattleState} from "./InputBattleState"
 import {Locations} from "../Data/Locations"
+import {Thing} from "../Models/Things/Thing"
+import {IThingParams} from "../Models/Things/IThingParams"
 
-export class BattleState implements IState {
+export class BattleInitState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
     private view: IView
@@ -42,19 +44,20 @@ export class BattleState implements IState {
         let actions: IAction[] = []
 
         for (const thing of things) {
-            const action = new Action("", `Использовать - ${thing.title}`, "", thing.damageText, {})
+            console.log(thing)
+            const thingParams = {
+                thingId: thing.id,
+            }
+            const action = new Action(Commands.USE_THING_COMMAND, `Использовать - ${thing.title}`, "", thing.damageText, thingParams)
             actions.push(action)
         }
 
         const actionParams = {
-            "locationId": Locations.GAME_OVER,
-            "isGameOver": true
+            locationId: Locations.GAME_OVER,
+            isGameOver: true
         }
         actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Убежать`, "", "Вы решили бежать от противника.", actionParams))
         actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от противника, но он вас нашел", actionParams))
-
-        // this.model.setBattleLocation(actions)
-        // console.log(this.model.getCurrentLocation())
 
         // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
         const battleLocationParams = this.model.getLocationParams(this.battleLocationId)

@@ -1,6 +1,6 @@
 import {IEnemy} from "../Models/Enemies/IEnemy"
 import {Logger} from "../Utils/Logger"
-import {IThing} from "../Models/Things/IThing"
+import {Item, IThing} from "../Models/Things/IThing"
 import {Locations} from "./Locations"
 
 export class Action implements IAction {

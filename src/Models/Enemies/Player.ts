@@ -1,8 +1,7 @@
 import {IEnemyParams} from "./IEnemyParams"
-import {IThing} from "../Things/IThing"
 import {IEnemy} from "./IEnemy"
 
-export class Wolf implements IEnemy {
+export class Player implements IEnemy {
 
     readonly id: string
     readonly title: string
@@ -20,12 +19,9 @@ export class Wolf implements IEnemy {
         this.damageText = params?.damageText?.toString()
     }
 
-
-    takeDamage(thing: IThing | null): string {
-        if (thing?.damage === 0 ) {
-            return thing.damageText
-        }
-
-        return this.deathMessage
+    takeDamage(enemy: IEnemy | null): string {
+        console.log(enemy)
+        // TODO: надо как-то завершить игру когда получил урон
+        return enemy?.damageText ? enemy.damageText : ""
     }
 }

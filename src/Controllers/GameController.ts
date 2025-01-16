@@ -19,7 +19,7 @@ export class GameController implements IController {
         this.services = services
     }
 
-    public async run() {
+    public run() {
         this.stateMachine.enter(LoadProgressState)
     }
 }

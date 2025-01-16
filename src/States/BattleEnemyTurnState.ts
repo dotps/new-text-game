@@ -4,7 +4,7 @@ import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {InputBattleState} from "./InputBattleState"
 
-export class BattlePlayerTurnState implements IState {
+export class BattleEnemyTurnState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
     private view: IView
@@ -19,7 +19,14 @@ export class BattlePlayerTurnState implements IState {
         Logger.log("enter " + this.constructor.name)
 
         const battleLocation = this.model.getCurrentLocation()
-        this.view.displayLocation(battleLocation)
+        const player = this.model.getPlayer()
+        const enemy = this.model.getCurrentEnemy()
+        if (enemy) {
+            const damageEffectMessage = player.takeDamage(enemy)
+            this.view.displayText(damageEffectMessage)
+        }
+
+            //this.view.displayLocation(battleLocation)
         this.stateMachine.enter(InputBattleState)
     }
 

@@ -6,12 +6,14 @@ import {Commands} from "../Commands/Commands"
 import {CommandFactory} from "../Factories/CommandFactory"
 import {IStateMachine} from "./IStateMachine"
 import {InputBattleState} from "./InputBattleState"
+import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
+import {BattleEnemyTurnState} from "./BattleEnemyTurnState"
 
 export class InputHandlerBattleState implements IState {
 
     private readonly stateMachine: IStateMachine
     private readonly model: IModel
-    private view: IView
+    private readonly view: IView
 
     constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
         this.stateMachine = stateMachine
@@ -51,7 +53,7 @@ export class InputHandlerBattleState implements IState {
 
         const inputAction = currentActions[input-1]
 
-        if (!inputAction) {
+        if (!inputAction.command) {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
             this.stateMachine.enter(InputBattleState)
             return
@@ -61,9 +63,11 @@ export class InputHandlerBattleState implements IState {
 
         if (command) {
             command.execute()
+            // this.stateMachine.enter(BattlePlayerTurnState)
+            this.stateMachine.enter(BattleEnemyTurnState)
         }
         else {
-            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
+            this.view.displayText(`Отсутствует команда выбранного действия, введите другое значение или "${Commands.EXIT}" для выхода`)
             this.stateMachine.enter(InputBattleState)
         }
     }

@@ -248,7 +248,9 @@
   "enemies": [
     {
       "id": "wolf",
-      "title": "Волк"
+      "title": "Волк",
+      "damage": 1,
+      "damageText": "Волк напал на вас."
     }
   ],
   "things": [

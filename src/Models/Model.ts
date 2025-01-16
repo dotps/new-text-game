@@ -6,6 +6,7 @@ import {IInventory} from "./Inventory/IInventory"
 import {Inventory} from "./Inventory/Inventory"
 import {IEnemy} from "./Enemies/IEnemy"
 import {IThing} from "./Things/IThing"
+import {Player} from "./Enemies/Player"
 
 export class Model implements IModel {
     currentInput: string = ""
@@ -93,4 +94,9 @@ export class Model implements IModel {
     getLocationParams(id: string): LocationParams {
         return new LocationParams({locationId: id})
     }
+
+    getPlayer(): IEnemy {
+        return new Player({})
+    }
+
 }
