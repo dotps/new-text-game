@@ -53,6 +53,7 @@ export class StateMachine implements IStateMachine {
 
     changeState(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
         this.current?.exit()
+        // TODO: реализовать проверку на gameover здесь
         const state = this.states.get(stateType)
         if (state) {
             this.current = state
