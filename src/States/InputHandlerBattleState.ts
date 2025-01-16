@@ -1,12 +1,11 @@
-import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
 import {ExitState} from "./ExitState";
-import {InputState} from "./InputState";
 import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
 import {Commands} from "../Commands/Commands"
 import {CommandFactory} from "../Factories/CommandFactory"
 import {IStateMachine} from "./IStateMachine"
+import {InputBattleState} from "./InputBattleState"
 
 export class InputHandlerBattleState implements IState {
 
@@ -35,6 +34,9 @@ export class InputHandlerBattleState implements IState {
     }
 
     private handleNumberInput() {
+
+        // TODO: Продолжить тут, нужно обработать ввод на бое
+
         const input = parseInt(this.model.currentInput)
         const currentActions = this.model.getCurrentActions()
         const countCurrentActions = currentActions.length
@@ -43,7 +45,7 @@ export class InputHandlerBattleState implements IState {
             const actionsInputText = countCurrentActions > 0 ? `число от 1 до ${countCurrentActions} или ` : ``
             this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${Commands.EXIT}" для выхода`)
             this.view.displayActions(currentActions)
-            this.stateMachine.enter(InputState)
+            this.stateMachine.enter(InputBattleState)
             return
         }
 
@@ -51,7 +53,7 @@ export class InputHandlerBattleState implements IState {
 
         if (!inputAction) {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
-            this.stateMachine.enter(InputState)
+            this.stateMachine.enter(InputBattleState)
             return
         }
 
@@ -62,7 +64,7 @@ export class InputHandlerBattleState implements IState {
         }
         else {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
-            this.stateMachine.enter(InputState)
+            this.stateMachine.enter(InputBattleState)
         }
     }
 

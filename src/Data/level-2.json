@@ -237,6 +237,12 @@
       "title": "Бой",
       "description": "",
       "actions": []
+    },
+    {
+      "id": "game-over",
+      "title": "Конец игры",
+      "description": "",
+      "actions": []
     }
   ],
   "enemies": [

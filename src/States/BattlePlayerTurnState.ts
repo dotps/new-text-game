@@ -22,12 +22,14 @@ export class BattlePlayerTurnState implements IState {
     enter(): void {
         Logger.log("enter " + this.constructor.name)
 
-        this.stateMachine.enter(InputState, InputHandlerBattleState)
+        const battleLocation = this.model.getCurrentLocation()
+        this.view.displayLocation(battleLocation)
+        // this.view.displayActions(battleLocation.actions)
+        this.stateMachine.enter(InputBattleState)
     }
 
     exit(): void {
         Logger.log("exit " + this.constructor.name)
-        // this.model.clearEnemy()
     }
 
 }

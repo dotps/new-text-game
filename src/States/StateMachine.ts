@@ -16,6 +16,7 @@ import {IStateMachine} from "./IStateMachine"
 import {GameOverState} from "./GameOverState"
 import {BattleState} from "./BattleState"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
+import {InputBattleState} from "./InputBattleState"
 
 export class StateMachine implements IStateMachine {
 
@@ -32,6 +33,7 @@ export class StateMachine implements IStateMachine {
 
         this.states.set(InputState, new InputState(this, model, inputOutputService))
         this.states.set(InputHandlerState, new InputHandlerState(this, model, view))
+        this.states.set(InputBattleState, new InputBattleState(this, model, inputOutputService))
         this.states.set(InputHandlerBattleState, new InputHandlerBattleState(this, model, view))
 
         this.states.set(GameOverState, new GameOverState(this, view))

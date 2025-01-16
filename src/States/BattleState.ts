@@ -8,6 +8,7 @@ import {Action, IAction, IActionParams, LocationParams} from "../Data/GameData"
 import {Commands} from "../Commands/Commands"
 import {InputState} from "./InputState"
 import {InputBattleState} from "./InputBattleState"
+import {Locations} from "../Data/Locations"
 
 export class BattleState implements IState {
     private stateMachine: IStateMachine
@@ -46,10 +47,11 @@ export class BattleState implements IState {
         }
 
         const actionParams = {
-            "locationId": "start", // TODO: нужно получать id следующей локации из модели
+            "locationId": Locations.GAME_OVER,
             "isGameOver": true
         }
         actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Убежать`, "", "Вы решили бежать от противника.", actionParams))
+        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от противника, но он вас нашел", actionParams))
 
         // this.model.setBattleLocation(actions)
         // console.log(this.model.getCurrentLocation())
@@ -76,8 +78,6 @@ export class BattleState implements IState {
         // TODO: реализовать бой
         // TODO: в BattleState если enemy = null, то писать что враг убежал и продолжать игру
         // TODO: при выходе из BattleState enemy в модели должен удалятся
-
-        // TODO: не нравится как получилось будет много ошибок с двойными переходами, нужно вернутся к прогрузке локации
 
         this.stateMachine.enter(BattlePlayerTurnState)
         // this.stateMachine.enter(InputBattleState)

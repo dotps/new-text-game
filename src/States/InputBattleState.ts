@@ -4,6 +4,7 @@ import {Logger} from "../Utils/Logger"
 import {IInputOuotputService} from "../Services/IInputOuotputService"
 import {IStateMachine} from "./IStateMachine"
 import {InputState} from "./InputState"
+import {InputHandlerBattleState} from "./InputHandlerBattleState"
 
 export class InputBattleState implements IState {
 
@@ -24,7 +25,7 @@ export class InputBattleState implements IState {
 
         if (responseData) {
             this.model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
-            this.stateMachine.enter(InputHandlerState)
+            this.stateMachine.enter(InputHandlerBattleState)
         }
         else {
             this.stateMachine.enter(InputBattleState)

@@ -1,6 +1,7 @@
 import {IEnemy} from "../Models/Enemies/IEnemy"
 import {Logger} from "../Utils/Logger"
 import {IThing} from "../Models/Things/IThing"
+import {Locations} from "./Locations"
 
 export class Action implements IAction {
     command: string
@@ -27,7 +28,7 @@ export class Location implements ILocation {
     actions: IAction[]
     params: LocationParams
 
-    constructor(id: string = "start", title: string, description: string, actions: IAction[], params: LocationParams) {
+    constructor(id: string = Locations.START, title: string, description: string, actions: IAction[], params: LocationParams) {
         this.id = id
         this.title = title
         this.description = description
@@ -54,7 +55,7 @@ export class LocationParams {
     readonly isGameOver: boolean
 
     constructor(params: IActionParams = {}) {
-        this.locationId = params?.locationId?.toString() || "start"
+        this.locationId = params?.locationId?.toString() || Locations.START
         this.locationDescription = params?.locationDescription?.toString()
         this.isGameOver = params?.isGameOver === true
     }
