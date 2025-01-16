@@ -8,6 +8,10 @@ export class ConsoleLogger implements ILoggerService {
         this._enabled = enabled
     }
 
+    error(text: any): void {
+        console.error(text)
+    }
+
     log(text: string): void {
         if (!this._enabled) return
         console.log(text)

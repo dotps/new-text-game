@@ -1,6 +1,7 @@
 import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, IThing, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
+import {IEnemy} from "./Enemies/IEnemy"
 
 export interface IModel {
     inventory: IInventory
@@ -15,6 +16,8 @@ export interface IModel {
     resetCurrentInput(): void
     gameOver(): void
     isGameOver(): boolean
-
+    // getEnemy(id: string): IEnemy | null
     // takeThing(thing: IThing): void
+    setCurrentEnemy(enemyId: string): void
+    getCurrentEnemy(): IEnemy | null
 }

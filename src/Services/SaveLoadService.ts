@@ -2,6 +2,8 @@ import {ISaveLoadService} from "./ISaveLoadService"
 import {GameProgressData} from "../Data/GameProgressData";
 import * as fs from "node:fs";
 import {Action, GameData, IAction, ILocation, Location, LocationParams} from "../Data/GameData";
+import {IEnemy, IEnemyParams} from "../Models/Enemies/IEnemy"
+import {EnemyFactory} from "../Factories/EnemyFactory"
 
 export class SaveLoadService implements ISaveLoadService {
 
@@ -29,6 +31,10 @@ export class SaveLoadService implements ISaveLoadService {
                 action?.params,
             ))
             return new Location(location.id, location.title, location.description, actions, new LocationParams());
+        })
+
+        gameData.enemies = jsonData.enemies.map((enemy: IEnemyParams) => {
+            return EnemyFactory.createEnemy(enemy)
         })
 
         return gameData

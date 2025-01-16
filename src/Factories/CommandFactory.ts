@@ -1,21 +1,24 @@
-import {BattleCommand, ExitGameCommand, NextLocationCommand, TakeThingCommand} from "./Commands"
 import {IModel} from "../Models/IModel"
 import {IAction} from "../Data/GameData"
 import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
+import {NextLocationCommand} from "../Commands/NextLocationCommand"
+import {ExitGameCommand} from "../Commands/ExitGameCommand"
+import {TakeThingCommand} from "../Commands/TakeThingCommand"
+import {BattleCommand} from "../Commands/BattleCommand"
 
 export class CommandFactory {
     static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView): ICommand | null {
         switch (action.command) {
             case "EXIT_GAME_COMMAND":
-                return new ExitGameCommand(model)
+                return new ExitGameCommand(stateMachine)
             case "NEXT_LOCATION_COMMAND":
                 return new NextLocationCommand(action, model, stateMachine)
             case "TAKE_THING_COMMAND":
                 // return new TakeThingCommand(action, model.inventory, stateMachine)
                 return new TakeThingCommand(action, model, stateMachine, view)
             case "BATTLE_COMMAND":
-                return new BattleCommand(action, model, stateMachine, view)
+                return new BattleCommand(action, model, stateMachine)
             default:
                 return null
         }

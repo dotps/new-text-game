@@ -11,7 +11,7 @@ export class Services {
     constructor() {
         this.register(InputOutputService, new InputOutputService())
         this.register(SaveLoadService, new SaveLoadService())
-        this.register(LoggerService, new LoggerService(new ConsoleLogger(false)))
+        this.register(LoggerService, new LoggerService(new ConsoleLogger(true)))
         Logger.init(this.get(LoggerService))
     }
 

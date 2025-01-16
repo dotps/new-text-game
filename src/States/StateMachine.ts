@@ -13,6 +13,8 @@ import {LocationState} from "./LocationState"
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {GameOverState} from "./GameOverState"
+import {BattleState} from "./BattleState"
+import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 
 export class StateMachine implements IStateMachine {
 
@@ -31,6 +33,8 @@ export class StateMachine implements IStateMachine {
         this.states.set(GameOverState, new GameOverState(this, view))
         this.states.set(ExitState, new ExitState())
         this.states.set(LocationState, new LocationState(this, model, view))
+        this.states.set(BattleState, new BattleState(this, model, view))
+        this.states.set(BattlePlayerTurnState, new BattlePlayerTurnState(this, model, view))
     }
 
     enter(stateType: new (...args: any[]) => IState): void {

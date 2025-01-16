@@ -4,6 +4,7 @@ import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, IThing, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {Inventory} from "./Inventory/Inventory"
+import {IEnemy} from "./Enemies/IEnemy"
 
 export class Model implements IModel {
 
@@ -13,6 +14,7 @@ export class Model implements IModel {
     private _gameData: GameData
     private _currentLocation: ILocation | null = null
     private _isGameOver: boolean = false
+    private currentEnemy: IEnemy | null = null
 
     constructor() {
         this._progressData = new GameProgressData()
@@ -72,4 +74,15 @@ export class Model implements IModel {
     //     // console.log(this._progressData.inventory)
     // }
 
+    // getEnemy(id: string): IEnemy | null {
+    //     return this._gameData.getEnemy(id)
+    // }
+
+    setCurrentEnemy(enemyId: string): void {
+        this.currentEnemy = this._gameData.getEnemy(enemyId)
+    }
+
+    getCurrentEnemy(): IEnemy | null {
+        return this.currentEnemy
+    }
 }

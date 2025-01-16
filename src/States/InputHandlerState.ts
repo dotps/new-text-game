@@ -5,7 +5,7 @@ import {InputState} from "./InputState";
 import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
 import {commands} from "../Commands/Commands"
-import {CommandFactory} from "../Commands/CommandFactory"
+import {CommandFactory} from "../Factories/CommandFactory"
 import {IStateMachine} from "./IStateMachine"
 
 export class InputHandlerState implements IState {

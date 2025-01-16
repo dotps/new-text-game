@@ -3,13 +3,17 @@ import {Services} from "../Services/Services"
 import {LoggerService} from "./LoggerService"
 
 export class Logger {
-    private static _logger: ILoggerService;
+    private static loggerService: ILoggerService;
 
-    public static init(loggerService: ILoggerService): void {
-        Logger._logger = loggerService
+    public static init(loggerService: LoggerService): void {
+        Logger.loggerService = loggerService
     }
 
     public static log(message: any): void {
-        Logger._logger.log(message);
+        Logger.loggerService.log(message)
+    }
+
+    static error(message: any) {
+        Logger.loggerService.error(message)
     }
 }

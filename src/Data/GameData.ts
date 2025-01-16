@@ -1,3 +1,6 @@
+import {IEnemy} from "../Models/Enemies/IEnemy"
+import {Logger} from "../Utils/Logger"
+
 export class Action implements IAction {
     command: string
     title: string
@@ -93,6 +96,7 @@ export interface IAction {
 
 export class GameData {
     locations: ILocation[] = []
+    enemies: IEnemy[] = []
     commands: Record<string, IAction> = {}
 
     getLocation(locationParams: LocationParams): ILocation {
@@ -101,6 +105,15 @@ export class GameData {
             throw new Error(`Location ${locationParams.locationId} not found!`)
         }
         return new Location(location.id, location.title, location.description, location.actions, locationParams)
+    }
+
+    getEnemy(id: string): IEnemy | null {
+        let enemy = this.enemies.find(enemy => enemy.id === id)
+        if (!enemy) {
+            Logger.error(`Enemy ${id} not found!`)
+            return null
+        }
+        return enemy
     }
 
     // TODO: разобраться с командами, вроде уже ненужный функционал

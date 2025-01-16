@@ -1,8 +1,11 @@
 import {IView} from "./IView";
 import {IAction, ILocation} from "../Data/GameData"
 import {IInputOuotputService} from "../Services/IInputOuotputService"
+import {IEnemy} from "../Models/Enemies/IEnemy"
+import {Logger} from "../Utils/Logger"
 
 export class View implements IView {
+
     private inputOutputService: IInputOuotputService
 
     constructor(inputOutputService: IInputOuotputService) {
@@ -30,5 +33,10 @@ export class View implements IView {
         actions.forEach((action, index) => {
             this.inputOutputService.displayText(`${index+1}. ${action.title}`)
         })
+    }
+
+    displayEnemy(enemy: IEnemy | null): void {
+        if (!enemy) return
+        this.inputOutputService.displayText(`Перед вами: ${enemy.title}`)
     }
 }
