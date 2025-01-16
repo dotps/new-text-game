@@ -5,6 +5,8 @@ import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {GameOverState} from "./GameOverState"
 import {ILocation} from "../Data/GameData"
+import {InputBattleState} from "./InputBattleState"
+import {InputHandlerBattleState} from "./InputHandlerBattleState"
 
 export class BattlePlayerTurnState implements IState {
     private stateMachine: IStateMachine
@@ -20,7 +22,7 @@ export class BattlePlayerTurnState implements IState {
     enter(): void {
         Logger.log("enter " + this.constructor.name)
 
-        this.stateMachine.enter(InputState)
+        this.stateMachine.enter(InputState, InputHandlerBattleState)
     }
 
     exit(): void {

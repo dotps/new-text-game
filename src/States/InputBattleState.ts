@@ -3,8 +3,9 @@ import {InputHandlerState} from "./InputHandlerState";
 import {Logger} from "../Utils/Logger"
 import {IInputOuotputService} from "../Services/IInputOuotputService"
 import {IStateMachine} from "./IStateMachine"
+import {InputState} from "./InputState"
 
-export class InputState implements IState {
+export class InputBattleState implements IState {
 
     private stateMachine: IStateMachine
     private model: IModel
@@ -16,18 +17,17 @@ export class InputState implements IState {
         this.inputOutputService = inputOutputService;
     }
 
-    async enter(nextStateType?: new (...args: any[]) => IState): Promise<void> {
+    async enter(): Promise<void> {
         Logger.log("enter " + this.constructor.name)
 
         const responseData = await this.inputOutputService.getInput("> ")
 
         if (responseData) {
             this.model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
-            const nextState = nextStateType ?? InputHandlerState
-            this.stateMachine.enter(nextState)
+            this.stateMachine.enter(InputHandlerState)
         }
         else {
-            this.stateMachine.enter(InputState, nextStateType)
+            this.stateMachine.enter(InputBattleState)
         }
     }
 

@@ -8,6 +8,7 @@ import {Services} from "../Services/Services"
 import {InputState} from "./InputState"
 import {IInputOuotputService} from "../Services/IInputOuotputService"
 import {ExitState} from "./ExitState"
+import {InputHandlerBattleState} from "./InputHandlerBattleState"
 import {InputHandlerState} from "./InputHandlerState"
 import {LocationState} from "./LocationState"
 import {IView} from "../Views/IView"
@@ -28,25 +29,31 @@ export class StateMachine implements IStateMachine {
 
         this.states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
         this.states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
+
         this.states.set(InputState, new InputState(this, model, inputOutputService))
         this.states.set(InputHandlerState, new InputHandlerState(this, model, view))
+        this.states.set(InputHandlerBattleState, new InputHandlerBattleState(this, model, view))
+
         this.states.set(GameOverState, new GameOverState(this, view))
         this.states.set(ExitState, new ExitState())
+
         this.states.set(LocationState, new LocationState(this, model, view))
+
         this.states.set(BattleState, new BattleState(this, model, view))
         this.states.set(BattlePlayerTurnState, new BattlePlayerTurnState(this, model, view))
+        // this.states.set(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
     }
 
-    enter(stateType: new (...args: any[]) => IState): void {
-        this.changeState(stateType)
+    enter(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
+        this.changeState(stateType, nextStateType)
     }
 
-    changeState(stateType: new (...args: any[]) => IState): void {
+    changeState(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
         this.current?.exit()
         const state = this.states.get(stateType)
         if (state) {
             this.current = state
-            this.current.enter()
+            this.current.enter(nextStateType)
         } else {
             console.error(`State ${stateType.name} not found!`)
         }

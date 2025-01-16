@@ -7,6 +7,7 @@ import {LocationState} from "./LocationState"
 import {Action, IAction, IActionParams, LocationParams} from "../Data/GameData"
 import {Commands} from "../Commands/Commands"
 import {InputState} from "./InputState"
+import {InputBattleState} from "./InputBattleState"
 
 export class BattleState implements IState {
     private stateMachine: IStateMachine
@@ -76,9 +77,11 @@ export class BattleState implements IState {
         // TODO: в BattleState если enemy = null, то писать что враг убежал и продолжать игру
         // TODO: при выходе из BattleState enemy в модели должен удалятся
 
-        // this.stateMachine.enter(BattlePlayerTurnState)
-        // this.stateMachine.enter(InputState)
-        this.stateMachine.enter(LocationState)
+        // TODO: не нравится как получилось будет много ошибок с двойными переходами, нужно вернутся к прогрузке локации
+
+        this.stateMachine.enter(BattlePlayerTurnState)
+        // this.stateMachine.enter(InputBattleState)
+        // this.stateMachine.enter(LocationState)
     }
 
     exit(): void {

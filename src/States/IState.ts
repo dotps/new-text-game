@@ -1,4 +1,4 @@
 interface IState {
-    enter(): void
+    enter(nextStateType?: new (...args: any[]) => IState): void
     exit(): void
 }
