@@ -23,12 +23,10 @@ export class UseThingCommand implements ICommand {
     }
 
     execute(): void {
-        Logger.log(this.constructor.name)
-
         const thingId = this?.action?.params?.thingId?.toString()
         const thing = this.model.getThing(thingId)
-
         const enemy = this.model.getCurrentEnemy()
+
         if (enemy) {
             const damageEffectMessage = enemy.takeDamage(thing)
             this.view.displayText(damageEffectMessage)
@@ -36,8 +34,5 @@ export class UseThingCommand implements ICommand {
         else {
             this.view.displayText(this.nothingMessage)
         }
-
-        // TODO: что дальше ....
     }
-
 }

@@ -35,4 +35,8 @@ export interface IModel {
     getThing(id: string): IThing | null
 
     getPlayer(): IEnemy
+
+    clearEnemy(): void
+
+    getPreviousLocationId(): string
 }

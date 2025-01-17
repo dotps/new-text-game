@@ -10,14 +10,17 @@ import {Player} from "./Enemies/Player"
 import {Logger} from "../Utils/Logger"
 
 export class Model implements IModel {
+
     currentInput: string = ""
     inventory: IInventory
+
     private _progressData: GameProgressData
     private _gameData: GameData
     private _currentLocation: ILocation | null = null
+    private _previousLocationId: string = ""
     private _isGameOver: boolean = false
     private currentEnemy: IEnemy | null = null
-    private player: Player
+    private readonly player: Player
 
     constructor() {
         this._progressData = new GameProgressData()
@@ -25,6 +28,11 @@ export class Model implements IModel {
         this.inventory = new Inventory(this._progressData.things)
         this.player = new Player({health: 1})
     }
+
+    clearEnemy(): void {
+        this.currentEnemy = null
+    }
+
     public get gameData(): GameData {
         return this._gameData
     }
@@ -41,6 +49,8 @@ export class Model implements IModel {
     }
 
     setCurrentLocation(params: LocationParams): void {
+        if (this._currentLocation) this._previousLocationId = this._currentLocation.id
+
         this._currentLocation = this._gameData.getLocation(params)
         this._progressData.currentLocationId = params.locationId
 
@@ -92,6 +102,10 @@ export class Model implements IModel {
 
     getLocationParams(id: string): LocationParams {
         return new LocationParams({locationId: id})
+    }
+
+    getPreviousLocationId(): string {
+        return this._previousLocationId
     }
 
     getPlayer(): IEnemy {

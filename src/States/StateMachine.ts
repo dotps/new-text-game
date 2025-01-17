@@ -58,7 +58,6 @@ export class StateMachine implements IStateMachine {
     }
 
     changeState(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
-        // this.current?.exit()
         if (this.current) {
             Logger.log("exit " + this.current.constructor.name)
             this.current.exit()

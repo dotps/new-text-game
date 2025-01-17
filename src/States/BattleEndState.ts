@@ -2,6 +2,7 @@ import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
+import {LocationState} from "./LocationState"
 
 export class BattleEndState implements IState {
     private stateMachine: IStateMachine
@@ -16,7 +17,11 @@ export class BattleEndState implements IState {
     
     enter(): void {
         // TODO: реализовать удаление врага из модели и переход к следующей локации
-        // this.stateMachine.enter(InputBattleState)
+        this.model.clearEnemy()
+        const locationId = this.model.getPreviousLocationId()
+        const locationParams = this.model.getLocationParams(locationId)
+        this.model.setCurrentLocation(locationParams)
+        this.stateMachine.enter(LocationState)
     }
 
     exit(): void {}
