@@ -49,8 +49,17 @@ export class BattleStartState implements IState {
             locationId: Locations.GAME_OVER,
             isGameOver: true
         }
-        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Убежать`, "", "Вы решили бежать от противника.", actionParams))
-        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от противника, но он вас нашел", actionParams))
+        // const actionParamsFly = {
+        //     // locationId: Locations.GAME_OVER,
+        //     action: {
+        //         command: "GAME_OVER_COMMAND",
+        //     }
+        // }
+
+        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", actionParams))
+        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", actionParams))
+        // actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Улететь`, "", "Вы решили улететь от оппонента, но он вас нашел.", actionParamsFly))
+        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Улететь`, "", "Вы решили улететь от оппонента, но он вас нашел.", {}))
 
         // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
         const battleLocationParams = this.model.getLocationParams(Locations.BATTLE)

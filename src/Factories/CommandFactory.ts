@@ -8,16 +8,18 @@ import {TakeThingCommand} from "../Commands/TakeThingCommand"
 import {BattleCommand} from "../Commands/BattleCommand"
 import {Commands} from "../Commands/Commands"
 import {UseThingCommand} from "../Commands/UseThingCommand"
+import {GameOverCommand} from "../Commands/GameOverCommand"
 
 export class CommandFactory {
     static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView): ICommand | null {
         switch (action.command) {
             case Commands.EXIT_GAME_COMMAND:
                 return new ExitGameCommand(stateMachine)
+            case Commands.GAME_OVER_COMMAND:
+                return new GameOverCommand(action, model, stateMachine, view)
             case Commands.NEXT_LOCATION_COMMAND:
-                return new NextLocationCommand(action, model, stateMachine)
+                return new NextLocationCommand(action, model, stateMachine, view)
             case Commands.TAKE_THING_COMMAND:
-                // return new TakeThingCommand(action, model.inventory, stateMachine)
                 return new TakeThingCommand(action, model, stateMachine, view)
             case Commands.BATTLE_COMMAND:
                 return new BattleCommand(action, model, stateMachine)

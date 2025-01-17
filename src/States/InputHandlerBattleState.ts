@@ -60,7 +60,6 @@ export class InputHandlerBattleState implements IState {
 
         if (command) {
             command.execute()
-            // this.stateMachine.enter(BattlePlayerTurnState)
             this.stateMachine.enter(BattleEnemyTurnState)
         }
         else {

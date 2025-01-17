@@ -50,9 +50,9 @@ export class Location implements ILocation {
 }
 
 export class LocationParams {
-    readonly locationId: string
-    readonly locationDescription: string
-    readonly isGameOver: boolean
+    locationId: string
+    locationDescription: string
+    isGameOver: boolean
 
     constructor(params: IActionParams = {}) {
         this.locationId = params?.locationId?.toString() || Locations.START
@@ -62,7 +62,7 @@ export class LocationParams {
 }
 
 export interface IActionParams {
-    [key: string]: string | number | boolean | IAction
+    [key: string]: string | number | boolean | IAction | IActionParams
 }
 
 export interface ILocation {

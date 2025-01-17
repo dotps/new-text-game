@@ -63,9 +63,9 @@ export class StateMachine implements IStateMachine {
             this.current.exit()
         }
 
-        if (this.isGameOver(stateType)) {
-            stateType = GameOverState
-        }
+        // if (this.isGameOver(stateType)) {
+        //     stateType = GameOverState
+        // }
 
         const state = this.states.get(stateType)
 
@@ -73,6 +73,11 @@ export class StateMachine implements IStateMachine {
             this.current = state
             Logger.log("enter " + this.current.constructor.name)
             this.current.enter(nextStateType)
+            // if (this.isGameOver(stateType)) {
+            if (this.model.isGameOver()) {
+                const gameOverState = this.states.get(GameOverState)
+                if (gameOverState) gameOverState.enter()
+            }
         } else {
             console.error(`State ${stateType.name} not found!`)
         }

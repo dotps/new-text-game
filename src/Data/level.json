@@ -29,13 +29,10 @@
       "description": "Вы поворачиваете направо и идёте по узкой тропинке. Через некоторое время перед вами появляется старый мост, ведущий через бурную реку.",
       "actions": [
         {
-          "command": "NEXT_LOCATION_COMMAND",
+          "command": "GAME_OVER_COMMAND",
           "title": "Перейти через мост",
           "description": "",
-          "params": {
-            "locationId": "BRANCH_1_BRIDGE",
-            "isGameOver": true
-          }
+          "messageAfterExecute": "Вы смело идёте по скрипящим доскам моста, но в середине пути слышите треск. Мост обрушивается под вами, и вы падаете в холодную воду реки. Вы теряете сознание..."
         },
         {
           "command": "NEXT_LOCATION_COMMAND",
@@ -49,12 +46,6 @@
       ]
     },
     {
-      "id": "BRANCH_1_BRIDGE",
-      "title": "Перейти через мост",
-      "description": "Вы смело идёте по скрипящим доскам моста, но в середине пути слышите треск. Мост обрушивается под вами, и вы падаете в холодную воду реки. Вы теряете сознание...",
-      "actions": []
-    },
-    {
       "id": "BRANCH_2",
       "title": "Ветка 2: Налево",
       "description": "Вы сворачиваете налево, и тропинка выводит вас к небольшой хижине. Из окна виден тусклый свет, а дверь приоткрыта.",
@@ -63,19 +54,13 @@
           "command": "NEXT_LOCATION_COMMAND",
           "title": "Войти в хижину",
           "description": "",
-          "params": {
-            "locationId": "BRANCH_2_ENTER_HOUSE",
-            "isGameOver": true
-          }
+          "messageAfterExecute": "Вы решаете войти в хижину, но как только переступаете порог, дверь захлопывается за вашей спиной. Внутри пусто, только звук капающей воды раздается в тишине. Кажется, что вы попали в ловушку."
         },
         {
           "command": "NEXT_LOCATION_COMMAND",
           "title": "Постучать в дверь",
           "description": "",
-          "params": {
-            "locationId": "BRANCH_2_KNOCK_DOOR",
-            "isGameOver": true
-          }
+          "messageAfterExecute": "Вы стучите в дверь, и через мгновение её открывает пожилая женщина с добрым взглядом. Она предлагает вам войти и отдохнуть. Вы чувствуете себя в безопасности и продолжаете путь с новыми силами."
         },
         {
           "command": "NEXT_LOCATION_COMMAND",
@@ -86,18 +71,6 @@
           }
         }
       ]
-    },
-    {
-      "id": "BRANCH_2_ENTER_HOUSE",
-      "title": "Войти в хижину",
-      "description": "Вы решаете войти в хижину, но как только переступаете порог, дверь захлопывается за вашей спиной. Внутри пусто, только звук капающей воды раздается в тишине. Кажется, что вы попали в ловушку.",
-      "actions": []
-    },
-    {
-      "id": "BRANCH_2_KNOCK_DOOR",
-      "title": "Постучать в дверь",
-      "description": "Вы стучите в дверь, и через мгновение её открывает пожилая женщина с добрым взглядом. Она предлагает вам войти и отдохнуть. Вы чувствуете себя в безопасности и продолжаете путь с новыми силами.",
-      "actions": []
     },
     {
       "id": "BRANCH_2_PASS_HOUSE",
@@ -113,14 +86,10 @@
           }
         },
         {
-          "command": "NEXT_LOCATION_COMMAND",
+          "command": "GAME_OVER_COMMAND",
           "title": "Вернутся назад",
           "description": "",
-          "params": {
-            "locationId": "BRANCH_2_PASS_HOUSE",
-            "locationDescription": "Вы вернулись к дому, споткнулись и сломали ногу.",
-            "isGameOver": true
-          }
+          "messageAfterExecute": "Вы вернулись к дому, споткнулись и сломали ногу."
         }
       ]
     },
@@ -153,14 +122,10 @@
       "description": "Решив идти дальше, вы встречаете волка, что будете делать?",
       "actions": [
         {
-          "command": "NEXT_LOCATION_COMMAND",
+          "command": "GAME_OVER_COMMAND",
           "title": "Убежать",
           "description": "",
-          "params": {
-            "locationId": "BRANCH_2_FOREST_GLADE",
-            "locationDescription": "Вы побежали вквозь чащу леса обратно на поляну, но волк вас догнал.",
-            "isGameOver": true
-          }
+          "messageAfterExecute": "Вы побежали вквозь чащу леса обратно на поляну, но волк вас догнал."
         },
         {
           "command": "BATTLE_COMMAND",
@@ -239,13 +204,9 @@
       "description": "Вы успешно справились с испытанием.",
       "actions": [
         {
-          "command": "NEXT_LOCATION_COMMAND",
+          "command": "GAME_OVER_COMMAND",
           "title": "Продолжить путь",
-          "description": "",
-          "params": {
-            "locationId": "FINISH",
-            "isGameOver": true
-          }
+          "description": ""
         }
       ]
     },
@@ -258,7 +219,7 @@
     {
       "id": "GAME_OVER",
       "title": "Game Over",
-      "description": "",
+      "description": "Вас постигла неудача.",
       "actions": []
     },
     {
