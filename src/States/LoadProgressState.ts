@@ -18,7 +18,6 @@ export class LoadProgressState implements IState {
     }
 
     enter(): void {
-        Logger.log("enter " + this.constructor.name)
         this.model.progressData = this.saveLoadService.loadProgress() ?? this.initProgress()
         this.stateMachine.enter(LoadLevelState)
     }
@@ -27,8 +26,6 @@ export class LoadProgressState implements IState {
         return new GameProgressData()
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-    }
+    exit(): void {}
 
 }

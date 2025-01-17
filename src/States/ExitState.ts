@@ -3,7 +3,5 @@ export class ExitState implements IState {
         process.exit(0)
     }
 
-    exit(): void {
-
-    }
+    exit(): void {}
 }

@@ -2,10 +2,14 @@ import {ILoggerService} from "./ILoggerService";
 
 export class ConsoleLogger implements ILoggerService {
 
-    private readonly _enabled: boolean
+    private readonly enabled: boolean
 
     constructor(enabled: boolean = true) {
-        this._enabled = enabled
+        this.enabled = enabled
+    }
+
+    isEnabled(): boolean {
+        return this.enabled
     }
 
     error(text: any): void {
@@ -13,7 +17,7 @@ export class ConsoleLogger implements ILoggerService {
     }
 
     log(text: string): void {
-        if (!this._enabled) return
+        if (!this.enabled) return
         console.log(text)
     }
 }

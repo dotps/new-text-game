@@ -14,17 +14,22 @@ import {LocationState} from "./LocationState"
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {GameOverState} from "./GameOverState"
-import {BattleInitState} from "./BattleInitState"
+import {BattleStartState} from "./BattleStartState"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {InputBattleState} from "./InputBattleState"
 import {BattleEnemyTurnState} from "./BattleEnemyTurnState"
+import {BattleEndState} from "./BattleEndState"
+import {Logger} from "../Utils/Logger"
 
 export class StateMachine implements IStateMachine {
 
     private states: Map<new (...args: any[]) => IState, IState> = new Map()
     private current: IState | null = null
+    private model: IModel
 
     constructor(model: IModel, view: IView, services: Services) {
+
+        this.model = model
 
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
         const inputOutputService: IInputOuotputService = services.get(InputOutputService)
@@ -42,7 +47,8 @@ export class StateMachine implements IStateMachine {
 
         this.states.set(LocationState, new LocationState(this, model, view))
 
-        this.states.set(BattleInitState, new BattleInitState(this, model, view))
+        this.states.set(BattleStartState, new BattleStartState(this, model, view))
+        this.states.set(BattleEndState, new BattleEndState(this, model, view))
         this.states.set(BattlePlayerTurnState, new BattlePlayerTurnState(this, model, view))
         this.states.set(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
     }
@@ -52,14 +58,28 @@ export class StateMachine implements IStateMachine {
     }
 
     changeState(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
-        this.current?.exit()
-        // TODO: реализовать проверку на gameover здесь
+        // this.current?.exit()
+        if (this.current) {
+            Logger.log("exit " + this.current.constructor.name)
+            this.current.exit()
+        }
+
+        if (this.isGameOver(stateType)) {
+            stateType = GameOverState
+        }
+
         const state = this.states.get(stateType)
+
         if (state) {
             this.current = state
+            Logger.log("enter " + this.current.constructor.name)
             this.current.enter(nextStateType)
         } else {
             console.error(`State ${stateType.name} not found!`)
         }
+    }
+
+    private isGameOver(stateType: new (...args: any[]) => IState): boolean {
+        return this.model.isGameOver() && stateType !== ExitState && stateType !== GameOverState
     }
 }

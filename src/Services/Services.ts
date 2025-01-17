@@ -10,7 +10,9 @@ export class Services {
     constructor() {
         this.register(InputOutputService, new InputOutputService())
         this.register(SaveLoadService, new SaveLoadService())
-        Logger.init(new ConsoleLogger(true))
+
+        const isLogEnable = true
+        Logger.init(new ConsoleLogger(isLogEnable))
     }
 
     register<T extends IService>(serviceClass: new (...args: any[]) => T, service: T): void {

@@ -18,8 +18,6 @@ export class LocationState implements IState {
     }
     
     enter(): void {
-        Logger.log("enter " + this.constructor.name)
-
         const location = this.model.getCurrentLocation()
         this.view.displayLocation(location)
 
@@ -31,8 +29,6 @@ export class LocationState implements IState {
         this.stateMachine.enter(InputState)
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-    }
+    exit(): void {}
 
 }

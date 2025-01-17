@@ -6,6 +6,7 @@ import {InputBattleState} from "./InputBattleState"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {GameOverState} from "./GameOverState"
 import {LocationState} from "./LocationState"
+import {BattleEndState} from "./BattleEndState"
 
 export class BattleEnemyTurnState implements IState {
     private stateMachine: IStateMachine
@@ -19,26 +20,19 @@ export class BattleEnemyTurnState implements IState {
     }
     
     enter(): void {
-        Logger.log("enter " + this.constructor.name)
-
-        const battleLocation = this.model.getCurrentLocation()
         const player = this.model.getPlayer()
         const enemy = this.model.getCurrentEnemy()
-        if (enemy) {
-            const damageEffectMessage = player.takeDamage(enemy)
-            this.view.displayText(damageEffectMessage)
-        }
 
-        if (this.model.isGameOver()) {
-            this.stateMachine.enter(GameOverState)
+        if (!enemy || !enemy.isAlive()) {
+            this.stateMachine.enter(BattleEndState)
             return
         }
 
+        const damageEffectMessage = player.takeDamage(enemy)
+        this.view.displayText(damageEffectMessage)
         this.stateMachine.enter(BattlePlayerTurnState)
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-    }
+    exit(): void {}
 
 }

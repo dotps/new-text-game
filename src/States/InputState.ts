@@ -17,7 +17,6 @@ export class InputState implements IState {
     }
 
     async enter(nextStateType?: new (...args: any[]) => IState): Promise<void> {
-        Logger.log("enter " + this.constructor.name)
 
         const responseData = await this.inputOutputService.getInput("> ")
 
@@ -31,7 +30,5 @@ export class InputState implements IState {
         }
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-    }
+    exit(): void {}
 }

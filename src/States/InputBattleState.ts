@@ -19,8 +19,6 @@ export class InputBattleState implements IState {
     }
 
     async enter(): Promise<void> {
-        Logger.log("enter " + this.constructor.name)
-
         const responseData = await this.inputOutputService.getInput("> ")
 
         if (responseData) {
@@ -32,7 +30,5 @@ export class InputBattleState implements IState {
         }
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-    }
+    exit(): void {}
 }

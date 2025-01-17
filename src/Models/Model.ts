@@ -7,6 +7,7 @@ import {Inventory} from "./Inventory/Inventory"
 import {IEnemy} from "./Enemies/IEnemy"
 import {IThing} from "./Things/IThing"
 import {Player} from "./Enemies/Player"
+import {Logger} from "../Utils/Logger"
 
 export class Model implements IModel {
     currentInput: string = ""
@@ -52,6 +53,9 @@ export class Model implements IModel {
             const locationParams = new LocationParams({locationId: this.progressData.currentLocationId})
             this._currentLocation = this._gameData.getLocation(locationParams)
         }
+
+        // Logger.log(`Location: ${this._currentLocation.title}`)
+
         return this._currentLocation
     }
 
@@ -73,15 +77,6 @@ export class Model implements IModel {
         if (this.player.health <= 0) this._isGameOver = true
         return this._isGameOver
     }
-
-    // takeThing(thing: IThing): void {
-    //     // this._progressData.inventory.push(thing)
-    //     // console.log(this._progressData.inventory)
-    // }
-
-    // getEnemy(id: string): IEnemy | null {
-    //     return this._gameData.getEnemy(id)
-    // }
 
     setCurrentEnemy(id: string): void {
         this.currentEnemy = this._gameData.getEnemy(id)

@@ -6,27 +6,25 @@ export class Wolf implements IEnemy {
 
     readonly id: string
     readonly title: string
-    readonly damage: number
+    readonly damage: number = 1
     readonly damageText: string
     health: number = 1
-
-    private deathMessage = "Вы нанесли урон. Противник погиб."
 
     constructor(params: IEnemyParams) {
         this.id = params?.id?.toString()
         this.title = params?.title?.toString()
-        this.damage = Number(params?.damage)
+        this.damage = Number(params?.damage) || this.damage
         this.damageText = params?.damageText?.toString()
-        const health = Number(params?.health)
-        this.health = health ?? this.health
+        this.health = Number(params?.health) || this.health
     }
 
-
     takeDamage(thing: IThing | null): string {
-        if (thing?.damage === 0 ) {
-            return thing.damageText
-        }
+        if (!thing) return ""
+        this.health -= thing.damage
+        return thing.damageText
+    }
 
-        return this.deathMessage
+    isAlive(): boolean {
+        return this.health > 0
     }
 }

@@ -8,5 +8,6 @@ export interface IEnemy {
     health: number
 
     takeDamage(thing: IThing | null): string
+    isAlive(): boolean
 }
 

@@ -12,7 +12,7 @@ import {Locations} from "../Data/Locations"
 import {Thing} from "../Models/Things/Thing"
 import {IThingParams} from "../Models/Things/IThingParams"
 
-export class BattleInitState implements IState {
+export class BattleStartState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
     private view: IView
@@ -25,8 +25,6 @@ export class BattleInitState implements IState {
     }
     
     enter(): void {
-        Logger.log("enter " + this.constructor.name)
-
         const enemy = this.model.getCurrentEnemy()
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
@@ -34,17 +32,13 @@ export class BattleInitState implements IState {
             return
         }
 
-        // this.model.setBattleLocation()
-        // console.log(this.model.getCurrentLocation())
-
-        this.view.displayEnemy(enemy)
+        // this.view.displayEnemy(enemy)
 
         const things = this.model.inventory.getAll()
 
         let actions: IAction[] = []
 
         for (const thing of things) {
-            console.log(thing)
             const thingParams = {
                 thingId: thing.id,
             }
@@ -64,32 +58,14 @@ export class BattleInitState implements IState {
         this.model.setCurrentLocation(battleLocationParams)
         const battleLocation = this.model.getCurrentLocation()
         battleLocation.setActions(actions)
+        battleLocation.description = `Перед вами: ${enemy.title}`
 
-        // console.log(this.model.getCurrentLocation())
-
-        // this.view.displayActions(actions)
-
-        // if (this.model.isGameOver()) {
-        //     this.stateMachine.enter(GameOverState)
-        //     return
-        // }
-
-        // const enemy = this.model.getCurrentEnemy()
-        // enemy.takeDamage(10)
-        // this.view.displayEnemyInfo(enemy)
+        this.view.displayLocation(battleLocation)
 
         // TODO: реализовать бой
-        // TODO: в BattleState если enemy = null, то писать что враг убежал и продолжать игру
-        // TODO: при выходе из BattleState enemy в модели должен удалятся
-
         this.stateMachine.enter(BattlePlayerTurnState)
-        // this.stateMachine.enter(InputBattleState)
-        // this.stateMachine.enter(LocationState)
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-        // this.model.clearEnemy()
-    }
+    exit(): void {}
 
 }

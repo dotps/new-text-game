@@ -21,7 +21,6 @@ export class InputHandlerState implements IState {
     }
 
     async enter(): Promise<void> {
-        Logger.log("enter " + this.constructor.name)
 
         if (this.model.currentInput === "") return
 
@@ -67,7 +66,6 @@ export class InputHandlerState implements IState {
     }
 
     exit(): void {
-        Logger.log("exit " + this.constructor.name)
         this.model.resetCurrentInput()
     }
 

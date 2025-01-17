@@ -22,7 +22,6 @@ export class InputHandlerBattleState implements IState {
     }
 
     async enter(): Promise<void> {
-        Logger.log("enter " + this.constructor.name)
 
         if (this.model.currentInput === "") return
 
@@ -36,8 +35,6 @@ export class InputHandlerBattleState implements IState {
     }
 
     private handleNumberInput() {
-
-        // TODO: Продолжить тут, нужно обработать ввод на бое
 
         const input = parseInt(this.model.currentInput)
         const currentActions = this.model.getCurrentActions()
@@ -73,7 +70,6 @@ export class InputHandlerBattleState implements IState {
     }
 
     exit(): void {
-        Logger.log("exit " + this.constructor.name)
         this.model.resetCurrentInput()
     }
 

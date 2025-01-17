@@ -14,13 +14,9 @@ export class GameOverState implements IState {
     }
     
     enter(): void {
-        Logger.log("enter " + this.constructor.name)
-
         this.view.displayText(this.gameOverText)
         this.stateMachine.enter(ExitState)
     }
 
-    exit(): void {
-        Logger.log("exit " + this.constructor.name)
-    }
+    exit(): void {}
 }

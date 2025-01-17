@@ -2,10 +2,8 @@ import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
-import {InputBattleState} from "./InputBattleState"
-import {GameOverState} from "./GameOverState"
 
-export class BattlePlayerTurnState implements IState {
+export class BattleEndState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
     private view: IView
@@ -17,9 +15,8 @@ export class BattlePlayerTurnState implements IState {
     }
     
     enter(): void {
-        this.stateMachine.enter(InputBattleState)
+        // this.stateMachine.enter(InputBattleState)
     }
 
     exit(): void {}
-
 }
