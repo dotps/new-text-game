@@ -21,6 +21,7 @@ export class LocationState implements IState {
         const location = this.model.getCurrentLocation()
         this.view.displayLocation(location)
 
+        // TODO: возможно это не нужно т.к. проверяется в в stateMachine, проверить
         if (this.model.isGameOver()) {
             this.stateMachine.enter(GameOverState)
             return

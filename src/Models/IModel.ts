@@ -39,4 +39,7 @@ export interface IModel {
     clearEnemy(): void
 
     getPreviousLocationId(): string
+
+    setAfterBattleLocationId(afterBattleLocationId: string): void
+    getAfterBattleLocationId(): string
 }

@@ -167,7 +167,8 @@
           "title": "Вступить в схватку",
           "description": "",
           "params": {
-            "enemyId": "wolf"
+            "enemyId": "wolf",
+            "afterBattleLocationId":"win-wolf"
           }
         }
       ]
@@ -233,6 +234,22 @@
       ]
     },
     {
+      "id": "win-wolf",
+      "title": "Тропинка",
+      "description": "Вы успешно справились с испытанием.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Продолжить путь",
+          "description": "",
+          "params": {
+            "locationId": "finish",
+            "isGameOver": true
+          }
+        }
+      ]
+    },
+    {
       "id": "battle",
       "title": "Бой",
       "description": "",
@@ -240,8 +257,14 @@
     },
     {
       "id": "game-over",
-      "title": "Конец игры",
+      "title": "Game Over",
       "description": "",
+      "actions": []
+    },
+    {
+      "id": "finish",
+      "title": "Конец игры",
+      "description": "Вы успешно прошли игру.",
       "actions": []
     }
   ],

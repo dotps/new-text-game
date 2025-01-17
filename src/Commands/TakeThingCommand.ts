@@ -12,11 +12,8 @@ export class TakeThingCommand implements ICommand {
     private readonly stateMachine: IStateMachine
     private readonly view: IView
     private readonly model: IModel
-    // private inventory: IInventory
 
-    // constructor(action: IAction, inventory: IInventory, stateMachine: IStateMachine) {
     constructor(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView) {
-        // this.inventory = inventory
         this.model = model
         this.action = action
         this.stateMachine = stateMachine
@@ -24,7 +21,6 @@ export class TakeThingCommand implements ICommand {
     }
 
     execute(): void {
-        Logger.log(this.constructor.name)
 
         const thingId = this?.action?.params?.thingId?.toString()
         const thing = this.model.getThing(thingId)

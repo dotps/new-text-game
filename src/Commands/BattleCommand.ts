@@ -17,9 +17,9 @@ export class BattleCommand implements ICommand {
     }
 
     execute(): void {
-        Logger.log(this.constructor.name)
-
-        const enemyId = this.action?.params?.enemyId?.toString()
+        const enemyId = this.action?.params?.enemyId?.toString() || ""
+        const afterBattleLocationId = this.action?.params?.afterBattleLocationId?.toString() || ""
+        this.model.setAfterBattleLocationId(afterBattleLocationId)
         this.model.setCurrentEnemy(enemyId)
         this.stateMachine.enter(BattleStartState)
     }

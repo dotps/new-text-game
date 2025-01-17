@@ -7,13 +7,9 @@ import {GameOverState} from "./GameOverState"
 
 export class BattlePlayerTurnState implements IState {
     private stateMachine: IStateMachine
-    private model: IModel
-    private view: IView
 
-    constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
+    constructor(stateMachine: IStateMachine) {
         this.stateMachine = stateMachine
-        this.model = model
-        this.view = view
     }
     
     enter(): void {

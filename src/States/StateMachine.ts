@@ -48,8 +48,8 @@ export class StateMachine implements IStateMachine {
         this.states.set(LocationState, new LocationState(this, model, view))
 
         this.states.set(BattleStartState, new BattleStartState(this, model, view))
-        this.states.set(BattleEndState, new BattleEndState(this, model, view))
-        this.states.set(BattlePlayerTurnState, new BattlePlayerTurnState(this, model, view))
+        this.states.set(BattleEndState, new BattleEndState(this, model))
+        this.states.set(BattlePlayerTurnState, new BattlePlayerTurnState(this))
         this.states.set(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
     }
 

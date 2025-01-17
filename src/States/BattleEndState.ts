@@ -7,18 +7,15 @@ import {LocationState} from "./LocationState"
 export class BattleEndState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
-    private view: IView
 
-    constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
+    constructor(stateMachine: IStateMachine, model: IModel) {
         this.stateMachine = stateMachine
         this.model = model
-        this.view = view
     }
     
     enter(): void {
-        // TODO: реализовать удаление врага из модели и переход к следующей локации
         this.model.clearEnemy()
-        const locationId = this.model.getPreviousLocationId()
+        const locationId = this.model.getAfterBattleLocationId()
         const locationParams = this.model.getLocationParams(locationId)
         this.model.setCurrentLocation(locationParams)
         this.stateMachine.enter(LocationState)
