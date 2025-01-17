@@ -1,5 +1,6 @@
 export enum Locations {
-    START = "start",
-    GAME_OVER = "game-over",
-    FINISH = "finish",
+    START = "START",
+    GAME_OVER = "GAME_OVER",
+    FINISH = "FINISH",
+    BATTLE = "BATTLE",
 }

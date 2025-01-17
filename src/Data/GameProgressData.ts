@@ -2,7 +2,7 @@ import {IThing} from "../Models/Things/IThing"
 
 export class GameProgressData {
     // public currentLocationId: string = Locations.START
-    public currentLocationId: string = "branch-2-forest-glade"
-    public currentLevelPath: string = "./Data/level-2.json"
+    public currentLocationId: string = "BRANCH_2_FOREST_GLADE"
+    public currentLevelPath: string = "./Data/level.json"
     public things: IThing[] = []
 }

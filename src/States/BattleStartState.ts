@@ -16,7 +16,6 @@ export class BattleStartState implements IState {
     private stateMachine: IStateMachine
     private model: IModel
     private view: IView
-    private battleLocationId = "battle"
 
     constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
         this.stateMachine = stateMachine
@@ -54,7 +53,7 @@ export class BattleStartState implements IState {
         actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от противника, но он вас нашел", actionParams))
 
         // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
-        const battleLocationParams = this.model.getLocationParams(this.battleLocationId)
+        const battleLocationParams = this.model.getLocationParams(Locations.BATTLE)
         this.model.setCurrentLocation(battleLocationParams)
         const battleLocation = this.model.getCurrentLocation()
         battleLocation.setActions(actions)

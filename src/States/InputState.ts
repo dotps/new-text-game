@@ -21,7 +21,7 @@ export class InputState implements IState {
         const responseData = await this.inputOutputService.getInput("> ")
 
         if (responseData) {
-            this.model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
+            this.model.currentInput = responseData.inputData ? responseData.inputData.toUpperCase().trim() : ""
             const nextState = nextStateType ?? InputHandlerState
             this.stateMachine.enter(nextState)
         }

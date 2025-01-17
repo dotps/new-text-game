@@ -22,7 +22,7 @@ export class InputBattleState implements IState {
         const responseData = await this.inputOutputService.getInput("> ")
 
         if (responseData) {
-            this.model.currentInput = responseData.inputData ? responseData.inputData.toLowerCase().trim() : ""
+            this.model.currentInput = responseData.inputData ? responseData.inputData.toUpperCase().trim() : ""
             this.stateMachine.enter(InputHandlerBattleState)
         }
         else {

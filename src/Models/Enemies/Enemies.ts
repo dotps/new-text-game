@@ -1,3 +1,3 @@
 export enum Enemies {
-    WOLF = "wolf"
+    WOLF = "WOLF"
 }

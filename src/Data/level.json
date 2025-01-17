@@ -1,85 +1,299 @@
 {
   "locations": [
     {
-      "id": "start",
-      "title": "Начало игры",
-      "description": "Ты стоишь на развилке",
+      "id": "START",
+      "title": "Начало",
+      "description": "Вы просыпаетесь в центре густого леса, окруженного туманом. Единственный звук, который вы слышите, — это ветер, шелестящий в листве деревьев. Перед вами две тропинки. Одна ведет направо, другая — налево.",
       "actions": [
         {
           "command": "NEXT_LOCATION_COMMAND",
-          "title": "Идти налево",
-          "description": "В далеке виднеется лес",
+          "title": "Направо",
+          "description": "",
           "params": {
-            "nextLocationId": "edgeForest"
+            "locationId": "BRANCH_1"
           }
         },
         {
           "command": "NEXT_LOCATION_COMMAND",
-          "title": "Повернуть направо",
+          "title": "Направо",
           "description": "",
           "params": {
-            "nextLocationId": "roadToVillage"
+            "locationId": "BRANCH_2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "BRANCH_1",
+      "title": "Ветка 1: Направо",
+      "description": "Вы поворачиваете направо и идёте по узкой тропинке. Через некоторое время перед вами появляется старый мост, ведущий через бурную реку.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Перейти через мост",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_1_BRIDGE",
+            "isGameOver": true
           }
         },
         {
-          "command": "LOOK_AROUND_COMMAND",
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Вернуться назад",
+          "description": "",
+          "params": {
+            "locationId": "START",
+            "locationDescription": "Вы решаете не рисковать и возвращаетесь к развилке."
+          }
+        }
+      ]
+    },
+    {
+      "id": "BRANCH_1_BRIDGE",
+      "title": "Перейти через мост",
+      "description": "Вы смело идёте по скрипящим доскам моста, но в середине пути слышите треск. Мост обрушивается под вами, и вы падаете в холодную воду реки. Вы теряете сознание...",
+      "actions": []
+    },
+    {
+      "id": "BRANCH_2",
+      "title": "Ветка 2: Налево",
+      "description": "Вы сворачиваете налево, и тропинка выводит вас к небольшой хижине. Из окна виден тусклый свет, а дверь приоткрыта.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Войти в хижину",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_ENTER_HOUSE",
+            "isGameOver": true
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Постучать в дверь",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_KNOCK_DOOR",
+            "isGameOver": true
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Пройти мимо дома",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_PASS_HOUSE"
+          }
+        }
+      ]
+    },
+    {
+      "id": "BRANCH_2_ENTER_HOUSE",
+      "title": "Войти в хижину",
+      "description": "Вы решаете войти в хижину, но как только переступаете порог, дверь захлопывается за вашей спиной. Внутри пусто, только звук капающей воды раздается в тишине. Кажется, что вы попали в ловушку.",
+      "actions": []
+    },
+    {
+      "id": "BRANCH_2_KNOCK_DOOR",
+      "title": "Постучать в дверь",
+      "description": "Вы стучите в дверь, и через мгновение её открывает пожилая женщина с добрым взглядом. Она предлагает вам войти и отдохнуть. Вы чувствуете себя в безопасности и продолжаете путь с новыми силами.",
+      "actions": []
+    },
+    {
+      "id": "BRANCH_2_PASS_HOUSE",
+      "title": "Пройти мимо дома",
+      "description": "Вы прошли мимо дома и увидели узкую тропинку в лес",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Пойти по тропинке",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_PATH_TO_FOREST"
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Вернутся назад",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_PASS_HOUSE",
+            "locationDescription": "Вы вернулись к дому, споткнулись и сломали ногу.",
+            "isGameOver": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "BRANCH_2_PATH_TO_FOREST",
+      "title": "Тропинка",
+      "description": "Пройдя по тропинке вы очутились на поляне",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Пойти дальше по тропинке",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_PATH_IN_FOREST"
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
           "title": "Осмотреться",
           "description": "",
-          "params": {}
+          "params": {
+            "locationId": "BRANCH_2_FOREST_GLADE"
+          }
         }
       ]
     },
     {
-      "id": "edgeForest",
-      "description": "Вы на границе очень дремучего леса",
+      "id": "BRANCH_2_PATH_IN_FOREST",
+      "title": "Тропинка",
+      "description": "Решив идти дальше, вы встречаете волка, что будете делать?",
       "actions": [
         {
-          "command": "BACK_COMMAND",
-          "title": "Вернутся на развилку",
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Убежать",
           "description": "",
           "params": {
-            "nextLocationId": "start"
+            "locationId": "BRANCH_2_FOREST_GLADE",
+            "locationDescription": "Вы побежали вквозь чащу леса обратно на поляну, но волк вас догнал.",
+            "isGameOver": true
           }
         },
         {
-          "command": "EXPLORE_COMMAND",
-          "title": "Исследовать лес",
+          "command": "BATTLE_COMMAND",
+          "title": "Вступить в схватку",
           "description": "",
-          "params": {}
-        },
-        {
-          "command": "SETUP_CAMP_COMMAND",
-          "title": "Разбить лагерь",
-          "description": "",
-          "params": {}
+          "params": {
+            "enemyId": "WOLF",
+            "afterBattleLocationId":"WIN_WOLF"
+          }
         }
       ]
     },
     {
-      "id": "edgeForest",
-      "description": "Вы на границе очень дремучего леса",
+      "id": "BRANCH_2_FOREST_GLADE",
+      "title": "Поляна",
+      "description": "Вы осмотрели поляну и обнаружили ножницы, бумагу и камень. Что вы возмете с собой?",
       "actions": [
         {
-          "command": "BACK_COMMAND",
-          "title": "Вернутся на развилку",
+          "command": "TAKE_THING_COMMAND",
+          "title": "Ножницы",
           "description": "",
+          "messageAfterExecute": "Вы выбрали ножницы и продолжили путь по тропинке",
           "params": {
-            "nextLocationId": "start"
+            "thingId": "SCISSORS",
+            "action": {
+              "command": "NEXT_LOCATION_COMMAND",
+              "params": {
+                "locationId": "BRANCH_2_PATH_IN_FOREST"
+              }
+            }
           }
         },
         {
-          "command": "EXPLORE_COMMAND",
-          "title": "Исследовать лес",
+          "command": "TAKE_THING_COMMAND",
+          "title": "Бумагу",
           "description": "",
-          "params": {}
+          "messageAfterExecute": "Вы выбрали бумагу и продолжили путь по тропинке",
+          "params": {
+            "thingId": "PAPER",
+            "action": {
+              "command": "NEXT_LOCATION_COMMAND",
+              "params": {
+                "locationId": "BRANCH_2_PATH_IN_FOREST"
+              }
+            }
+          }
         },
         {
-          "command": "SETUP_CAMP_COMMAND",
-          "title": "Разбить лагерь",
+          "command": "TAKE_THING_COMMAND",
+          "title": "Камень",
           "description": "",
-          "params": {}
+          "messageAfterExecute": "Вы выбрали камень и продолжили путь по тропинке",
+          "params": {
+            "thingId": "STONE",
+            "action": {
+              "command": "NEXT_LOCATION_COMMAND",
+              "params": {
+                "locationId": "BRANCH_2_PATH_IN_FOREST"
+              }
+            }
+          }
+        },
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Ничего не брать и идти дальше",
+          "description": "",
+          "params": {
+            "locationId": "BRANCH_2_PATH_IN_FOREST"
+          }
         }
       ]
+    },
+    {
+      "id": "WIN_WOLF",
+      "title": "Тропинка",
+      "description": "Вы успешно справились с испытанием.",
+      "actions": [
+        {
+          "command": "NEXT_LOCATION_COMMAND",
+          "title": "Продолжить путь",
+          "description": "",
+          "params": {
+            "locationId": "FINISH",
+            "isGameOver": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "BATTLE",
+      "title": "Бой",
+      "description": "",
+      "actions": []
+    },
+    {
+      "id": "GAME_OVER",
+      "title": "Game Over",
+      "description": "",
+      "actions": []
+    },
+    {
+      "id": "FINISH",
+      "title": "Конец игры",
+      "description": "Вы успешно прошли игру.",
+      "actions": []
+    }
+  ],
+  "enemies": [
+    {
+      "id": "WOLF",
+      "title": "Волк",
+      "damage": 1,
+      "damageText": "Волк напал на вас."
+    }
+  ],
+  "things": [
+    {
+      "id": "PAPER",
+      "title": "Бумага",
+      "damage": 0,
+      "damageText": "Вы так сильно испугались, что бумага вам непременно пригодится."
+    },
+    {
+      "id": "STONE",
+      "title": "Камень",
+      "damage": 1,
+      "damageText": "Вы кинули камень."
+    },
+    {
+      "id": "SCISSORS",
+      "title": "Ножницы",
+      "damage": 0,
+      "damageText": "Вам не удалось подстричь противника."
     }
   ]
 }
