@@ -2,7 +2,6 @@ import {IService} from "./IService";
 import {Logger} from "../Utils/Logger"
 import {InputOutputService} from "./InputOutputService"
 import {SaveLoadService} from "./SaveLoadService"
-import {LoggerService} from "../Utils/LoggerService"
 import {ConsoleLogger} from "../Utils/ConsoleLogger"
 
 export class Services {
@@ -11,8 +10,7 @@ export class Services {
     constructor() {
         this.register(InputOutputService, new InputOutputService())
         this.register(SaveLoadService, new SaveLoadService())
-        this.register(LoggerService, new LoggerService(new ConsoleLogger(true)))
-        Logger.init(this.get(LoggerService))
+        Logger.init(new ConsoleLogger(true))
     }
 
     register<T extends IService>(serviceClass: new (...args: any[]) => T, service: T): void {

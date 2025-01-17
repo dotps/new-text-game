@@ -1,12 +1,12 @@
 import {ILoggerService} from "./ILoggerService"
-import {Services} from "../Services/Services"
-import {LoggerService} from "./LoggerService"
 
 export class Logger {
     private static loggerService: ILoggerService;
+    static isEnabled: boolean
 
-    public static init(loggerService: LoggerService): void {
+    public static init(loggerService: ILoggerService): void {
         Logger.loggerService = loggerService
+        Logger.isEnabled = loggerService.isEnabled()
     }
 
     public static log(message: any): void {
