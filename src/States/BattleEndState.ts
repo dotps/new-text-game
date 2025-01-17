@@ -15,6 +15,7 @@ export class BattleEndState implements IState {
     }
     
     enter(): void {
+        // TODO: реализовать удаление врага из модели и переход к следующей локации
         // this.stateMachine.enter(InputBattleState)
     }
 

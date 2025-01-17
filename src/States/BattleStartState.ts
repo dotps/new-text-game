@@ -25,6 +25,9 @@ export class BattleStartState implements IState {
     }
     
     enter(): void {
+
+        // TODO: рефакторинг !!!
+
         const enemy = this.model.getCurrentEnemy()
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
@@ -32,11 +35,8 @@ export class BattleStartState implements IState {
             return
         }
 
-        // this.view.displayEnemy(enemy)
-
         const things = this.model.inventory.getAll()
-
-        let actions: IAction[] = []
+        const actions: IAction[] = []
 
         for (const thing of things) {
             const thingParams = {
@@ -62,7 +62,6 @@ export class BattleStartState implements IState {
 
         this.view.displayLocation(battleLocation)
 
-        // TODO: реализовать бой
         this.stateMachine.enter(BattlePlayerTurnState)
     }
 
