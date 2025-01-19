@@ -9,6 +9,7 @@ import {BattleCommand} from "../Commands/BattleCommand"
 import {Commands} from "../Commands/Commands"
 import {UseThingCommand} from "../Commands/UseThingCommand"
 import {GameOverCommand} from "../Commands/GameOverCommand"
+import {FinishCommand} from "../Commands/FinishCommand"
 
 export class CommandFactory {
     static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView): ICommand | null {
@@ -17,6 +18,8 @@ export class CommandFactory {
                 return new ExitGameCommand(stateMachine)
             case Commands.GAME_OVER_COMMAND:
                 return new GameOverCommand(action, model, stateMachine, view)
+            case Commands.FINISH_COMMAND:
+                return new FinishCommand(action, model, stateMachine, view)
             case Commands.NEXT_LOCATION_COMMAND:
                 return new NextLocationCommand(action, model, stateMachine, view)
             case Commands.TAKE_THING_COMMAND:
