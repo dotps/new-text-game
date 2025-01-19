@@ -5,6 +5,9 @@ import {IAction, Location} from "../Data/GameData"
 import {Locations} from "../Data/Locations"
 import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
+import {ExitState} from "../States/ExitState"
+import {CommandFactory} from "../Factories/CommandFactory"
+import {NextLocationCommand} from "./NextLocationCommand"
 
 export class FinishCommand implements ICommand {
 
@@ -21,11 +24,11 @@ export class FinishCommand implements ICommand {
     }
 
     execute() {
-        this.model.gameOver()
         let locationParams = this.model.getLocationParams(Locations.FINISH)
         this.model.setCurrentLocation(locationParams)
         this.view.displayText(this.action?.messageAfterExecute)
         this.stateMachine.enter(LocationState)
+        this.stateMachine.enter(ExitState)
     }
 
 }

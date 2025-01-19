@@ -30,7 +30,9 @@ export class BattleStartState implements IState {
         const enemy = this.model.getCurrentEnemy()
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
-            this.stateMachine.enter(LocationState) // TODO: заглушка, реализовать переход к следующей локации
+            const nextLocation = this.model.getLocationParams(this.model.getAfterBattleLocationId())
+            this.model.setCurrentLocation(nextLocation)
+            this.stateMachine.enter(LocationState)
             return
         }
 
@@ -45,21 +47,8 @@ export class BattleStartState implements IState {
             actions.push(action)
         }
 
-        const actionParams = {
-            locationId: Locations.GAME_OVER,
-            isGameOver: true
-        }
-        // const actionParamsFly = {
-        //     // locationId: Locations.GAME_OVER,
-        //     action: {
-        //         command: "GAME_OVER_COMMAND",
-        //     }
-        // }
-
-        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", actionParams))
-        actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", actionParams))
-        // actions.push(new Action(Commands.NEXT_LOCATION_COMMAND, `Улететь`, "", "Вы решили улететь от оппонента, но он вас нашел.", actionParamsFly))
-        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Улететь`, "", "Вы решили улететь от оппонента, но он вас нашел.", {}))
+        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", {}))
+        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", {}))
 
         // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
         const battleLocationParams = this.model.getLocationParams(Locations.BATTLE)
@@ -69,7 +58,6 @@ export class BattleStartState implements IState {
         battleLocation.description = `Перед вами: ${enemy.title}`
 
         this.view.displayLocation(battleLocation)
-
         this.stateMachine.enter(BattlePlayerTurnState)
     }
 

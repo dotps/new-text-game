@@ -10,7 +10,6 @@ export class GameOverState implements IState {
     private view: IView
     private stateMachine: IStateMachine
     private model: IModel
-    private readonly gameOverText: string = "Конец игры"
 
     constructor(stateMachine: IStateMachine, view: IView, model: IModel) {
         this.model = model
@@ -19,12 +18,10 @@ export class GameOverState implements IState {
     }
     
     enter(): void {
-        // this.view.displayText(this.gameOverText)
-        // this.stateMachine.enter(ExitState)
         let locationParams = this.model.getLocationParams(Locations.GAME_OVER)
         this.model.setCurrentLocation(locationParams)
         this.stateMachine.enter(LocationState)
-        // TODO: запутался со состоянием game over,
+        this.stateMachine.enter(ExitState)
     }
 
     exit(): void {}

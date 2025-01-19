@@ -7,10 +7,10 @@
       "actions": [
         {
           "command": "NEXT_LOCATION_COMMAND",
-          "title": "Направо",
+          "title": "Налево",
           "description": "",
           "params": {
-            "locationId": "BRANCH_1"
+            "locationId": "BRANCH_2"
           }
         },
         {
@@ -18,7 +18,7 @@
           "title": "Направо",
           "description": "",
           "params": {
-            "locationId": "BRANCH_2"
+            "locationId": "BRANCH_1"
           }
         }
       ]
