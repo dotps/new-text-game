@@ -1,7 +1,7 @@
 import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
-import {IEnemy} from "./Enemies/IEnemy"
+import {ICreature} from "./Enemies/ICreature"
 import {IThing} from "./Things/IThing"
 
 export interface IModel {
@@ -30,11 +30,11 @@ export interface IModel {
     // takeThing(thing: IThing): void
     setCurrentEnemy(id: string): void
 
-    getCurrentEnemy(): IEnemy | null
+    getCurrentEnemy(): ICreature | null
 
     getThing(id: string): IThing | null
 
-    getPlayer(): IEnemy
+    getPlayer(): ICreature
 
     clearEnemy(): void
 

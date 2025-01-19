@@ -1,7 +1,7 @@
 import {IView} from "./IView";
 import {IAction, ILocation} from "../Data/GameData"
 import {IInputOuotputService} from "../Services/IInputOuotputService"
-import {IEnemy} from "../Models/Enemies/IEnemy"
+import {ICreature} from "../Models/Enemies/ICreature"
 import {Logger} from "../Utils/Logger"
 
 export class View implements IView {
@@ -37,7 +37,7 @@ export class View implements IView {
         })
     }
 
-    displayEnemy(enemy: IEnemy | null): void {
+    displayEnemy(enemy: ICreature | null): void {
         if (!enemy) return
         this.inputOutputService.displayText(`Перед вами: ${enemy.title}`)
     }

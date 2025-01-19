@@ -1,6 +1,6 @@
 import {IThing} from "../Things/IThing"
 
-export interface IEnemy {
+export interface ICreature {
     id: string
     title: string
     damage: number

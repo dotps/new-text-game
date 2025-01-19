@@ -1,4 +1,4 @@
-import {IEnemy} from "../Models/Enemies/IEnemy"
+import {ICreature} from "../Models/Enemies/ICreature"
 import {Logger} from "../Utils/Logger"
 import {Item, IThing} from "../Models/Things/IThing"
 import {Locations} from "./Locations"
@@ -85,7 +85,7 @@ export interface IAction {
 
 export class GameData {
     locations: ILocation[] = []
-    enemies: IEnemy[] = []
+    enemies: ICreature[] = []
     commands: Record<string, IAction> = {}
     things: IThing[] = []
 
@@ -97,7 +97,7 @@ export class GameData {
         return new Location(location.id, location.title, location.description, location.actions, locationParams)
     }
 
-    getEnemy(id: string): IEnemy | null {
+    getEnemy(id: string): ICreature | null {
         let enemy = this.enemies.find(enemy => enemy.id === id)
         if (!enemy) {
             Logger.error(`Enemy ${id} not found!`)

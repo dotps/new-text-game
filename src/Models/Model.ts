@@ -4,7 +4,7 @@ import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {Inventory} from "./Inventory/Inventory"
-import {IEnemy} from "./Enemies/IEnemy"
+import {ICreature} from "./Enemies/ICreature"
 import {IThing} from "./Things/IThing"
 import {Player} from "./Enemies/Player"
 
@@ -18,7 +18,7 @@ export class Model implements IModel {
     private _currentLocation: ILocation | null = null
     private _previousLocationId: string = ""
     private _isGameOver: boolean = false
-    private currentEnemy: IEnemy | null = null
+    private currentEnemy: ICreature | null = null
     private readonly player: Player
     private afterBattleLocationId: string = ""
 
@@ -88,7 +88,7 @@ export class Model implements IModel {
         this.currentEnemy = this._gameData.getEnemy(id)
     }
 
-    getCurrentEnemy(): IEnemy | null {
+    getCurrentEnemy(): ICreature | null {
         return this.currentEnemy
     }
 
@@ -104,7 +104,7 @@ export class Model implements IModel {
         return this._previousLocationId
     }
 
-    getPlayer(): IEnemy {
+    getPlayer(): ICreature {
         return this.player
     }
 

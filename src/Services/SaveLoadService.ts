@@ -2,7 +2,7 @@ import {ISaveLoadService} from "./ISaveLoadService"
 import {GameProgressData} from "../Data/GameProgressData";
 import * as fs from "node:fs";
 import {Action, GameData, IAction, ILocation, Location, LocationParams} from "../Data/GameData";
-import {IEnemy} from "../Models/Enemies/IEnemy"
+import {ICreature} from "../Models/Enemies/ICreature"
 import {EnemyFactory} from "../Factories/EnemyFactory"
 import {IEnemyParams} from "../Models/Enemies/IEnemyParams"
 import {IThingParams} from "../Models/Things/IThingParams"
