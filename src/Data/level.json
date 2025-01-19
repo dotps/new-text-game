@@ -125,7 +125,7 @@
           "command": "GAME_OVER_COMMAND",
           "title": "Убежать",
           "description": "",
-          "messageAfterExecute": "Вы побежали вквозь чащу леса обратно на поляну, но волк вас догнал."
+          "messageAfterExecute": "Вы побежали сквозь чащу леса обратно на поляну, но волк вас догнал."
         },
         {
           "command": "BATTLE_COMMAND",

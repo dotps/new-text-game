@@ -21,11 +21,12 @@ export class GameOverCommand implements ICommand {
     }
 
     execute() {
-        this.model.gameOver()
-        let locationParams = this.model.getLocationParams(Locations.GAME_OVER)
-        this.model.setCurrentLocation(locationParams)
+        // this.model.gameOver()
+        // let locationParams = this.model.getLocationParams(Locations.GAME_OVER)
+        // this.model.setCurrentLocation(locationParams)
         this.view.displayText(this.action?.messageAfterExecute)
-        this.stateMachine.enter(LocationState)
+        // this.stateMachine.enter(LocationState)
+        this.stateMachine.enter(GameOverState)
     }
 
 }

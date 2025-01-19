@@ -76,7 +76,7 @@ export class Model implements IModel {
 
     gameOver(): void {
         this._isGameOver = true
-        this.player.health = 0
+        // this.player.health = 0
     }
 
     public isGameOver(): boolean {

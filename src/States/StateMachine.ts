@@ -42,7 +42,7 @@ export class StateMachine implements IStateMachine {
         this.states.set(InputBattleState, new InputBattleState(this, model, inputOutputService))
         this.states.set(InputHandlerBattleState, new InputHandlerBattleState(this, model, view))
 
-        this.states.set(GameOverState, new GameOverState(this, view))
+        this.states.set(GameOverState, new GameOverState(this, view, model))
         this.states.set(ExitState, new ExitState())
 
         this.states.set(LocationState, new LocationState(this, model, view))
