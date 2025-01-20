@@ -12,6 +12,8 @@ export class Model implements IModel {
     currentInput: string = ""
     inventory: IInventory
 
+    // TODO: убрать подчеркивания для приватных полей
+
     private _progressData: GameProgressData
     private _gameData: GameData
     private _currentLocation: ILocation | null = null
