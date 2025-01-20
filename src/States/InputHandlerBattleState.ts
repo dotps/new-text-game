@@ -21,7 +21,7 @@ export class InputHandlerBattleState implements IState {
 
     private handleNumberInput() {
 
-        const command = this.inputHandler.getCommand()
+        const command = this.inputHandler.createCommandFromInputData()
 
         if (command) {
             command.execute()

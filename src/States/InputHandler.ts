@@ -3,7 +3,6 @@ import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {Commands} from "../Commands/Commands"
 import {ExitState} from "./ExitState"
-import {InputState} from "./InputState"
 import {CommandFactory} from "../Factories/CommandFactory"
 
 export class InputHandler {
@@ -39,20 +38,20 @@ export class InputHandler {
         return isNaN(input) || input < 1 || input > countCurrentActions
     }
 
-    getCommand(): ICommand | null {
+    createCommandFromInputData(): ICommand | null {
 
-        const input = parseInt(this.model.currentInput)
+        const inputData = parseInt(this.model.currentInput)
         const currentActions = this.model.getCurrentActions()
         const countCurrentActions = currentActions.length
 
-        if (this.isNotCorrectInput(input, countCurrentActions)) {
+        if (this.isNotCorrectInput(inputData, countCurrentActions)) {
             const actionsInputText = countCurrentActions > 0 ? `число от 1 до ${countCurrentActions} или ` : ``
             this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${Commands.EXIT}" для выхода`)
             this.view.displayActions(currentActions)
             return null
         }
 
-        const inputAction = currentActions[input-1]
+        const inputAction = currentActions[inputData-1]
 
         if (!inputAction) {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)

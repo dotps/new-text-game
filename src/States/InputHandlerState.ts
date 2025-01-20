@@ -20,7 +20,7 @@ export class InputHandlerState implements IState {
 
     private handleNumberInput(): void {
 
-        const command = this.inputHandler.getCommand()
+        const command = this.inputHandler.createCommandFromInputData()
 
         if (command) {
             command.execute()
