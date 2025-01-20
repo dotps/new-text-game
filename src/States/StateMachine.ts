@@ -6,7 +6,7 @@ import {ISaveLoadService} from "../Services/ISaveLoadService"
 import {InputOutputService} from "../Services/InputOutputService"
 import {Services} from "../Services/Services"
 import {InputState} from "./InputState"
-import {IInputOuotputService} from "../Services/IInputOuotputService"
+import {IInputOutputService} from "../Services/IInputOutputService"
 import {ExitState} from "./ExitState"
 import {InputHandlerBattleState} from "./InputHandlerBattleState"
 import {InputHandlerState} from "./InputHandlerState"
@@ -29,7 +29,7 @@ export class StateMachine implements IStateMachine {
     constructor(model: IModel, view: IView, services: Services) {
 
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
-        const inputOutputService: IInputOuotputService = services.get(InputOutputService)
+        const inputOutputService: IInputOutputService = services.get(InputOutputService)
 
         this.states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
         this.states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))

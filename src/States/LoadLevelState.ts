@@ -1,7 +1,6 @@
 import {IModel} from "../Models/IModel"
 import {ISaveLoadService} from "../Services/ISaveLoadService"
 import {LocationState} from "./LocationState";
-import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 
 export class LoadLevelState implements IState {

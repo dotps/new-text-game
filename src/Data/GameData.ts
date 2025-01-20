@@ -1,6 +1,6 @@
 import {ICreature} from "../Models/Enemies/ICreature"
 import {Logger} from "../Utils/Logger"
-import {Item, IThing} from "../Models/Things/IThing"
+import {IThing} from "../Models/Things/IThing"
 import {Locations} from "./Locations"
 
 export class Action implements IAction {
@@ -17,7 +17,6 @@ export class Action implements IAction {
         this.messageAfterExecute = messageAfterExecute
         this.params = params
     }
-
 }
 
 export class Location implements ILocation {
@@ -124,23 +123,5 @@ export class GameData {
                 this.commands[action.command] = action
             })
         })
-    }
-
-    getCommand(commandName: string): IAction | undefined {
-        if (commandName in this.commands) {
-            return this.commands[commandName]
-        } else {
-            throw new Error(`Command ${commandName} not found!`);
-        }
-    }
-
-    getCountCommands(): number {
-        console.log(this.commands)
-        return Object.keys(this.commands).length
-    }
-
-    getCountActions(): number {
-        console.log(this.commands)
-        return Object.keys(this.commands).length
     }
 }

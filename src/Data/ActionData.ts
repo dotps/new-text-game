@@ -1,14 +1,4 @@
-// export class ActionData {
-//
-//     public text: string = ""
-//     public inputData: string = ""
-//
-//     constructor(text: string, inputData?: string) {
-//         this.text = text
-//         this.inputData = inputData?.toLowerCase() ?? ""
-//     }
-// }
-
+// TODO: переделать в InputData
 export type ActionData = {
     text: string
     elements?: string,

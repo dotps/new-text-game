@@ -1,18 +1,15 @@
 import {IModel} from "../Models/IModel"
-import {InputHandlerState} from "./InputHandlerState";
-import {Logger} from "../Utils/Logger"
-import {IInputOuotputService} from "../Services/IInputOuotputService"
+import {IInputOutputService} from "../Services/IInputOutputService"
 import {IStateMachine} from "./IStateMachine"
-import {InputState} from "./InputState"
 import {InputHandlerBattleState} from "./InputHandlerBattleState"
 
 export class InputBattleState implements IState {
 
     private stateMachine: IStateMachine
     private model: IModel
-    private inputOutputService: IInputOuotputService
+    private inputOutputService: IInputOutputService
 
-    constructor(stateMachine: IStateMachine, model: IModel, inputOutputService: IInputOuotputService) {
+    constructor(stateMachine: IStateMachine, model: IModel, inputOutputService: IInputOutputService) {
         this.stateMachine = stateMachine
         this.model = model
         this.inputOutputService = inputOutputService;

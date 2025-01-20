@@ -1,14 +1,13 @@
 import {IView} from "./IView";
 import {IAction, ILocation} from "../Data/GameData"
-import {IInputOuotputService} from "../Services/IInputOuotputService"
+import {IInputOutputService} from "../Services/IInputOutputService"
 import {ICreature} from "../Models/Enemies/ICreature"
-import {Logger} from "../Utils/Logger"
 
 export class View implements IView {
 
-    private inputOutputService: IInputOuotputService
+    private inputOutputService: IInputOutputService
 
-    constructor(inputOutputService: IInputOuotputService) {
+    constructor(inputOutputService: IInputOutputService) {
         this.inputOutputService = inputOutputService
     }
 

@@ -1,11 +1,7 @@
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
-import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
-import {InputBattleState} from "./InputBattleState"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
-import {GameOverState} from "./GameOverState"
-import {LocationState} from "./LocationState"
 import {BattleEndState} from "./BattleEndState"
 
 export class BattleEnemyTurnState implements IState {

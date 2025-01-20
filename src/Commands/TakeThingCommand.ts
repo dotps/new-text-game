@@ -2,9 +2,7 @@ import {Action, IAction} from "../Data/GameData"
 import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
 import {IModel} from "../Models/IModel"
-import {Logger} from "../Utils/Logger"
 import {CommandFactory} from "../Factories/CommandFactory"
-import {Thing} from "../Models/Things/Thing"
 
 export class TakeThingCommand implements ICommand {
 

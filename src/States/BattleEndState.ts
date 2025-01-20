@@ -1,6 +1,4 @@
 import {IModel} from "../Models/IModel"
-import {IView} from "../Views/IView"
-import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {LocationState} from "./LocationState"
 

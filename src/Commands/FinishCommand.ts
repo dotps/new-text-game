@@ -1,20 +1,17 @@
 import {IStateMachine} from "../States/IStateMachine"
-import {GameOverState} from "../States/GameOverState"
 import {IModel} from "../Models/IModel"
-import {IAction, Location} from "../Data/GameData"
+import {IAction} from "../Data/GameData"
 import {Locations} from "../Data/Locations"
 import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
 import {ExitState} from "../States/ExitState"
-import {CommandFactory} from "../Factories/CommandFactory"
-import {NextLocationCommand} from "./NextLocationCommand"
 
 export class FinishCommand implements ICommand {
 
-    private stateMachine: IStateMachine
-    private view: IView
-    private action: IAction
-    private model: IModel
+    private readonly stateMachine: IStateMachine
+    private readonly view: IView
+    private readonly action: IAction
+    private readonly model: IModel
 
     constructor(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView) {
         this.view = view

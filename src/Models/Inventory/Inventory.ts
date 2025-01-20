@@ -1,5 +1,6 @@
 import {IInventory} from "./IInventory"
 import {IThing} from "../Things/IThing"
+import {Logger} from "../../Utils/Logger"
 
 export class Inventory implements IInventory {
 
@@ -17,7 +18,7 @@ export class Inventory implements IInventory {
     get(id: string): IThing | null {
         const thing = this.things.find((t) => t.id === id);
         if (!thing) {
-            console.log(`Вещь с ID "${id}" не найдена в инвентаре.`)
+            Logger.error(`Thing ID "${id}" not found in inventory.`)
             return null
         }
         return thing

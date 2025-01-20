@@ -1,10 +1,7 @@
 import {InputState} from "./InputState"
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
-import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
-import {GameOverState} from "./GameOverState"
-import {ILocation} from "../Data/GameData"
 
 export class LocationState implements IState {
     private stateMachine: IStateMachine

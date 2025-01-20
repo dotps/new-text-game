@@ -1,5 +1,4 @@
 import {IModel} from "./IModel";
-
 import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
@@ -76,7 +75,6 @@ export class Model implements IModel {
 
     gameOver(): void {
         this._isGameOver = true
-        // this.player.health = 0
     }
 
     public isGameOver(): boolean {

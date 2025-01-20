@@ -1,5 +1,4 @@
 import {IView} from "../Views/IView"
-import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {ExitState} from "./ExitState"
 import {Locations} from "../Data/Locations"

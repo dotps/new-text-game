@@ -1,8 +1,6 @@
-import {StateMachine} from "./StateMachine"
 import {IModel} from "../Models/IModel"
 import {ExitState} from "./ExitState";
 import {InputState} from "./InputState";
-import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
 import {Commands} from "../Commands/Commands"
 import {CommandFactory} from "../Factories/CommandFactory"
@@ -12,7 +10,7 @@ export class InputHandlerState implements IState {
 
     private readonly stateMachine: IStateMachine
     private readonly model: IModel
-    private view: IView
+    private readonly view: IView
 
     constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
         this.stateMachine = stateMachine

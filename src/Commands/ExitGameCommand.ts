@@ -3,7 +3,7 @@ import {GameOverState} from "../States/GameOverState"
 
 export class ExitGameCommand implements ICommand {
 
-    private stateMachine: IStateMachine
+    private readonly stateMachine: IStateMachine
 
     constructor(stateMachine: IStateMachine) {
         this.stateMachine = stateMachine

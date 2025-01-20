@@ -1,16 +1,11 @@
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
-import {Logger} from "../Utils/Logger"
 import {IStateMachine} from "./IStateMachine"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {LocationState} from "./LocationState"
 import {Action, IAction, IActionParams, LocationParams} from "../Data/GameData"
 import {Commands} from "../Commands/Commands"
-import {InputState} from "./InputState"
-import {InputBattleState} from "./InputBattleState"
 import {Locations} from "../Data/Locations"
-import {Thing} from "../Models/Things/Thing"
-import {IThingParams} from "../Models/Things/IThingParams"
 
 export class BattleStartState implements IState {
     private stateMachine: IStateMachine

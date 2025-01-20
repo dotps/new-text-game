@@ -9,7 +9,7 @@ export class NextLocationCommand implements ICommand {
     private readonly action: IAction
     private readonly model: IModel
     private readonly stateMachine: IStateMachine
-    private view: IView
+    private readonly view: IView
 
     constructor(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView) {
         this.view = view

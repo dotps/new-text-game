@@ -11,35 +11,19 @@ export interface IModel {
     progressData: GameProgressData
 
     getCurrentLocation(): ILocation
-
     getCurrentActions(): IAction[]
-
     getLocationParams(id: string): LocationParams
-
     setCurrentLocation(params: LocationParams): void
-
     setGameData(gameData: GameData): void
-
     resetCurrentInput(): void
-
     gameOver(): void
-
     isGameOver(): boolean
-
-    // getEnemy(id: string): IEnemy | null
-    // takeThing(thing: IThing): void
     setCurrentEnemy(id: string): void
-
     getCurrentEnemy(): ICreature | null
-
     getThing(id: string): IThing | null
-
     getPlayer(): ICreature
-
     clearEnemy(): void
-
     getPreviousLocationId(): string
-
     setAfterBattleLocationId(afterBattleLocationId: string): void
     getAfterBattleLocationId(): string
 }

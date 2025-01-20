@@ -1,12 +1,10 @@
 import {IModel} from "../Models/IModel"
 import {ExitState} from "./ExitState";
-import {Logger} from "../Utils/Logger"
 import {IView} from "../Views/IView"
 import {Commands} from "../Commands/Commands"
 import {CommandFactory} from "../Factories/CommandFactory"
 import {IStateMachine} from "./IStateMachine"
 import {InputBattleState} from "./InputBattleState"
-import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {BattleEnemyTurnState} from "./BattleEnemyTurnState"
 
 export class InputHandlerBattleState implements IState {
