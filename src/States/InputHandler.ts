@@ -8,25 +8,24 @@ import {CommandFactory} from "../Factories/CommandFactory"
 export class InputHandler {
 
     private readonly stateMachine: IStateMachine
+    private readonly handleNumberInput: () => void
     private readonly model: IModel
     private readonly view: IView
 
-    constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
+    constructor(stateMachine: IStateMachine, model: IModel, view: IView, handleNumberInput: () => void) {
+        this.handleNumberInput = handleNumberInput
         this.stateMachine = stateMachine
         this.model = model
         this.view = view
     }
 
-    async enter(handleNumberInput: () => void): Promise<void> {
-
-        if (this.model.currentInput === "") return
-
+    enter(): void {
         switch (this.model.currentInput) {
             case Commands.EXIT:
                 this.stateMachine.enter(ExitState)
                 break
             default:
-                handleNumberInput()
+                this.handleNumberInput()
         }
     }
 
@@ -52,14 +51,12 @@ export class InputHandler {
         }
 
         const inputAction = currentActions[inputData-1]
-
         if (!inputAction) {
             this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT}" для выхода`)
             return null
         }
 
         const command = CommandFactory.createCommand(inputAction, this.model, this.stateMachine, this.view)
-
         if (!command) {
             this.view.displayText(`Отсутствует команда выбранного действия, введите другое значение или "${Commands.EXIT}" для выхода`)
         }

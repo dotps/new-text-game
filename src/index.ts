@@ -12,7 +12,3 @@ const stateMachine = new StateMachine(gameModel, gameView, services)
 const game = new GameController(gameModel, gameView, stateMachine, services)
 
 game.run()
-
-// TODO: почистить от ненужного кода
-// TODO: добавить переход в состояние GameOver если возникает ошибка в коде
-// TODO: если при вводе нажать только enter, то ничего не происходит и из этого режима не выйти

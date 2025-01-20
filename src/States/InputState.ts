@@ -12,7 +12,7 @@ export class InputState implements IState {
         this.inputBaseState = new InputBaseState(stateMachine, model, inputOutputService, InputState, InputHandlerState)
     }
 
-    async enter(): Promise<void> {
+    enter(): void {
         this.inputBaseState.enter()
     }
 

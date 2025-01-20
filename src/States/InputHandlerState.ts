@@ -11,11 +11,11 @@ export class InputHandlerState implements IState {
 
     constructor(stateMachine: IStateMachine, model: IModel, view: IView) {
         this.stateMachine = stateMachine
-        this.inputHandler = new InputHandler(stateMachine, model, view)
+        this.inputHandler = new InputHandler(stateMachine, model, view, () => this.handleNumberInput())
     }
 
-    async enter(): Promise<void> {
-        await this.inputHandler.enter(() => this.handleNumberInput())
+    enter(): void {
+        this.inputHandler.enter()
     }
 
     private handleNumberInput(): void {
