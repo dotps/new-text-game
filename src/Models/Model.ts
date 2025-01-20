@@ -20,6 +20,7 @@ export class Model implements IModel {
     private currentEnemy: ICreature | null = null
     private readonly player: Player
     private afterBattleLocationId: string = ""
+    private currentState: IState | null = null
 
     constructor() {
         this._progressData = new GameProgressData()
@@ -112,6 +113,10 @@ export class Model implements IModel {
 
     setAfterBattleLocationId(afterBattleLocationId: string): void {
         this.afterBattleLocationId = afterBattleLocationId
+    }
+
+    getCurrentState(): IState | null {
+        return this.currentState
     }
 
 }

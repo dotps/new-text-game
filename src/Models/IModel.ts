@@ -26,4 +26,5 @@ export interface IModel {
     getPreviousLocationId(): string
     setAfterBattleLocationId(afterBattleLocationId: string): void
     getAfterBattleLocationId(): string
+    getCurrentState(): IState | null
 }

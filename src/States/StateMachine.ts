@@ -28,6 +28,8 @@ export class StateMachine implements IStateMachine {
 
     constructor(model: IModel, view: IView, services: Services) {
 
+        this.current = model.getCurrentState()
+
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
         const inputOutputService: IInputOutputService = services.get(InputOutputService)
 
