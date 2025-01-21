@@ -24,7 +24,8 @@ export class TakeThingCommand implements ICommand {
         const thingId = this?.action?.params?.thingId?.toString()
         const thing = this.model.getThing(thingId)
 
-        this.model.inventory.add(thing)
+        const inventory = this.model.getInventory()
+        inventory.add(thing)
         this.view.displayText(this.action?.messageAfterExecute)
 
         const actionParams = this.action?.params?.action as IAction

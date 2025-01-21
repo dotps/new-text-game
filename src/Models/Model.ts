@@ -13,7 +13,6 @@ import {IAction} from "../Actions/IAction"
 export class Model implements IModel {
 
     currentInput: string = ""
-    inventory: IInventory
 
     private currentState: IState | null = null
     private currentProgressData: GameProgressData
@@ -24,6 +23,7 @@ export class Model implements IModel {
     private player: Player
     private previousLocationId: string = ""
     private afterBattleLocationId: string = ""
+    private inventory: IInventory
 
     constructor() {
         this.currentProgressData = new GameProgressData()
@@ -78,7 +78,7 @@ export class Model implements IModel {
         this.isGameFinished = true
     }
 
-    public isGameOver(): boolean {
+    isGameOver(): boolean {
         if (this.player.health <= 0) this.isGameFinished = true
         return this.isGameFinished
     }
@@ -90,7 +90,6 @@ export class Model implements IModel {
     getCurrentEnemy(): ICreature | null {
         return this.currentEnemy
     }
-
 
     getThing(id: string): IThing | null {
         return this.currentGameData.getThing(id)
@@ -114,6 +113,10 @@ export class Model implements IModel {
 
     getCurrentState(): IState | null {
         return this.currentState
+    }
+
+    getInventory(): IInventory {
+        return this.inventory
     }
 
 }

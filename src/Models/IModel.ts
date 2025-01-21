@@ -1,14 +1,13 @@
 import {GameProgressData} from "../Data/GameProgressData";
 import {GameData} from "../Data/GameData";
-import {IInventory} from "./Inventory/IInventory"
 import {ICreature} from "./Creatures/ICreature"
 import {IThing} from "./Things/IThing"
 import {LocationParams} from "../Data/LocationParams"
 import {ILocation} from "../Locations/ILocation"
 import {IAction} from "../Actions/IAction"
+import {IInventory} from "./Inventory/IInventory"
 
 export interface IModel {
-    inventory: IInventory
     gameData: GameData
     currentInput: string
     progressData: GameProgressData
@@ -29,4 +28,5 @@ export interface IModel {
     setAfterBattleLocationId(afterBattleLocationId: string): void
     getAfterBattleLocationId(): string
     getCurrentState(): IState | null
+    getInventory(): IInventory
 }

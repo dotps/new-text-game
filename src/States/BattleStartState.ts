@@ -48,7 +48,8 @@ export class BattleStartState implements IState {
 
     private createBattleActions(): IAction[] {
         const actions: IAction[] = []
-        const things = this.model.inventory.getAll()
+        const inventory = this.model.getInventory()
+        const things = inventory.getAll()
 
         for (const thing of things) {
             const thingParams = {
