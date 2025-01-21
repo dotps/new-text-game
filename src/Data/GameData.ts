@@ -21,6 +21,7 @@ export class Action implements IAction {
 
 export class Location implements ILocation {
 
+
     id: string
     title: string
     description: string
@@ -33,7 +34,14 @@ export class Location implements ILocation {
         this.description = description
         this.actions = actions
         this.params = params
+    }
 
+    setActions(actions: IAction[]) {
+        this.actions = actions
+    }
+
+    setParams(params: LocationParams): void {
+        this.params = params
         this.changeLocationDataFromAction(this.params)
     }
 
@@ -42,21 +50,15 @@ export class Location implements ILocation {
             this.description = this.params.locationDescription
         }
     }
-
-    setActions(actions: IAction[]) {
-        this.actions = actions
-    }
 }
 
 export class LocationParams {
     locationId: string
     locationDescription: string
-    isGameOver: boolean
 
     constructor(params: IActionParams = {}) {
         this.locationId = params?.locationId?.toString() || Locations.START
         this.locationDescription = params?.locationDescription?.toString()
-        this.isGameOver = params?.isGameOver === true
     }
 }
 
@@ -72,6 +74,7 @@ export interface ILocation {
     params: LocationParams
 
     setActions(actions: IAction[]): void
+    setParams(params: LocationParams): void
 }
 
 export interface IAction {
@@ -88,12 +91,10 @@ export class GameData {
     commands: Record<string, IAction> = {}
     things: IThing[] = []
 
-    getLocation(locationParams: LocationParams): ILocation {
-        const location = this.locations.find(location => location.id === locationParams.locationId)
-        if (!location) {
-            throw new Error(`Location ${locationParams.locationId} not found!`)
-        }
-        return new Location(location.id, location.title, location.description, location.actions, locationParams)
+    getLocation(id: string): ILocation {
+        const location = this.locations.find(location => location.id === id)
+        if (!location) throw new Error(`Location ${id} not found!`)
+        return new Location(location.id, location.title, location.description, location.actions, new LocationParams())
     }
 
     getEnemy(id: string): ICreature | null {

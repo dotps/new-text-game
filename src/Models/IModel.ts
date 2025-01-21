@@ -12,8 +12,8 @@ export interface IModel {
 
     getCurrentLocation(): ILocation
     getCurrentActions(): IAction[]
-    getLocationParams(id: string): LocationParams
-    setCurrentLocation(params: LocationParams): void
+    // getLocationParams(id: string): LocationParams
+    setCurrentLocation(id: string, params?: LocationParams): void
     setGameData(gameData: GameData): void
     resetCurrentInput(): void
     gameOver(): void

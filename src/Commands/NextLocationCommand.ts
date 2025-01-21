@@ -20,7 +20,9 @@ export class NextLocationCommand implements ICommand {
 
     execute() {
         this.view.displayText(this.action?.messageAfterExecute)
-        this.model.setCurrentLocation(new LocationParams(this.action?.params))
+        const locationId = this.action?.params?.locationId.toString() || ""
+        const locationParams = new LocationParams(this.action?.params)
+        this.model.setCurrentLocation(locationId, locationParams)
         this.stateMachine.enter(LocationState)
     }
 }

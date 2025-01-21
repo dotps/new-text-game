@@ -24,9 +24,7 @@ export class BattleStartState implements IState {
 
         const actions = this.createBattleActions()
 
-        // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
-        const battleLocationParams = this.model.getLocationParams(Locations.BATTLE)
-        this.model.setCurrentLocation(battleLocationParams)
+        this.model.setCurrentLocation(Locations.BATTLE)
         const battleLocation = this.model.getCurrentLocation()
         battleLocation.setActions(actions)
         battleLocation.description = `Перед вами: ${enemy.title}`
@@ -41,7 +39,7 @@ export class BattleStartState implements IState {
         const enemy = this.model.getCurrentEnemy()
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
-            const nextLocation = this.model.getLocationParams(this.model.getAfterBattleLocationId())
+            const nextLocation = this.model.getAfterBattleLocationId()
             this.model.setCurrentLocation(nextLocation)
             this.stateMachine.enter(LocationState)
         }

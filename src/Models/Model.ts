@@ -9,6 +9,7 @@ import {Player} from "./Enemies/Player"
 
 export class Model implements IModel {
 
+
     currentInput: string = ""
     inventory: IInventory
 
@@ -49,19 +50,16 @@ export class Model implements IModel {
         this.currentInput = ""
     }
 
-    setCurrentLocation(params: LocationParams): void {
+    setCurrentLocation(id: string, params?: LocationParams): void {
         if (this.currentLocation) this.previousLocationId = this.currentLocation.id
-
-        this.currentLocation = this.currentGameData.getLocation(params)
-        this.currentProgressData.currentLocationId = params.locationId
-
-        if (params.isGameOver) this.gameOver()
+        this.currentLocation = this.currentGameData.getLocation(id)
+        if (params) this.currentLocation.setParams(params)
+        this.currentProgressData.currentLocationId = id
     }
 
     getCurrentLocation(): ILocation {
         if (!this.currentLocation) {
-            const locationParams = new LocationParams({locationId: this.currentProgressData.currentLocationId})
-            this.currentLocation = this.currentGameData.getLocation(locationParams)
+            this.currentLocation = this.currentGameData.getLocation(this.currentProgressData.currentLocationId)
         }
         return this.currentLocation
     }
@@ -97,9 +95,9 @@ export class Model implements IModel {
         return this.currentGameData.getThing(id)
     }
 
-    getLocationParams(id: string): LocationParams {
-        return new LocationParams({locationId: id})
-    }
+    // getLocationParams(id: string): LocationParams {
+    //     return new LocationParams({locationId: id})
+    // }
 
     getPreviousLocationId(): string {
         return this.previousLocationId

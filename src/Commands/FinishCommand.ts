@@ -21,8 +21,7 @@ export class FinishCommand implements ICommand {
     }
 
     execute() {
-        let locationParams = this.model.getLocationParams(Locations.FINISH)
-        this.model.setCurrentLocation(locationParams)
+        this.model.setCurrentLocation(Locations.FINISH)
         this.view.displayText(this.action?.messageAfterExecute)
         this.stateMachine.enter(LocationState)
         this.stateMachine.enter(ExitState)
