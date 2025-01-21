@@ -19,31 +19,10 @@ export class BattleStartState implements IState {
     }
     
     enter(): void {
+        const enemy = this.getEnemy()
+        if (!enemy) return
 
-        // TODO: рефакторинг !!!
-
-        const enemy = this.model.getCurrentEnemy()
-        if (!enemy) {
-            this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
-            const nextLocation = this.model.getLocationParams(this.model.getAfterBattleLocationId())
-            this.model.setCurrentLocation(nextLocation)
-            this.stateMachine.enter(LocationState)
-            return
-        }
-
-        const things = this.model.inventory.getAll()
-        const actions: IAction[] = []
-
-        for (const thing of things) {
-            const thingParams = {
-                thingId: thing.id,
-            }
-            const action = new Action(Commands.USE_THING_COMMAND, `Использовать - ${thing.title}`, "", thing.damageText, thingParams)
-            actions.push(action)
-        }
-
-        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", {}))
-        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", {}))
+        const actions = this.createBattleActions()
 
         // TODO: что-то с локациями намудрил, нужно локациями оперировать, а не их параметрами, изменения затронут LocationState
         const battleLocationParams = this.model.getLocationParams(Locations.BATTLE)
@@ -58,4 +37,32 @@ export class BattleStartState implements IState {
 
     exit(): void {}
 
+    private getEnemy() {
+        const enemy = this.model.getCurrentEnemy()
+        if (!enemy) {
+            this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
+            const nextLocation = this.model.getLocationParams(this.model.getAfterBattleLocationId())
+            this.model.setCurrentLocation(nextLocation)
+            this.stateMachine.enter(LocationState)
+        }
+        return enemy
+    }
+
+    private createBattleActions(): IAction[] {
+        const actions: IAction[] = []
+        const things = this.model.inventory.getAll()
+
+        for (const thing of things) {
+            const thingParams = {
+                thingId: thing.id,
+            }
+            const action = new Action(Commands.USE_THING_COMMAND, `Использовать - ${thing.title}`, "", thing.damageText, thingParams)
+            actions.push(action)
+        }
+
+        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", {}))
+        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", {}))
+
+        return actions
+    }
 }
