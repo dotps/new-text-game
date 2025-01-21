@@ -52,11 +52,11 @@ export class StateMachine implements IStateMachine {
         this.states.set(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
     }
 
-    enter(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
-        this.changeState(stateType, nextStateType)
+    enter(stateType: new (...args: any[]) => IState): void {
+        this.changeState(stateType)
     }
 
-    changeState(stateType: new (...args: any[]) => IState, nextStateType?: new (...args: any[]) => IState): void {
+    changeState(stateType: new (...args: any[]) => IState): void {
         if (this.current) {
             Logger.log("exit " + this.current.constructor.name)
             this.current.exit()
@@ -67,9 +67,9 @@ export class StateMachine implements IStateMachine {
         if (state) {
             this.current = state
             Logger.log("enter " + this.current.constructor.name)
-            this.current.enter(nextStateType)
+            this.current.enter()
         } else {
-            console.error(`State ${stateType.name} not found!`)
+            console.error(`Состояние ${stateType.name} не найдено!`)
         }
     }
 }

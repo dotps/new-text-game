@@ -12,14 +12,14 @@ export class GameData {
 
     getLocation(id: string): ILocation {
         const location = this.locations.find(location => location.id === id)
-        if (!location) throw new Error(`Location ${id} not found!`)
+        if (!location) throw new Error(`Локация ${id} не найдена!`)
         return new Location(location.id, location.title, location.description, location.actions, new LocationParams())
     }
 
     getEnemy(id: string): ICreature | null {
         let enemy = this.enemies.find(enemy => enemy.id === id)
         if (!enemy) {
-            Logger.error(`Enemy ${id} not found!`)
+            Logger.error(`Враг ${id} не найден!`)
             return null
         }
         return enemy
@@ -28,7 +28,7 @@ export class GameData {
     getThing(id: string): IThing | null {
         let thing = this.things.find(thing => thing.id === id)
         if (!thing) {
-            Logger.error(`thing ${id} not found!`)
+            Logger.error(`Вещь ${id} не найдена!`)
             return null
         }
         return thing

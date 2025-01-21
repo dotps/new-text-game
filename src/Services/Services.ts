@@ -16,14 +16,14 @@ export class Services {
     }
 
     register<T extends IService>(serviceClass: new (...args: any[]) => T, service: T): void {
-        this.container.set(serviceClass, service);
+        this.container.set(serviceClass, service)
     }
 
     get<T extends IService>(serviceClass: new (...args: any[]) => T): T {
-        const service = this.container.get(serviceClass);
+        const service = this.container.get(serviceClass)
         if (!service) {
-            throw new Error(`Service ${serviceClass.name} not found!`);
+            throw new Error(`Сервис ${serviceClass.name} не найден!`)
         }
-        return service as T;
+        return service as T
     }
 }

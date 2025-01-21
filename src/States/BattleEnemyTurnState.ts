@@ -30,7 +30,6 @@ export class BattleEnemyTurnState implements IState {
 
         const damageEffectMessage = player.takeDamage(enemy)
         this.view.displayText(damageEffectMessage)
-
         this.stateMachine.enter(BattlePlayerTurnState)
     }
 

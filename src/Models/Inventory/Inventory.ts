@@ -18,7 +18,7 @@ export class Inventory implements IInventory {
     get(id: string): IThing | null {
         const thing = this.things.find((t) => t.id === id);
         if (!thing) {
-            Logger.error(`Thing ID "${id}" not found in inventory.`)
+            Logger.error(`Вещь "${id}" не найдена в инвентаре.`)
             return null
         }
         return thing
