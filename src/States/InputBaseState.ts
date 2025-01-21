@@ -9,6 +9,7 @@ export class InputBaseState implements IState {
     private readonly inputOutputService: IInputOutputService
     private readonly inputState: new (...args: any[]) => IState
     private readonly inputHandlerState: new (...args: any[]) => IState
+    private inputCursor = "> "
 
     constructor(stateMachine: IStateMachine, model: IModel, inputOutputService: IInputOutputService, inputState: new (...args: any[]) => IState, inputHandlerState: new (...args: any[]) => IState) {
         this.stateMachine = stateMachine
@@ -20,10 +21,10 @@ export class InputBaseState implements IState {
 
     async enter(): Promise<void> {
 
-        const responseData = await this.inputOutputService.getInput("> ")
+        const input = await this.inputOutputService.getInput(this.inputCursor)
 
-        if (responseData) {
-            this.model.currentInput = responseData.inputData ? responseData.inputData.toUpperCase().trim() : ""
+        if (input) {
+            this.model.currentInput = input.data ? input.data.toUpperCase().trim() : ""
             this.stateMachine.enter(this.inputHandlerState)
         }
         else {

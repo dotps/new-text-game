@@ -1,6 +1,6 @@
 import {createInterface, Interface} from "node:readline/promises"
 import {IInputOutputService} from "./IInputOutputService"
-import {ActionData} from "../Data/ActionData"
+import {InputData} from "../Data/InputData"
 
 export class InputOutputService implements IInputOutputService {
 
@@ -13,9 +13,9 @@ export class InputOutputService implements IInputOutputService {
         })
     }
 
-    async getInput(text: string): Promise<ActionData> {
+    async getInput(text: string): Promise<InputData> {
         const inputData: string = await this.ioService.question(text)
-        return {text: `Hello ${inputData}!`, inputData: inputData}
+        return {data: inputData}
         // TODO: Перейти на InputData
     }
 
