@@ -20,10 +20,11 @@ export class Model implements IModel {
     private currentLocation: ILocation | null = null
     private isGameFinished: boolean = false
     private currentEnemy: ICreature | null = null
-    private player: Player
     private previousLocationId: string = ""
     private afterBattleLocationId: string = ""
-    private inventory: IInventory
+    private readonly inventory: IInventory
+    private readonly player: ICreature
+
 
     constructor() {
         this.currentProgressData = new GameProgressData()
