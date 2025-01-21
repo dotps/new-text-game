@@ -1,7 +1,7 @@
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {ExitState} from "./ExitState"
-import {Locations} from "../Data/Locations"
+import {Locations} from "../Locations/Locations"
 import {LocationState} from "./LocationState"
 import {IModel} from "../Models/IModel"
 

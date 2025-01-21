@@ -1,4 +1,4 @@
-import {Locations} from "./Locations"
+import {Locations} from "../Locations/Locations"
 import {IActionParams} from "./IActionParams"
 
 export class LocationParams {

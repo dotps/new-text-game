@@ -1,4 +1,4 @@
-import {IActionParams} from "./IActionParams"
+import {IActionParams} from "../Data/IActionParams"
 
 export interface IAction {
     command: string

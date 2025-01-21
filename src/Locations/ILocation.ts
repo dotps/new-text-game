@@ -1,5 +1,5 @@
-import {LocationParams} from "./LocationParams"
-import {IAction} from "./IAction"
+import {LocationParams} from "../Data/LocationParams"
+import {IAction} from "../Actions/IAction"
 
 export interface ILocation {
     id: string

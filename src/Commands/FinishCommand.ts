@@ -1,10 +1,10 @@
 import {IStateMachine} from "../States/IStateMachine"
 import {IModel} from "../Models/IModel"
-import {Locations} from "../Data/Locations"
+import {Locations} from "../Locations/Locations"
 import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
 import {ExitState} from "../States/ExitState"
-import {IAction} from "../Data/IAction"
+import {IAction} from "../Actions/IAction"
 
 export class FinishCommand implements ICommand {
 

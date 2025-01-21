@@ -9,7 +9,7 @@ import {Commands} from "../Commands/Commands"
 import {UseThingCommand} from "../Commands/UseThingCommand"
 import {GameOverCommand} from "../Commands/GameOverCommand"
 import {FinishCommand} from "../Commands/FinishCommand"
-import {IAction} from "../Data/IAction"
+import {IAction} from "../Actions/IAction"
 
 export class CommandFactory {
     static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView): ICommand | null {

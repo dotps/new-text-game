@@ -2,8 +2,8 @@ import {ICreature} from "../Models/Creatures/ICreature"
 import {Logger} from "../Utils/Logger"
 import {IThing} from "../Models/Things/IThing"
 import {LocationParams} from "./LocationParams"
-import {Location} from "./Location"
-import {ILocation} from "./ILocation"
+import {Location} from "../Locations/Location"
+import {ILocation} from "../Locations/ILocation"
 
 export class GameData {
     locations: ILocation[] = []

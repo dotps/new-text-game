@@ -4,8 +4,8 @@ import {IInventory} from "./Inventory/IInventory"
 import {ICreature} from "./Creatures/ICreature"
 import {IThing} from "./Things/IThing"
 import {LocationParams} from "../Data/LocationParams"
-import {ILocation} from "../Data/ILocation"
-import {IAction} from "../Data/IAction"
+import {ILocation} from "../Locations/ILocation"
+import {IAction} from "../Actions/IAction"
 
 export interface IModel {
     inventory: IInventory

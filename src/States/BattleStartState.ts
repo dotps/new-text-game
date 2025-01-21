@@ -4,9 +4,9 @@ import {IStateMachine} from "./IStateMachine"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {LocationState} from "./LocationState"
 import {Commands} from "../Commands/Commands"
-import {Locations} from "../Data/Locations"
-import {Action} from "../Data/Action"
-import {IAction} from "../Data/IAction"
+import {Locations} from "../Locations/Locations"
+import {Action} from "../Actions/Action"
+import {IAction} from "../Actions/IAction"
 
 export class BattleStartState implements IState {
     private stateMachine: IStateMachine

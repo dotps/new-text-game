@@ -3,7 +3,7 @@ import {IStateMachine} from "../States/IStateMachine"
 import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
 import {LocationParams} from "../Data/LocationParams"
-import {IAction} from "../Data/IAction"
+import {IAction} from "../Actions/IAction"
 
 export class NextLocationCommand implements ICommand {
 

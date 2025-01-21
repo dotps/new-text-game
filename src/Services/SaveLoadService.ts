@@ -8,10 +8,10 @@ import {IThingParams} from "../Models/Things/IThingParams"
 import {ThingFactory} from "../Factories/ThingFactory"
 import {Logger} from "../Utils/Logger"
 import {LocationParams} from "../Data/LocationParams"
-import {Action} from "../Data/Action"
-import {Location} from "../Data/Location"
-import {ILocation} from "../Data/ILocation"
-import {IAction} from "../Data/IAction"
+import {Action} from "../Actions/Action"
+import {Location} from "../Locations/Location"
+import {ILocation} from "../Locations/ILocation"
+import {IAction} from "../Actions/IAction"
 
 export class SaveLoadService implements ISaveLoadService {
 

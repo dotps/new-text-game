@@ -1,7 +1,7 @@
 import {IStateMachine} from "../States/IStateMachine"
 import {IModel} from "../Models/IModel"
 import {BattleStartState} from "../States/BattleStartState"
-import {IAction} from "../Data/IAction"
+import {IAction} from "../Actions/IAction"
 
 export class BattleCommand implements ICommand {
 

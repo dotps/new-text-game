@@ -1,4 +1,4 @@
-import {IActionParams} from "./IActionParams"
+import {IActionParams} from "../Data/IActionParams"
 import {IAction} from "./IAction"
 
 export class Action implements IAction {

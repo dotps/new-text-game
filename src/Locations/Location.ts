@@ -1,7 +1,7 @@
-import {LocationParams} from "./LocationParams"
+import {LocationParams} from "../Data/LocationParams"
 import {Locations} from "./Locations"
 import {ILocation} from "./ILocation"
-import {IAction} from "./IAction"
+import {IAction} from "../Actions/IAction"
 
 export class Location implements ILocation {
     id: string
