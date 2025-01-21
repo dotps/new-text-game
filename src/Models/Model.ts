@@ -12,22 +12,20 @@ export class Model implements IModel {
     currentInput: string = ""
     inventory: IInventory
 
-    // TODO: убрать подчеркивания для приватных полей
-
-    private _progressData: GameProgressData
-    private _gameData: GameData
-    private _currentLocation: ILocation | null = null
-    private _previousLocationId: string = ""
-    private _isGameOver: boolean = false
-    private currentEnemy: ICreature | null = null
-    private readonly player: Player
-    private afterBattleLocationId: string = ""
     private currentState: IState | null = null
+    private currentProgressData: GameProgressData
+    private currentGameData: GameData
+    private currentLocation: ILocation | null = null
+    private isGameFinished: boolean = false
+    private currentEnemy: ICreature | null = null
+    private player: Player
+    private previousLocationId: string = ""
+    private afterBattleLocationId: string = ""
 
     constructor() {
-        this._progressData = new GameProgressData()
-        this._gameData = new GameData()
-        this.inventory = new Inventory(this._progressData.things)
+        this.currentProgressData = new GameProgressData()
+        this.currentGameData = new GameData()
+        this.inventory = new Inventory(this.currentProgressData.things)
         this.player = new Player({health: 1})
     }
 
@@ -35,15 +33,16 @@ export class Model implements IModel {
         this.currentEnemy = null
     }
 
-    public get gameData(): GameData {
-        return this._gameData
-    }
-    public get progressData(): GameProgressData {
-        return this._progressData
+    get gameData(): GameData {
+        return this.currentGameData
     }
 
-    public set progressData(progressData: GameProgressData) {
-        this._progressData = progressData
+    get progressData(): GameProgressData {
+        return this.currentProgressData
+    }
+
+    set progressData(progressData: GameProgressData) {
+        this.currentProgressData = progressData
     }
 
     resetCurrentInput(): void {
@@ -51,50 +50,51 @@ export class Model implements IModel {
     }
 
     setCurrentLocation(params: LocationParams): void {
-        if (this._currentLocation) this._previousLocationId = this._currentLocation.id
+        if (this.currentLocation) this.previousLocationId = this.currentLocation.id
 
-        this._currentLocation = this._gameData.getLocation(params)
-        this._progressData.currentLocationId = params.locationId
+        this.currentLocation = this.currentGameData.getLocation(params)
+        this.currentProgressData.currentLocationId = params.locationId
 
         if (params.isGameOver) this.gameOver()
     }
 
     getCurrentLocation(): ILocation {
-        if (!this._currentLocation) {
-            const locationParams = new LocationParams({locationId: this.progressData.currentLocationId})
-            this._currentLocation = this._gameData.getLocation(locationParams)
+        if (!this.currentLocation) {
+            const locationParams = new LocationParams({locationId: this.currentProgressData.currentLocationId})
+            this.currentLocation = this.currentGameData.getLocation(locationParams)
         }
-        return this._currentLocation
+        return this.currentLocation
     }
 
     getCurrentActions(): IAction[] {
-        return this._currentLocation?.actions || []
+        return this.currentLocation?.actions || []
     }
 
     setGameData(gameData: GameData) {
-        this._gameData = gameData
-        this._gameData.initCommands()
+        this.currentGameData = gameData
+        this.currentGameData.initCommands()
     }
 
     gameOver(): void {
-        this._isGameOver = true
+        this.isGameFinished = true
     }
 
     public isGameOver(): boolean {
-        if (this.player.health <= 0) this._isGameOver = true
-        return this._isGameOver
+        if (this.player.health <= 0) this.isGameFinished = true
+        return this.isGameFinished
     }
 
     setCurrentEnemy(id: string): void {
-        this.currentEnemy = this._gameData.getEnemy(id)
+        this.currentEnemy = this.currentGameData.getEnemy(id)
     }
 
     getCurrentEnemy(): ICreature | null {
         return this.currentEnemy
     }
 
+
     getThing(id: string): IThing | null {
-        return this._gameData.getThing(id)
+        return this.currentGameData.getThing(id)
     }
 
     getLocationParams(id: string): LocationParams {
@@ -102,7 +102,7 @@ export class Model implements IModel {
     }
 
     getPreviousLocationId(): string {
-        return this._previousLocationId
+        return this.previousLocationId
     }
 
     getPlayer(): ICreature {
