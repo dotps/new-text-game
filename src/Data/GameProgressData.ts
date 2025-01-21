@@ -1,5 +1,6 @@
 import {IThing} from "../Models/Things/IThing"
 import {Locations} from "./Locations"
+import {ICreatureParams} from "../Models/Creatures/ICreatureParams"
 
 export class GameProgressData {
     public currentLocationId: string = Locations.START

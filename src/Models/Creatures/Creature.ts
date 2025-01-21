@@ -4,17 +4,17 @@ import {CommandFactory} from "../../Factories/CommandFactory"
 
 export class Creature implements ICreature {
 
-    readonly id: string
-    readonly title: string
+    readonly id: string = ""
+    readonly title: string = ""
     readonly damage: number = 1
-    readonly damageText: string
+    readonly damageText: string = ""
     protected healthPoints: number = 1
 
-    constructor(params: ICreatureParams) {
-        this.id = params?.id?.toString()
-        this.title = params?.title?.toString()
+    constructor(params?: ICreatureParams) {
+        this.id = params?.id?.toString() || this.id
+        this.title = params?.title?.toString() || this.title
         this.damage = Number(params?.damage) || this.damage
-        this.damageText = params?.damageText?.toString()
+        this.damageText = params?.damageText?.toString() || this.title
         this.healthPoints = Number(params?.health) || this.healthPoints
     }
 

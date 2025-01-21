@@ -26,7 +26,7 @@ export class Model implements IModel {
         this.currentProgressData = new GameProgressData()
         this.currentGameData = new GameData()
         this.inventory = new Inventory(this.currentProgressData.things)
-        this.player = new Player({health: 1})
+        this.player = new Player()
     }
 
     clearEnemy(): void {
