@@ -16,7 +16,6 @@ export class InputOutputService implements IInputOutputService {
     async getInput(text: string): Promise<InputData> {
         const inputData: string = await this.ioService.question(text)
         return {data: inputData}
-        // TODO: Перейти на InputData
     }
 
     close(): void {

@@ -6,6 +6,7 @@ import {EnemyFactory} from "../Factories/EnemyFactory"
 import {ICreatureParams} from "../Models/Creatures/ICreatureParams"
 import {IThingParams} from "../Models/Things/IThingParams"
 import {ThingFactory} from "../Factories/ThingFactory"
+import {Logger} from "../Utils/Logger"
 
 export class SaveLoadService implements ISaveLoadService {
 
@@ -17,32 +18,37 @@ export class SaveLoadService implements ISaveLoadService {
         return new GameProgressData()
     }
 
-    loadGameData(levelPath: string): GameData {
+    loadGameData(levelPath: string): GameData | null {
 
-        // TODO: add try catch
-        const data = fs.readFileSync(levelPath, "utf-8")
-        const jsonData = JSON.parse(data)
-        const gameData = new GameData()
+        try {
+            const data = fs.readFileSync(levelPath, "utf-8")
+            const jsonData = JSON.parse(data)
+            const gameData = new GameData()
 
-        gameData.locations = jsonData.locations.map((location: ILocation) => {
-            const actions: Action[] = location.actions.map((action: IAction) => new Action(
-                action?.command,
-                action?.title,
-                action?.description,
-                action?.messageAfterExecute,
-                action?.params,
-            ))
-            return new Location(location.id, location.title, location.description, actions, new LocationParams());
-        })
+            gameData.locations = jsonData.locations.map((location: ILocation) => {
+                const actions: Action[] = location.actions.map((action: IAction) => new Action(
+                    action?.command,
+                    action?.title,
+                    action?.description,
+                    action?.messageAfterExecute,
+                    action?.params,
+                ))
+                return new Location(location.id, location.title, location.description, actions, new LocationParams());
+            })
 
-        gameData.enemies = jsonData.enemies.map((enemy: ICreatureParams) => {
-            return EnemyFactory.createEnemy(enemy)
-        })
+            gameData.enemies = jsonData.enemies.map((enemy: ICreatureParams) => {
+                return EnemyFactory.createEnemy(enemy)
+            })
 
-        gameData.things = jsonData.things.map((thing: IThingParams) => {
-            return ThingFactory.createThing(thing)
-        })
+            gameData.things = jsonData.things.map((thing: IThingParams) => {
+                return ThingFactory.createThing(thing)
+            })
 
-        return gameData
+            return gameData
+        }
+        catch (e) {
+            Logger.error("Не удалось загрузить данные игры")
+            return null
+        }
     }
 }
