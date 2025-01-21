@@ -1,7 +1,7 @@
 import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
-import {ICreature} from "./Enemies/ICreature"
+import {ICreature} from "./Creatures/ICreature"
 import {IThing} from "./Things/IThing"
 
 export interface IModel {

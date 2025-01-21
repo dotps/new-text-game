@@ -1,5 +1,5 @@
 import {IAction, ILocation} from "../Data/GameData";
-import {ICreature} from "../Models/Enemies/ICreature"
+import {ICreature} from "../Models/Creatures/ICreature"
 
 export interface IView {
     displayLocation(location: ILocation): void

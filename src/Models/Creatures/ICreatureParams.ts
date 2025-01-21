@@ -1,3 +1,3 @@
-export interface IEnemyParams {
+export interface ICreatureParams {
     [key: string]: string | number | boolean
 }

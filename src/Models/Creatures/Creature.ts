@@ -1,4 +1,4 @@
-import {IEnemyParams} from "./IEnemyParams"
+import {ICreatureParams} from "./ICreatureParams"
 import {ICreature} from "./ICreature"
 import {CommandFactory} from "../../Factories/CommandFactory"
 
@@ -10,7 +10,7 @@ export class Creature implements ICreature {
     readonly damageText: string
     protected healthPoints: number = 1
 
-    constructor(params: IEnemyParams) {
+    constructor(params: ICreatureParams) {
         this.id = params?.id?.toString()
         this.title = params?.title?.toString()
         this.damage = Number(params?.damage) || this.damage

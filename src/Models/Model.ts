@@ -3,9 +3,9 @@ import {GameProgressData} from "../Data/GameProgressData";
 import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {Inventory} from "./Inventory/Inventory"
-import {ICreature} from "./Enemies/ICreature"
+import {ICreature} from "./Creatures/ICreature"
 import {IThing} from "./Things/IThing"
-import {Player} from "./Enemies/Player"
+import {Player} from "./Creatures/Player"
 
 export class Model implements IModel {
 

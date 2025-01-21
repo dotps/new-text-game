@@ -1,7 +1,7 @@
 import {IView} from "./IView";
 import {IAction, ILocation} from "../Data/GameData"
 import {IInputOutputService} from "../Services/IInputOutputService"
-import {ICreature} from "../Models/Enemies/ICreature"
+import {ICreature} from "../Models/Creatures/ICreature"
 
 export class View implements IView {
 

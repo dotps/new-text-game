@@ -1,4 +1,4 @@
-import {ICreature} from "../Models/Enemies/ICreature"
+import {ICreature} from "../Models/Creatures/ICreature"
 import {Logger} from "../Utils/Logger"
 import {IThing} from "../Models/Things/IThing"
 import {Locations} from "./Locations"
