@@ -36,7 +36,11 @@ export class BattleStartState implements IState {
     exit(): void {}
 
     private getEnemy() {
-        const enemy = this.model.getCurrentEnemy()
+
+        // TODO: больше подходит класс Battle куда записать enemy
+
+        const enemyManager = this.model.getEnemy()
+        const enemy = enemyManager.getCurrentEnemy()
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
             const nextLocation = this.model.getAfterBattleLocationId()

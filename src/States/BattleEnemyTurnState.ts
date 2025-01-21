@@ -19,7 +19,8 @@ export class BattleEnemyTurnState implements IState {
 
     enter(): void {
         const player = this.model.getPlayer()
-        const enemy = this.model.getCurrentEnemy()
+        const enemyManager = this.model.getEnemy()
+        const enemy = enemyManager.getCurrentEnemy()
 
         const canFinishBattle = !enemy || !enemy.isAlive()
         if (canFinishBattle) {

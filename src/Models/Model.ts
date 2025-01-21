@@ -9,6 +9,7 @@ import {Player} from "./Creatures/Player"
 import {LocationParams} from "../Data/LocationParams"
 import {ILocation} from "../Locations/ILocation"
 import {IAction} from "../Actions/IAction"
+import {Enemy} from "./Creatures/Enemies/Enemy"
 
 export class Model implements IModel {
 
@@ -24,18 +25,19 @@ export class Model implements IModel {
     private afterBattleLocationId: string = ""
     private readonly inventory: IInventory
     private readonly player: ICreature
-
+    private enemy: Enemy
 
     constructor() {
         this.currentProgressData = new GameProgressData()
         this.currentGameData = new GameData()
         this.inventory = new Inventory(this.currentProgressData.things)
         this.player = new Player()
+        this.enemy = new Enemy(this.currentGameData)
     }
 
-    clearEnemy(): void {
-        this.currentEnemy = null
-    }
+    // clearEnemy(): void {
+    //     this.currentEnemy = null
+    // }
 
     get gameData(): GameData {
         return this.currentGameData
@@ -84,12 +86,16 @@ export class Model implements IModel {
         return this.isGameFinished
     }
 
-    setCurrentEnemy(id: string): void {
-        this.currentEnemy = this.currentGameData.getEnemy(id)
-    }
+    // setCurrentEnemy(id: string): void {
+    //     this.currentEnemy = this.currentGameData.getEnemy(id)
+    // }
+    //
+    // getCurrentEnemy(): ICreature | null {
+    //     return this.currentEnemy
+    // }
 
-    getCurrentEnemy(): ICreature | null {
-        return this.currentEnemy
+    getEnemy(): Enemy {
+        return this.enemy
     }
 
     getThing(id: string): IThing | null {

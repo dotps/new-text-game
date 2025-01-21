@@ -6,6 +6,7 @@ import {LocationParams} from "../Data/LocationParams"
 import {ILocation} from "../Locations/ILocation"
 import {IAction} from "../Actions/IAction"
 import {IInventory} from "./Inventory/IInventory"
+import {Enemy} from "./Creatures/Enemies/Enemy"
 
 export interface IModel {
     gameData: GameData
@@ -19,14 +20,15 @@ export interface IModel {
     resetCurrentInput(): void
     gameOver(): void
     isGameOver(): boolean
-    setCurrentEnemy(id: string): void
-    getCurrentEnemy(): ICreature | null
+    // setCurrentEnemy(id: string): void
+    // getCurrentEnemy(): ICreature | null
     getThing(id: string): IThing | null
     getPlayer(): ICreature
-    clearEnemy(): void
+    // clearEnemy(): void
     getPreviousLocationId(): string
     setAfterBattleLocationId(afterBattleLocationId: string): void
     getAfterBattleLocationId(): string
     getCurrentState(): IState | null
     getInventory(): IInventory
+    getEnemy(): Enemy
 }
