@@ -1,8 +1,8 @@
 import {IStateMachine} from "../States/IStateMachine"
 import {GameOverState} from "../States/GameOverState"
 import {IModel} from "../Models/IModel"
-import {IAction} from "../Data/GameData"
 import {IView} from "../Views/IView"
+import {IAction} from "../Data/IAction"
 
 export class GameOverCommand implements ICommand {
 

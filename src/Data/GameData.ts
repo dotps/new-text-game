@@ -1,87 +1,9 @@
 import {ICreature} from "../Models/Creatures/ICreature"
 import {Logger} from "../Utils/Logger"
 import {IThing} from "../Models/Things/IThing"
-import {Locations} from "./Locations"
-
-export class Action implements IAction {
-    command: string
-    title: string
-    description: string
-    messageAfterExecute: string
-    params: IActionParams
-
-    constructor(command: string, title: string, description: string, messageAfterExecute: string, params: IActionParams) {
-        this.command = command
-        this.title = title
-        this.description = description
-        this.messageAfterExecute = messageAfterExecute
-        this.params = params
-    }
-}
-
-export class Location implements ILocation {
-    id: string
-    title: string
-    description: string
-    actions: IAction[]
-    params: LocationParams
-
-    constructor(id: string = Locations.START, title: string, description: string, actions: IAction[], params: LocationParams) {
-        this.id = id
-        this.title = title
-        this.description = description
-        this.actions = actions
-        this.params = params
-    }
-
-    setActions(actions: IAction[]) {
-        this.actions = actions
-    }
-
-    setParams(params: LocationParams): void {
-        this.params = params
-        this.changeLocationDataFromAction(this.params)
-    }
-
-    private changeLocationDataFromAction(params: LocationParams) {
-        if (this.params?.locationDescription) {
-            this.description = this.params.locationDescription
-        }
-    }
-}
-
-export class LocationParams {
-    locationId: string
-    locationDescription: string
-
-    constructor(params: IActionParams = {}) {
-        this.locationId = params?.locationId?.toString() || Locations.START
-        this.locationDescription = params?.locationDescription?.toString()
-    }
-}
-
-export interface IActionParams {
-    [key: string]: string | number | boolean | IAction | IActionParams
-}
-
-export interface ILocation {
-    id: string
-    title: string
-    description: string
-    actions: IAction[]
-    params: LocationParams
-
-    setActions(actions: IAction[]): void
-    setParams(params: LocationParams): void
-}
-
-export interface IAction {
-    command: string
-    title: string
-    description: string
-    messageAfterExecute: string
-    params: IActionParams
-}
+import {LocationParams} from "./LocationParams"
+import {Location} from "./Location"
+import {ILocation} from "./ILocation"
 
 export class GameData {
     locations: ILocation[] = []

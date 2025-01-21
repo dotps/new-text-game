@@ -1,7 +1,7 @@
-import {IAction} from "../Data/GameData"
 import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
 import {IModel} from "../Models/IModel"
+import {IAction} from "../Data/IAction"
 
 export class UseThingCommand implements ICommand {
 

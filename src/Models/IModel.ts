@@ -1,8 +1,11 @@
 import {GameProgressData} from "../Data/GameProgressData";
-import {GameData, IAction, ILocation, LocationParams} from "../Data/GameData";
+import {GameData} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {ICreature} from "./Creatures/ICreature"
 import {IThing} from "./Things/IThing"
+import {LocationParams} from "../Data/LocationParams"
+import {ILocation} from "../Data/ILocation"
+import {IAction} from "../Data/IAction"
 
 export interface IModel {
     inventory: IInventory

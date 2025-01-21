@@ -1,12 +1,17 @@
 import {ISaveLoadService} from "./ISaveLoadService"
 import {GameProgressData} from "../Data/GameProgressData";
 import * as fs from "node:fs";
-import {Action, GameData, IAction, ILocation, Location, LocationParams} from "../Data/GameData";
+import {GameData} from "../Data/GameData";
 import {EnemyFactory} from "../Factories/EnemyFactory"
 import {ICreatureParams} from "../Models/Creatures/ICreatureParams"
 import {IThingParams} from "../Models/Things/IThingParams"
 import {ThingFactory} from "../Factories/ThingFactory"
 import {Logger} from "../Utils/Logger"
+import {LocationParams} from "../Data/LocationParams"
+import {Action} from "../Data/Action"
+import {Location} from "../Data/Location"
+import {ILocation} from "../Data/ILocation"
+import {IAction} from "../Data/IAction"
 
 export class SaveLoadService implements ISaveLoadService {
 

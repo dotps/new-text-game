@@ -1,8 +1,9 @@
-import {IAction, LocationParams} from "../Data/GameData"
 import {IModel} from "../Models/IModel"
 import {IStateMachine} from "../States/IStateMachine"
 import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
+import {LocationParams} from "../Data/LocationParams"
+import {IAction} from "../Data/IAction"
 
 export class NextLocationCommand implements ICommand {
 

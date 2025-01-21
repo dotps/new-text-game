@@ -3,9 +3,10 @@ import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {LocationState} from "./LocationState"
-import {Action, IAction} from "../Data/GameData"
 import {Commands} from "../Commands/Commands"
 import {Locations} from "../Data/Locations"
+import {Action} from "../Data/Action"
+import {IAction} from "../Data/IAction"
 
 export class BattleStartState implements IState {
     private stateMachine: IStateMachine

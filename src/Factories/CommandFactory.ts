@@ -1,5 +1,4 @@
 import {IModel} from "../Models/IModel"
-import {IAction} from "../Data/GameData"
 import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
 import {NextLocationCommand} from "../Commands/NextLocationCommand"
@@ -10,6 +9,7 @@ import {Commands} from "../Commands/Commands"
 import {UseThingCommand} from "../Commands/UseThingCommand"
 import {GameOverCommand} from "../Commands/GameOverCommand"
 import {FinishCommand} from "../Commands/FinishCommand"
+import {IAction} from "../Data/IAction"
 
 export class CommandFactory {
     static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView): ICommand | null {
