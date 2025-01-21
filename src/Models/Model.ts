@@ -9,7 +9,6 @@ import {Player} from "./Enemies/Player"
 
 export class Model implements IModel {
 
-
     currentInput: string = ""
     inventory: IInventory
 
@@ -70,7 +69,6 @@ export class Model implements IModel {
 
     setGameData(gameData: GameData) {
         this.currentGameData = gameData
-        this.currentGameData.initCommands()
     }
 
     gameOver(): void {
@@ -94,10 +92,6 @@ export class Model implements IModel {
     getThing(id: string): IThing | null {
         return this.currentGameData.getThing(id)
     }
-
-    // getLocationParams(id: string): LocationParams {
-    //     return new LocationParams({locationId: id})
-    // }
 
     getPreviousLocationId(): string {
         return this.previousLocationId

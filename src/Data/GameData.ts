@@ -20,8 +20,6 @@ export class Action implements IAction {
 }
 
 export class Location implements ILocation {
-
-
     id: string
     title: string
     description: string
@@ -88,7 +86,6 @@ export interface IAction {
 export class GameData {
     locations: ILocation[] = []
     enemies: ICreature[] = []
-    commands: Record<string, IAction> = {}
     things: IThing[] = []
 
     getLocation(id: string): ILocation {
@@ -113,16 +110,5 @@ export class GameData {
             return null
         }
         return thing
-    }
-
-    // TODO: разобраться с командами, вроде уже ненужный функционал
-    initCommands(): void {
-        if (!this.locations) return
-
-        this.locations.forEach(location => {
-            location.actions.forEach(action => {
-                this.commands[action.command] = action
-            })
-        })
     }
 }

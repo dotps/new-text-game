@@ -3,7 +3,7 @@ import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {LocationState} from "./LocationState"
-import {Action, IAction, IActionParams, LocationParams} from "../Data/GameData"
+import {Action, IAction} from "../Data/GameData"
 import {Commands} from "../Commands/Commands"
 import {Locations} from "../Data/Locations"
 
@@ -22,10 +22,9 @@ export class BattleStartState implements IState {
         const enemy = this.getEnemy()
         if (!enemy) return
 
-        const actions = this.createBattleActions()
-
         this.model.setCurrentLocation(Locations.BATTLE)
         const battleLocation = this.model.getCurrentLocation()
+        const actions = this.createBattleActions()
         battleLocation.setActions(actions)
         battleLocation.description = `Перед вами: ${enemy.title}`
 
