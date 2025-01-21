@@ -21,9 +21,7 @@ export class View implements IView {
         this.inputOutputService.displayText(location.title)
         this.inputOutputService.displayText("=====================================================")
         this.inputOutputService.displayText(location.description)
-        if (!location.params.isGameOver) {
-            this.displayActions(location.actions)
-        }
+        this.displayActions(location.actions)
         this.inputOutputService.displayText("=====================================================")
     }
 
