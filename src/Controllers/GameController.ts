@@ -4,19 +4,14 @@ import {IView} from "../Views/IView"
 import {Services} from "../Services/Services";
 import {LoadProgressState} from "../States/LoadProgressState";
 import {IStateMachine} from "../States/IStateMachine"
+import {StateMachine} from "../States/StateMachine"
 
 export class GameController implements IController {
 
-    private model: IModel
-    private view: IView
-    private stateMachine: IStateMachine;
-    private services: Services;
+    private stateMachine: IStateMachine
 
-    constructor(model: IModel, view: IView, stateMachine: IStateMachine, services: Services) {
-        this.model = model
-        this.view = view
-        this.stateMachine = stateMachine
-        this.services = services
+    constructor(model: IModel, view: IView, services: Services) {
+        this.stateMachine = new StateMachine(model, view, services)
     }
 
     public run() {
