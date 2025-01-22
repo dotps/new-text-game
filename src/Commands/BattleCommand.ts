@@ -16,11 +16,21 @@ export class BattleCommand implements ICommand {
     }
 
     execute(): void {
+
+        // TODO: по идее формировать бой нужно здесь
+        // battle = this.model.getBattle()
+        // battle = new Battle() + параметры
+
+
         const enemyId = this.action?.params?.enemyId?.toString() || ""
+
+        const enemy = this.model.gameData.getEnemy(enemyId)
+        const battle = this.model.getBattle()
+        battle.setEnemy(enemy)
+
         const afterBattleLocationId = this.action?.params?.afterBattleLocationId?.toString() || ""
         this.model.setAfterBattleLocationId(afterBattleLocationId)
-        const enemyManager = this.model.getEnemy()
-        enemyManager.setCurrentEnemy(enemyId)
+
         this.stateMachine.enter(BattleStartState)
     }
 

@@ -9,7 +9,8 @@ import {Player} from "./Creatures/Player"
 import {LocationParams} from "../Data/LocationParams"
 import {ILocation} from "../Locations/ILocation"
 import {IAction} from "../Actions/IAction"
-import {Enemy} from "./Creatures/Enemies/Enemy"
+import {Battle} from "../Battle/Battle"
+import {IBattle} from "../Battle/IBattle"
 
 export class Model implements IModel {
 
@@ -20,24 +21,19 @@ export class Model implements IModel {
     private currentGameData: GameData
     private currentLocation: ILocation | null = null
     private isGameFinished: boolean = false
-    private currentEnemy: ICreature | null = null
     private previousLocationId: string = ""
     private afterBattleLocationId: string = ""
     private readonly inventory: IInventory
     private readonly player: ICreature
-    private enemy: Enemy
+    private readonly battle: IBattle
 
     constructor() {
         this.currentProgressData = new GameProgressData()
         this.currentGameData = new GameData()
         this.inventory = new Inventory(this.currentProgressData.things)
         this.player = new Player()
-        this.enemy = new Enemy(this.currentGameData)
+        this.battle = new Battle()
     }
-
-    // clearEnemy(): void {
-    //     this.currentEnemy = null
-    // }
 
     get gameData(): GameData {
         return this.currentGameData
@@ -86,16 +82,8 @@ export class Model implements IModel {
         return this.isGameFinished
     }
 
-    // setCurrentEnemy(id: string): void {
-    //     this.currentEnemy = this.currentGameData.getEnemy(id)
-    // }
-    //
-    // getCurrentEnemy(): ICreature | null {
-    //     return this.currentEnemy
-    // }
-
-    getEnemy(): Enemy {
-        return this.enemy
+    getBattle(): IBattle {
+        return this.battle
     }
 
     getThing(id: string): IThing | null {

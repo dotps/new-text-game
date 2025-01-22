@@ -11,7 +11,7 @@ export class Services {
         this.register(InputOutputService, new InputOutputService())
         this.register(SaveLoadService, new SaveLoadService())
 
-        const isLogEnable = false
+        const isLogEnable = true
         Logger.init(new ConsoleLogger(isLogEnable))
     }
 

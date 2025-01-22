@@ -21,8 +21,8 @@ export class UseThingCommand implements ICommand {
     execute(): void {
         const thingId = this?.action?.params?.thingId?.toString()
         const thing = this.model.getThing(thingId)
-        const enemyManager = this.model.getEnemy()
-        const enemy = enemyManager.getCurrentEnemy()
+        const battle = this.model.getBattle()
+        const enemy = battle.getEnemy()
 
         if (enemy) {
             const damageEffectMessage = enemy.takeDamage(thing)
