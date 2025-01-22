@@ -14,6 +14,7 @@ import {IBattle} from "../Battle/IBattle"
 
 export class Model implements IModel {
 
+
     currentInput: string = ""
 
     private currentState: IState | null = null
@@ -22,10 +23,9 @@ export class Model implements IModel {
     private currentLocation: ILocation | null = null
     private isGameFinished: boolean = false
     private previousLocationId: string = ""
-    private afterBattleLocationId: string = ""
     private readonly inventory: IInventory
     private readonly player: ICreature
-    private readonly battle: IBattle
+    private battle: IBattle
 
     constructor() {
         this.currentProgressData = new GameProgressData()
@@ -86,6 +86,11 @@ export class Model implements IModel {
         return this.battle
     }
 
+    setBattle(battle: IBattle | null): void {
+        if (!battle) battle = new Battle()
+        this.battle = battle
+    }
+
     getThing(id: string): IThing | null {
         return this.currentGameData.getThing(id)
     }
@@ -96,14 +101,6 @@ export class Model implements IModel {
 
     getPlayer(): ICreature {
         return this.player
-    }
-
-    getAfterBattleLocationId(): string {
-        return this.afterBattleLocationId
-    }
-
-    setAfterBattleLocationId(afterBattleLocationId: string): void {
-        this.afterBattleLocationId = afterBattleLocationId
     }
 
     getCurrentState(): IState | null {

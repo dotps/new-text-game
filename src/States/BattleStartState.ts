@@ -20,6 +20,7 @@ export class BattleStartState implements IState {
     }
     
     enter(): void {
+
         const enemy = this.getEnemy()
         if (!enemy) return
 
@@ -36,15 +37,12 @@ export class BattleStartState implements IState {
     exit(): void {}
 
     private getEnemy() {
-
-        // TODO: больше подходит класс Battle куда записать enemy
-
         const battle = this.model.getBattle()
         const enemy = battle.getEnemy()
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
-            const nextLocation = this.model.getAfterBattleLocationId()
-            this.model.setCurrentLocation(nextLocation)
+            const nextLocationId = battle.getAfterBattleLocationId()
+            this.model.setCurrentLocation(nextLocationId)
             this.stateMachine.enter(LocationState)
         }
         return enemy

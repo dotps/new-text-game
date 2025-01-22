@@ -2,6 +2,7 @@ import {IStateMachine} from "../States/IStateMachine"
 import {IModel} from "../Models/IModel"
 import {BattleStartState} from "../States/BattleStartState"
 import {IAction} from "../Actions/IAction"
+import {Battle} from "../Battle/Battle"
 
 export class BattleCommand implements ICommand {
 
@@ -16,20 +17,12 @@ export class BattleCommand implements ICommand {
     }
 
     execute(): void {
-
-        // TODO: по идее формировать бой нужно здесь
-        // battle = this.model.getBattle()
-        // battle = new Battle() + параметры
-
-
         const enemyId = this.action?.params?.enemyId?.toString() || ""
-
         const enemy = this.model.gameData.getEnemy(enemyId)
-        const battle = this.model.getBattle()
-        battle.setEnemy(enemy)
-
         const afterBattleLocationId = this.action?.params?.afterBattleLocationId?.toString() || ""
-        this.model.setAfterBattleLocationId(afterBattleLocationId)
+
+        const battle = new Battle(enemy, afterBattleLocationId)
+        this.model.setBattle(battle)
 
         this.stateMachine.enter(BattleStartState)
     }

@@ -2,14 +2,16 @@ import {ICreature} from "../Models/Creatures/ICreature"
 import {IBattle} from "./IBattle"
 
 export class Battle implements IBattle {
-    private enemy: ICreature | null = null
+    private readonly enemy: ICreature | null = null
+    private readonly afterBattleLocationId: string
 
-    clearEnemy(): void {
-        this.enemy = null
+    constructor(enemy?: ICreature | null, afterBattleLocationId?: string) {
+        this.afterBattleLocationId = afterBattleLocationId || ""
+        this.enemy = enemy || null
     }
 
-    setEnemy(creature: ICreature | null): void {
-        this.enemy = creature
+    getAfterBattleLocationId(): string {
+        return this.afterBattleLocationId
     }
 
     getEnemy(): ICreature | null {

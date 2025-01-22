@@ -23,9 +23,8 @@ export interface IModel {
     getThing(id: string): IThing | null
     getPlayer(): ICreature
     getPreviousLocationId(): string
-    setAfterBattleLocationId(afterBattleLocationId: string): void
-    getAfterBattleLocationId(): string
     getCurrentState(): IState | null
     getInventory(): IInventory
     getBattle(): IBattle
+    setBattle(battle: IBattle | null): void
 }
