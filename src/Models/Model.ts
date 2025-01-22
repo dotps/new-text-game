@@ -73,10 +73,6 @@ export class Model implements IModel {
         this.currentGameData = gameData
     }
 
-    gameOver(): void {
-        this.isGameFinished = true
-    }
-
     isGameOver(): boolean {
         if (this.player.health <= 0) this.isGameFinished = true
         return this.isGameFinished

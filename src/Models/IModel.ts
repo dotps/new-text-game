@@ -18,7 +18,6 @@ export interface IModel {
     setCurrentLocation(id: string, params?: LocationParams): void
     setGameData(gameData: GameData): void
     resetCurrentInput(): void
-    gameOver(): void
     isGameOver(): boolean
     getPlayer(): ICreature
     getPreviousLocationId(): string
