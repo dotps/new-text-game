@@ -12,15 +12,14 @@ export interface IModel {
     gameData: GameData
     currentInput: string
     progressData: GameProgressData
-
     getCurrentLocation(): ILocation
     getCurrentActions(): IAction[]
     setCurrentLocation(id: string, params?: LocationParams): void
+    getPreviousLocationId(): string
     setGameData(gameData: GameData): void
     resetCurrentInput(): void
     isGameOver(): boolean
     getPlayer(): ICreature
-    getPreviousLocationId(): string
     getCurrentState(): IState | null
     getInventory(): IInventory
     getBattle(): IBattle
