@@ -4,18 +4,16 @@ import {GameData} from "../Data/GameData";
 import {IInventory} from "./Inventory/IInventory"
 import {Inventory} from "./Inventory/Inventory"
 import {ICreature} from "./Creatures/ICreature"
-import {IThing} from "./Things/IThing"
 import {Player} from "./Creatures/Player"
 import {LocationParams} from "../Data/LocationParams"
 import {ILocation} from "../Locations/ILocation"
 import {IAction} from "../Actions/IAction"
 import {Battle} from "../Battle/Battle"
 import {IBattle} from "../Battle/IBattle"
+import {Input} from "./Input"
+import {IInput} from "./IInput"
 
 export class Model implements IModel {
-
-
-    currentInput: string = ""
 
     private currentState: IState | null = null
     private currentProgressData: GameProgressData
@@ -25,6 +23,7 @@ export class Model implements IModel {
     private previousLocationId: string = ""
     private readonly inventory: IInventory
     private readonly player: ICreature
+    private readonly input: IInput
     private battle: IBattle
 
     constructor() {
@@ -33,6 +32,7 @@ export class Model implements IModel {
         this.inventory = new Inventory(this.currentProgressData.things)
         this.player = new Player()
         this.battle = new Battle()
+        this.input = new Input()
     }
 
     get gameData(): GameData {
@@ -47,8 +47,8 @@ export class Model implements IModel {
         this.currentProgressData = progressData
     }
 
-    resetCurrentInput(): void {
-        this.currentInput = ""
+    getInput(): IInput {
+        return this.input
     }
 
     setCurrentLocation(id: string, params?: LocationParams): void {

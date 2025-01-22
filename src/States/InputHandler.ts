@@ -4,6 +4,7 @@ import {IView} from "../Views/IView"
 import {Commands} from "../Commands/Commands"
 import {ExitState} from "./ExitState"
 import {CommandFactory} from "../Factories/CommandFactory"
+import {IInput} from "../Models/IInput"
 
 export class InputHandler {
 
@@ -11,16 +12,18 @@ export class InputHandler {
     private readonly handleNumberInput: () => void
     private readonly model: IModel
     private readonly view: IView
+    private input: IInput
 
     constructor(stateMachine: IStateMachine, model: IModel, view: IView, handleNumberInput: () => void) {
         this.handleNumberInput = handleNumberInput
         this.stateMachine = stateMachine
         this.model = model
         this.view = view
+        this.input = this.model.getInput()
     }
 
     enter(): void {
-        switch (this.model.currentInput) {
+        switch (this.input.getValue()) {
             case Commands.EXIT:
                 this.stateMachine.enter(ExitState)
                 break
@@ -30,7 +33,7 @@ export class InputHandler {
     }
 
     exit(): void {
-        this.model.resetCurrentInput()
+        this.input.resetInput()
     }
 
     isNotCorrectInput(input: number, countCurrentActions: number): boolean {
@@ -39,7 +42,7 @@ export class InputHandler {
 
     createCommandFromInputData(): ICommand | null {
 
-        const inputData = parseInt(this.model.currentInput)
+        const inputData = parseInt(this.input.getValue())
         const currentActions = this.model.getCurrentActions()
         const countCurrentActions = currentActions.length
 
