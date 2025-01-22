@@ -15,7 +15,6 @@ export interface IModel {
     getCurrentLocation(): ILocation
     getCurrentActions(): IAction[]
     setCurrentLocation(id: string, params?: LocationParams): void
-    getPreviousLocationId(): string
     setGameData(gameData: GameData): void
     isGameOver(): boolean
     getPlayer(): ICreature

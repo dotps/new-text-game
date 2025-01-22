@@ -17,10 +17,9 @@ export class Model implements IModel {
 
     private currentState: IState | null = null
     private currentProgressData: GameProgressData
-    private currentGameData: GameData
+    private currentGameData: GameData // TODO: доступ сделать как сервис?
     private currentLocation: ILocation | null = null
     private isGameFinished: boolean = false
-    private previousLocationId: string = ""
     private readonly inventory: IInventory
     private readonly player: ICreature
     private readonly input: IInput
@@ -52,7 +51,7 @@ export class Model implements IModel {
     }
 
     setCurrentLocation(id: string, params?: LocationParams): void {
-        if (this.currentLocation) this.previousLocationId = this.currentLocation.id
+        if (this.currentLocation) this.currentProgressData.previousLocationId = this.currentLocation.id
         this.currentLocation = this.currentGameData.getLocation(id)
         if (params) this.currentLocation.setParams(params)
         this.currentProgressData.currentLocationId = id
@@ -85,10 +84,6 @@ export class Model implements IModel {
     setBattle(battle: IBattle | null): void {
         if (!battle) battle = new Battle()
         this.battle = battle
-    }
-
-    getPreviousLocationId(): string {
-        return this.previousLocationId
     }
 
     getPlayer(): ICreature {
