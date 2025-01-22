@@ -20,7 +20,6 @@ export interface IModel {
     resetCurrentInput(): void
     gameOver(): void
     isGameOver(): boolean
-    getThing(id: string): IThing | null
     getPlayer(): ICreature
     getPreviousLocationId(): string
     getCurrentState(): IState | null

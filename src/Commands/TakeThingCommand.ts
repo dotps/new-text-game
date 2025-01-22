@@ -22,7 +22,7 @@ export class TakeThingCommand implements ICommand {
     execute(): void {
 
         const thingId = this?.action?.params?.thingId?.toString()
-        const thing = this.model.getThing(thingId)
+        const thing = this.model.gameData.getThing(thingId)
 
         const inventory = this.model.getInventory()
         inventory.add(thing)

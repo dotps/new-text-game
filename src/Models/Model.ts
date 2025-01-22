@@ -91,10 +91,6 @@ export class Model implements IModel {
         this.battle = battle
     }
 
-    getThing(id: string): IThing | null {
-        return this.currentGameData.getThing(id)
-    }
-
     getPreviousLocationId(): string {
         return this.previousLocationId
     }

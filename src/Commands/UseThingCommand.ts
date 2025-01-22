@@ -20,7 +20,7 @@ export class UseThingCommand implements ICommand {
 
     execute(): void {
         const thingId = this?.action?.params?.thingId?.toString()
-        const thing = this.model.getThing(thingId)
+        const thing = this.model.gameData.getThing(thingId)
         const battle = this.model.getBattle()
         const enemy = battle.getEnemy()
 
