@@ -1,3 +1,5 @@
+import {ILootParams} from "./Creature"
+
 export interface ICreatureParams {
-    [key: string]: string | number | boolean
+    [key: string]: string | number | boolean | ILootParams[]
 }

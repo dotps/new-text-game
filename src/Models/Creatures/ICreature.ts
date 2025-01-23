@@ -6,6 +6,7 @@ export interface ICreature {
     damage: number
     damageText: string
     health: number
+    lootIds: string[]
 
     takeDamage(thing: IThing | null): string
     isAlive(): boolean

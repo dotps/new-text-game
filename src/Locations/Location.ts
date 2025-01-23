@@ -4,6 +4,7 @@ import {ILocation} from "./ILocation"
 import {IAction} from "../Actions/IAction"
 
 export class Location implements ILocation {
+
     id: string
     title: string
     description: string
@@ -16,6 +17,10 @@ export class Location implements ILocation {
         this.description = description
         this.actions = actions
         this.params = params
+    }
+
+    addActions(actions: IAction[]): void {
+        this.actions = this.actions.concat(actions)
     }
 
     setActions(actions: IAction[]) {

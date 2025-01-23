@@ -9,5 +9,6 @@ export interface ILocation {
     params: LocationParams
 
     setActions(actions: IAction[]): void
+    addActions(actions: IAction[]): void
     setParams(params: LocationParams): void
 }

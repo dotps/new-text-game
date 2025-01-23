@@ -41,12 +41,12 @@ export class SaveLoadService implements ISaveLoadService {
                 return new Location(location.id, location.title, location.description, actions, new LocationParams());
             })
 
-            gameData.enemies = jsonData.enemies.map((enemy: ICreatureParams) => {
-                return EnemyFactory.createEnemy(enemy)
-            })
-
             gameData.things = jsonData.things.map((thing: IThingParams) => {
                 return ThingFactory.createThing(thing)
+            })
+
+            gameData.enemies = jsonData.enemies.map((enemy: ICreatureParams) => {
+                return EnemyFactory.createEnemy(enemy)
             })
 
             return gameData

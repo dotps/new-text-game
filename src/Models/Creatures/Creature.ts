@@ -1,6 +1,5 @@
 import {ICreatureParams} from "./ICreatureParams"
 import {ICreature} from "./ICreature"
-import {CommandFactory} from "../../Factories/CommandFactory"
 
 export class Creature implements ICreature {
 
@@ -9,6 +8,7 @@ export class Creature implements ICreature {
     readonly damage: number = 1
     readonly damageText: string = ""
     protected healthPoints: number = 1
+    protected lootIdList: string[] = []
 
     constructor(params?: ICreatureParams) {
         this.id = params?.id?.toString() || this.id
@@ -16,6 +16,9 @@ export class Creature implements ICreature {
         this.damage = Number(params?.damage) || this.damage
         this.damageText = params?.damageText?.toString() || this.title
         this.healthPoints = Number(params?.health) || this.healthPoints
+        if (params?.loot && Array.isArray(params.loot)) {
+            this.assignLootId(params.loot)
+        }
     }
 
     takeDamage(enemy: ICreature | null): string {
@@ -31,4 +34,21 @@ export class Creature implements ICreature {
     get health() {
         return this.healthPoints
     }
+
+    get lootIds() {
+        return this.lootIdList
+    }
+
+    private assignLootId(lootParams: ILootParams[]) {
+        if (!lootParams) return
+
+        for (const loot of lootParams) {
+            const thingId = loot.thingId
+            if (thingId) this.lootIds.push(thingId)
+        }
+    }
+}
+
+export interface ILootParams {
+    thingId: string
 }
