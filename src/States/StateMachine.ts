@@ -52,11 +52,11 @@ export class StateMachine implements IStateMachine {
         this.states.set(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
     }
 
-    enter(stateType: new (...args: any[]) => IState): void {
-        this.changeState(stateType)
+    enter<TState extends IState>(stateType: new (...args: any[]) => TState): void {
+        this.changeState<TState>(stateType);
     }
 
-    changeState(stateType: new (...args: any[]) => IState): void {
+    changeState<TState extends IState>(stateType: new (...args: any[]) => TState): void {
         if (this.current) {
             Logger.log("exit " + this.current.constructor.name)
             this.current.exit()

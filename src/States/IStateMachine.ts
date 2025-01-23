@@ -1,3 +1,3 @@
 export interface IStateMachine {
-    enter(stateType: new (...args: any[]) => IState): void
+    enter<TState extends IState>(stateType: new (...args: any[]) => TState): void
 }
