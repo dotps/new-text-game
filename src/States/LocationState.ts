@@ -2,6 +2,7 @@ import {InputState} from "./InputState"
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
+import {BattleStartState} from "./BattleStartState"
 
 export class LocationState implements IState {
     private stateMachine: IStateMachine
@@ -15,6 +16,13 @@ export class LocationState implements IState {
     }
     
     enter(): void {
+
+        const battle = this.model.getBattle()
+        if (battle.getEnemy()) {
+            this.stateMachine.enter(BattleStartState)
+            return
+        }
+
         const location = this.model.getCurrentLocation()
         this.view.displayLocation(location)
         this.stateMachine.enter(InputState)
