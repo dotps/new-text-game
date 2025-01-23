@@ -33,23 +33,27 @@ export class StateMachine implements IStateMachine {
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
         const inputOutputService: IInputOutputService = services.get(InputOutputService)
 
-        this.states.set(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
-        this.states.set(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
+        this.addState(LoadProgressState, new LoadProgressState(this, model, saveLoadService))
+        this.addState(LoadLevelState, new LoadLevelState(this, model, saveLoadService))
 
-        this.states.set(InputState, new InputState(this, model, inputOutputService))
-        this.states.set(InputHandlerState, new InputHandlerState(this, model, view))
-        this.states.set(InputBattleState, new InputBattleState(this, model, inputOutputService))
-        this.states.set(InputHandlerBattleState, new InputHandlerBattleState(this, model, view))
+        this.addState(InputState, new InputState(this, model, inputOutputService))
+        this.addState(InputHandlerState, new InputHandlerState(this, model, view))
+        this.addState(InputBattleState, new InputBattleState(this, model, inputOutputService))
+        this.addState(InputHandlerBattleState, new InputHandlerBattleState(this, model, view))
 
-        this.states.set(GameOverState, new GameOverState(this, view, model))
-        this.states.set(ExitState, new ExitState())
+        this.addState(GameOverState, new GameOverState(this, view, model))
+        this.addState(ExitState, new ExitState())
 
-        this.states.set(LocationState, new LocationState(this, model, view))
+        this.addState(LocationState, new LocationState(this, model, view))
 
-        this.states.set(BattleStartState, new BattleStartState(this, model, view))
-        this.states.set(BattleEndState, new BattleEndState(this, model))
-        this.states.set(BattlePlayerTurnState, new BattlePlayerTurnState(this, model))
-        this.states.set(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
+        this.addState(BattleStartState, new BattleStartState(this, model, view))
+        this.addState(BattleEndState, new BattleEndState(this, model))
+        this.addState(BattlePlayerTurnState, new BattlePlayerTurnState(this, model))
+        this.addState(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
+    }
+
+    addState<TState extends IState>(stateClass: new (...args: any[]) => TState, state: TState): void {
+        this.states.set(stateClass, state)
     }
 
     enter<TState extends IState>(stateType: new (...args: any[]) => TState): void {
