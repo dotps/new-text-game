@@ -18,7 +18,7 @@ export class Model implements IModel {
 
     private currentState: IState | null = null
     private currentProgressData: GameProgressData
-    private currentGameData: GameData // TODO: доступ сделать как сервис?
+    private currentGameData: GameData
     private currentLocation: ILocation | null = null
     private isGameFinished: boolean = false
     private readonly inventory: IInventory
