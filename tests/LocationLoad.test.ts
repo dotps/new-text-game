@@ -18,6 +18,7 @@ describe("Загрузка локаций", () => {
     let inputOutputService: InputOutputService
     let stateMachine: StateMachine
     let view: IView
+    let originalProcessExit: typeof process.exit
 
     beforeEach(() => {
         console.log("======================================================================")
@@ -36,8 +37,19 @@ describe("Загрузка локаций", () => {
         stateMachine = new StateMachine(model, view, services)
     })
 
+    beforeAll(() => {
+        originalProcessExit = process.exit
+        jest.spyOn(process, 'exit').mockImplementation(((code?: number) => {
+            throw new Error('process.exit: ' + code)
+        }) as any)
+    })
+
     afterEach(() => {
         inputOutputService.close()
+    })
+
+    afterAll(() => {
+        process.exit = originalProcessExit
     })
 
     const locationId = "BRANCH_2"
@@ -89,25 +101,26 @@ describe("Загрузка локаций", () => {
         
         const command = CommandFactory.createCommand(randomAction, model, stateMachine, view)
         expect(command).toBeDefined()
-        command!.execute()
 
-        const locationAfterCommand = model.getCurrentLocation()
-
-        // Для TAKE_THING_COMMAND проверяем инвентарь
-        if (randomAction.command === Commands.TAKE_THING_COMMAND) {
-            const thingId = randomAction.params.thingId?.toString()
-            const inventory = model.getInventory()
-            const thing = inventory.get(thingId!)
-            expect(thing).toBeDefined()
-            expect(thing!.id).toBe(thingId)
+        try {
+            command!.execute()
+            const locationAfterCommand = model.getCurrentLocation()
+            if (randomAction.command === Commands.TAKE_THING_COMMAND) {
+                const thingId = randomAction.params.thingId?.toString()
+                const inventory = model.getInventory()
+                const thing = inventory.get(thingId!)
+                expect(thing).toBeDefined()
+                expect(thing!.id).toBe(thingId)
+            } else if (randomAction.command === Commands.NEXT_LOCATION_COMMAND) {
+                const nextLocationId = randomAction.params.locationId?.toString()
+                expect(locationAfterCommand.id).toBe(nextLocationId)
+            }
+            console.log("Текущая локация", locationAfterCommand.id)
+        } catch (error: any) {
+            expect(error.message).toBe('process.exit: 0')
         }
-        // Для NEXT_LOCATION_COMMAND проверяем изменение локации
-        else if (randomAction.command === Commands.NEXT_LOCATION_COMMAND) {
-            const nextLocationId = randomAction.params.locationId?.toString()
-            expect(locationAfterCommand.id).toBe(nextLocationId)
-        }
-
-        console.log("Текущая локация", locationAfterCommand.id)
-
+        // Выводим все сообщения, отправленные во view
+        const allMessages = (view.displayText as jest.Mock).mock.calls.map(call => call[0])
+        console.log("Все сообщения во view:", allMessages)
     })
 })
