@@ -3,6 +3,7 @@ import {ISaveLoadService} from "../Services/ISaveLoadService"
 import {LocationState} from "./LocationState";
 import {IStateMachine} from "./IStateMachine"
 import {ExitState} from "./ExitState"
+import {IState} from "./IState"
 
 export class LoadLevelState implements IState {
 

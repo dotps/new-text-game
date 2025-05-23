@@ -2,6 +2,7 @@ import {IModel} from "../Models/IModel"
 import {IInputOutputService} from "../Services/IInputOutputService"
 import {IStateMachine} from "./IStateMachine"
 import {IInput} from "../Models/IInput"
+import {IState} from "./IState"
 
 export class InputBaseState implements IState {
 

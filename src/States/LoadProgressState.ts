@@ -1,8 +1,9 @@
 import {ISaveLoadService} from "../Services/ISaveLoadService"
 import {IModel} from "../Models/IModel"
 import {LoadLevelState} from "./LoadLevelState"
-import {GameProgressData} from "../Data/GameProgressData";
+import {GameProgressData} from "../Data/GameProgressData"
 import {IStateMachine} from "./IStateMachine"
+import {IState} from "./IState"
 
 export class LoadProgressState implements IState {
 

@@ -3,6 +3,7 @@ import {GameOverState} from "../States/GameOverState"
 import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {IAction} from "../Actions/IAction"
+import {ICommand} from "./ICommand"
 
 export class GameOverCommand implements ICommand {
 

@@ -4,6 +4,7 @@ import {LocationState} from "./LocationState"
 import {Action} from "../Actions/Action"
 import {IAction} from "../Actions/IAction"
 import {Commands} from "../Commands/Commands"
+import {IState} from "./IState"
 
 export class BattleEndState implements IState {
     private stateMachine: IStateMachine

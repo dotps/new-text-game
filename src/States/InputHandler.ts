@@ -7,6 +7,7 @@ import {CommandFactory} from "../Factories/CommandFactory"
 import {IInput} from "../Models/IInput"
 import {DisplayInventoryCommand} from "../Commands/DisplayInventoryCommand"
 import {Action} from "../Actions/Action"
+import {ICommand} from "../Commands/ICommand"
 
 export class InputHandler {
 

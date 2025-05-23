@@ -20,6 +20,7 @@ import {InputBattleState} from "./InputBattleState"
 import {BattleEnemyTurnState} from "./BattleEnemyTurnState"
 import {BattleEndState} from "./BattleEndState"
 import {Logger} from "../Utils/Logger"
+import {IState} from "./IState"
 
 export class StateMachine implements IStateMachine {
 

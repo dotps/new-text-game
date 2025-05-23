@@ -1,5 +1,6 @@
 import {IStateMachine} from "../States/IStateMachine"
 import {GameOverState} from "../States/GameOverState"
+import {ICommand} from "./ICommand"
 
 export class ExitGameCommand implements ICommand {
 

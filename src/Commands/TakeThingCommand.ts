@@ -4,6 +4,7 @@ import {IModel} from "../Models/IModel"
 import {CommandFactory} from "../Factories/CommandFactory"
 import {Action} from "../Actions/Action"
 import {IAction} from "../Actions/IAction"
+import {ICommand} from "./ICommand"
 
 export class TakeThingCommand implements ICommand {
 

@@ -2,6 +2,7 @@ import {IModel} from "../Models/IModel"
 import {IStateMachine} from "./IStateMachine"
 import {InputBattleState} from "./InputBattleState"
 import {GameOverState} from "./GameOverState"
+import {IState} from "./IState"
 
 export class BattlePlayerTurnState implements IState {
     private stateMachine: IStateMachine

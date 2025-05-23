@@ -4,6 +4,7 @@ import {ExitState} from "./ExitState"
 import {Locations} from "../Locations/Locations"
 import {LocationState} from "./LocationState"
 import {IModel} from "../Models/IModel"
+import {IState} from "./IState"
 
 export class GameOverState implements IState {
     private view: IView

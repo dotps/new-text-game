@@ -7,6 +7,7 @@ import {Commands} from "../Commands/Commands"
 import {Locations} from "../Locations/Locations"
 import {Action} from "../Actions/Action"
 import {IAction} from "../Actions/IAction"
+import {IState} from "./IState"
 
 export class BattleStartState implements IState {
     private stateMachine: IStateMachine

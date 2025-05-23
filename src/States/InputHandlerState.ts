@@ -3,6 +3,7 @@ import {InputState} from "./InputState"
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {InputHandler} from "./InputHandler"
+import {IState} from "./IState"
 
 export class InputHandlerState implements IState {
 

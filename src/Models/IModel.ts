@@ -7,6 +7,7 @@ import {IAction} from "../Actions/IAction"
 import {IInventory} from "./Inventory/IInventory"
 import {IBattle} from "../Battle/IBattle"
 import {IInput} from "./IInput"
+import {IState} from "../States/IState"
 
 export interface IModel {
     gameData: GameData

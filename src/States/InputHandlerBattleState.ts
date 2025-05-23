@@ -4,6 +4,7 @@ import {IStateMachine} from "./IStateMachine"
 import {InputBattleState} from "./InputBattleState"
 import {BattleEnemyTurnState} from "./BattleEnemyTurnState"
 import {InputHandler} from "./InputHandler"
+import {IState} from "./IState"
 
 export class InputHandlerBattleState implements IState {
 

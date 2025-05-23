@@ -3,6 +3,7 @@ import {InputHandlerState} from "./InputHandlerState"
 import {IInputOutputService} from "../Services/IInputOutputService"
 import {IStateMachine} from "./IStateMachine"
 import {InputBaseState} from "./InputBaseState"
+import {IState} from "./IState"
 
 export class InputState implements IState {
 

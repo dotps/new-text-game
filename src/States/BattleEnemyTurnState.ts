@@ -3,6 +3,7 @@ import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {BattlePlayerTurnState} from "./BattlePlayerTurnState"
 import {BattleEndState} from "./BattleEndState"
+import {IState} from "./IState"
 
 export class BattleEnemyTurnState implements IState {
 

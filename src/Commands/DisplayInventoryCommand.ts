@@ -2,6 +2,7 @@ import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
 import {IModel} from "../Models/IModel"
 import {LocationState} from "../States/LocationState"
+import {ICommand} from "./ICommand"
 
 export class DisplayInventoryCommand implements ICommand {
 

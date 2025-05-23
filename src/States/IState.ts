@@ -1,4 +1,4 @@
-interface IState {
+export interface IState {
     enter(): void
     exit(): void
 }

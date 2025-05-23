@@ -3,6 +3,7 @@ import {IModel} from "../Models/IModel"
 import {IView} from "../Views/IView"
 import {IStateMachine} from "./IStateMachine"
 import {BattleStartState} from "./BattleStartState"
+import {IState} from "./IState"
 
 export class LocationState implements IState {
     private stateMachine: IStateMachine

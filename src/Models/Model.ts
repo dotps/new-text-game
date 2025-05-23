@@ -12,6 +12,7 @@ import {Battle} from "../Battle/Battle"
 import {IBattle} from "../Battle/IBattle"
 import {Input} from "./Input"
 import {IInput} from "./IInput"
+import {IState} from "../States/IState"
 
 export class Model implements IModel {
 

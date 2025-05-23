@@ -3,6 +3,7 @@ import {IModel} from "../Models/IModel"
 import {BattleStartState} from "../States/BattleStartState"
 import {IAction} from "../Actions/IAction"
 import {Battle} from "../Battle/Battle"
+import {ICommand} from "./ICommand"
 
 export class BattleCommand implements ICommand {
 

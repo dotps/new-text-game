@@ -1,3 +1,3 @@
-interface ICommand {
+export interface ICommand {
     execute(): void
 }

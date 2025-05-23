@@ -2,6 +2,7 @@ import {IStateMachine} from "../States/IStateMachine"
 import {IView} from "../Views/IView"
 import {IModel} from "../Models/IModel"
 import {IAction} from "../Actions/IAction"
+import {ICommand} from "./ICommand"
 
 export class UseThingCommand implements ICommand {
 

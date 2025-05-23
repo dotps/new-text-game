@@ -5,6 +5,7 @@ import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
 import {ExitState} from "../States/ExitState"
 import {IAction} from "../Actions/IAction"
+import {ICommand} from "./ICommand"
 
 export class FinishCommand implements ICommand {
 

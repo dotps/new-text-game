@@ -4,6 +4,7 @@ import {LocationState} from "../States/LocationState"
 import {IView} from "../Views/IView"
 import {LocationParams} from "../Data/LocationParams"
 import {IAction} from "../Actions/IAction"
+import {ICommand} from "./ICommand"
 
 export class NextLocationCommand implements ICommand {
 
