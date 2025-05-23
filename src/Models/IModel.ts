@@ -23,4 +23,5 @@ export interface IModel {
     getInventory(): IInventory
     getBattle(): IBattle
     setBattle(battle: IBattle | null): void
+    setCurrentState(state: IState): void
 }

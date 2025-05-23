@@ -26,9 +26,10 @@ export class StateMachine implements IStateMachine {
 
     private states: Map<new (...args: any[]) => IState, IState> = new Map()
     private current: IState | null = null
+    private model: IModel
 
     constructor(model: IModel, view: IView, services: Services) {
-
+        this.model = model
         this.current = model.getCurrentState()
 
         const saveLoadService: ISaveLoadService = services.get(SaveLoadService)
@@ -71,6 +72,7 @@ export class StateMachine implements IStateMachine {
 
         if (state) {
             this.current = state
+            this.model.setCurrentState(this.current)
             Logger.log("enter " + this.current.constructor.name)
             this.current.enter()
         } else {

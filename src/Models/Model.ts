@@ -15,7 +15,6 @@ import {IInput} from "./IInput"
 import {IState} from "../States/IState"
 
 export class Model implements IModel {
-
     private currentState: IState | null = null
     private currentProgressData: GameProgressData
     private currentGameData: GameData
@@ -93,6 +92,10 @@ export class Model implements IModel {
 
     getCurrentState(): IState | null {
         return this.currentState
+    }
+
+    setCurrentState(state: IState): void {
+        this.currentState = state
     }
 
     getInventory(): IInventory {
