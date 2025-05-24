@@ -119,7 +119,7 @@ describe("Загрузка локаций", () => {
         } catch (error: any) {
             expect(error.message).toBe('process.exit: 0')
         }
-        // Выводим все сообщения, отправленные во view
+
         const allMessages = (view.displayText as jest.Mock).mock.calls.map(call => call[0])
         console.log("Все сообщения во view:", allMessages)
     })
