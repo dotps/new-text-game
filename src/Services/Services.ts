@@ -3,9 +3,10 @@ import {Logger} from "../Utils/Logger"
 import {InputOutputService} from "./InputOutputService"
 import {SaveLoadService} from "./SaveLoadService"
 import {ConsoleLogger} from "../Utils/ConsoleLogger"
+import {IState} from "../States/IState"
 
 export class Services {
-    container: Map<{ new(...args: any[]): IService }, IService> = new Map()
+    container: Map<ServiceClassType, IService> = new Map()
 
     constructor() {
         this.register(InputOutputService, new InputOutputService())
@@ -15,11 +16,11 @@ export class Services {
         Logger.init(new ConsoleLogger(isLogEnable))
     }
 
-    register<T extends IService>(serviceClass: new (...args: any[]) => T, service: T): void {
+    register<T extends IService>(serviceClass: ServiceClassType, service: T): void {
         this.container.set(serviceClass, service)
     }
 
-    get<T extends IService>(serviceClass: new (...args: any[]) => T): T {
+    get<T extends IService>(serviceClass: ServiceClassType): T {
         const service = this.container.get(serviceClass)
         if (!service) {
             throw new Error(`Сервис ${serviceClass.name} не найден!`)
@@ -27,3 +28,5 @@ export class Services {
         return service as T
     }
 }
+
+export type ServiceClassType<T extends IService = IService> = new (...args: any[]) => T

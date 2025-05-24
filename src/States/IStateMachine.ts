@@ -1,5 +1,6 @@
 import {IState} from "./IState"
+import {StateClassType} from "./StateMachine"
 
 export interface IStateMachine {
-    enter<TState extends IState>(stateType: new (...args: any[]) => TState): void
+    enter<TState extends IState>(stateType: StateClassType<TState>): void
 }

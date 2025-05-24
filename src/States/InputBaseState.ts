@@ -3,18 +3,19 @@ import {IInputOutputService} from "../Services/IInputOutputService"
 import {IStateMachine} from "./IStateMachine"
 import {IInput} from "../Models/IInput"
 import {IState} from "./IState"
+import {StateClassType} from "./StateMachine"
 
 export class InputBaseState implements IState {
 
     private readonly stateMachine: IStateMachine
     private readonly model: IModel
     private readonly inputOutputService: IInputOutputService
-    private readonly inputState: new (...args: any[]) => IState
-    private readonly inputHandlerState: new (...args: any[]) => IState
+    private readonly inputState: StateClassType
+    private readonly inputHandlerState: StateClassType
     private inputCursor = "> "
     private input: IInput
 
-    constructor(stateMachine: IStateMachine, model: IModel, inputOutputService: IInputOutputService, inputState: new (...args: any[]) => IState, inputHandlerState: new (...args: any[]) => IState) {
+    constructor(stateMachine: IStateMachine, model: IModel, inputOutputService: IInputOutputService, inputState: StateClassType, inputHandlerState: StateClassType) {
         this.stateMachine = stateMachine
         this.model = model
         this.inputOutputService = inputOutputService

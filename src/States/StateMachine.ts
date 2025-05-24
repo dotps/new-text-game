@@ -24,7 +24,7 @@ import {IState} from "./IState"
 
 export class StateMachine implements IStateMachine {
 
-    private states: Map<new (...args: any[]) => IState, IState> = new Map()
+    private states: Map<StateClassType, IState> = new Map()
     private current: IState | null = null
     private model: IModel
 
@@ -54,15 +54,15 @@ export class StateMachine implements IStateMachine {
         this.addState(BattleEnemyTurnState, new BattleEnemyTurnState(this, model, view))
     }
 
-    addState<TState extends IState>(stateClass: new (...args: any[]) => TState, state: TState): void {
+    addState<TState extends IState>(stateClass: StateClassType<TState>, state: TState): void {
         this.states.set(stateClass, state)
     }
 
-    enter<TState extends IState>(stateType: new (...args: any[]) => TState): void {
+    enter<TState extends IState>(stateType: StateClassType<TState>): void {
         this.changeState<TState>(stateType);
     }
 
-    changeState<TState extends IState>(stateType: new (...args: any[]) => TState): void {
+    changeState<TState extends IState>(stateType: StateClassType<TState>): void {
         if (this.current) {
             Logger.log("exit " + this.current.constructor.name)
             this.current.exit()
@@ -80,3 +80,5 @@ export class StateMachine implements IStateMachine {
         }
     }
 }
+
+export type StateClassType<TState extends IState = IState> = new (...args: any[]) => TState
