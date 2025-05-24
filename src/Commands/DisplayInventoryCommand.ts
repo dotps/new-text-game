@@ -24,9 +24,10 @@ export class DisplayInventoryCommand implements ICommand {
     private displayInventory() {
         const inventory = this.model.getInventory()
         const things = inventory.getAll()
-        if (things.length === 0) return
 
         this.view.displayText("ИНВЕНТАРЬ:")
+        if (things.length === 0) this.view.displayText("пусто")
+
 
         for (const thing of things) {
             this.view.displayText(thing.title)
