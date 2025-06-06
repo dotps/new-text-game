@@ -1,5 +1,5 @@
 export interface IInput {
     resetInput(): void
-    getValue(): string
-    setValue(value: string): void
+    get value(): string
+    set value(value: string)
 }

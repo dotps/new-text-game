@@ -66,7 +66,7 @@ describe("Тестирование ввода", () => {
         console.log("Стартовая локация", location.id)
         let message = []
         let input = "2"
-        model.getInput().setValue(input)
+        model.getInput().value = input
         stateMachine.enter(InputHandlerState)
         message = (view.displayText as jest.Mock).mock.calls.slice(-1)[0]
         console.log("Ввод:", input)
@@ -74,7 +74,7 @@ describe("Тестирование ввода", () => {
         console.log("==============================")
 
         input = "44"
-        model.getInput().setValue(input)
+        model.getInput().value = input
         stateMachine.enter(InputHandlerState)
         message = (view.displayText as jest.Mock).mock.calls.slice(-1)[0]
         expect(message[0]).toContain("Неверный ввод")
@@ -85,7 +85,7 @@ describe("Тестирование ввода", () => {
 
 
         input = "test"
-        model.getInput().setValue(input)
+        model.getInput().value = input
         stateMachine.enter(InputHandlerState)
         message = (view.displayText as jest.Mock).mock.calls.slice(-1)[0]
         expect(message[0]).toContain("Неверный ввод")

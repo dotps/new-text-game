@@ -17,8 +17,8 @@ export class BattleEndState implements IState {
     
     enter(): void {
         const battle = this.model.getBattle()
-        const enemy = battle.getEnemy()
-        const locationId = battle.getAfterBattleLocationId()
+        const enemy = battle.enemy
+        const locationId = battle.afterBattleLocationId
 
         this.model.setBattle(null)
         this.model.setCurrentLocation(locationId)

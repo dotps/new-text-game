@@ -39,10 +39,10 @@ export class BattleStartState implements IState {
 
     private getEnemy() {
         const battle = this.model.getBattle()
-        const enemy = battle.getEnemy()
+        const enemy = battle.enemy
         if (!enemy) {
             this.view.displayText(`Вы ринулись в бой, но противника уже след простыл.`)
-            const nextLocationId = battle.getAfterBattleLocationId()
+            const nextLocationId = battle.afterBattleLocationId
             this.model.setCurrentLocation(nextLocationId)
             this.stateMachine.enter(LocationState)
         }

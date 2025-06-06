@@ -19,7 +19,7 @@ export class LocationState implements IState {
     enter(): void {
 
         const battle = this.model.getBattle()
-        if (battle.getEnemy()) {
+        if (battle.enemy) {
             this.stateMachine.enter(BattleStartState)
             return
         }

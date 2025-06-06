@@ -2,19 +2,19 @@ import {IBattle} from "./battle.interface"
 import {ICreature} from "../models/Creatures/creature.interface"
 
 export class Battle implements IBattle {
-    private readonly enemy: ICreature | null = null
-    private readonly afterBattleLocationId: string
+    private readonly _enemy: ICreature | null = null
+    private readonly _afterBattleLocationId: string
 
     constructor(enemy?: ICreature | null, afterBattleLocationId?: string) {
-        this.afterBattleLocationId = afterBattleLocationId || ""
-        this.enemy = enemy || null
+        this._afterBattleLocationId = afterBattleLocationId || ""
+        this._enemy = enemy || null
     }
 
-    getAfterBattleLocationId(): string {
-        return this.afterBattleLocationId
+    get afterBattleLocationId(): string {
+        return this._afterBattleLocationId
     }
 
-    getEnemy(): ICreature | null {
-        return this.enemy
+    get enemy(): ICreature | null {
+        return this._enemy
     }
 }

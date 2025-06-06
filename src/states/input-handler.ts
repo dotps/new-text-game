@@ -25,7 +25,7 @@ export class InputHandler {
     }
 
     enter(): void {
-        switch (this.input.getValue()) {
+        switch (this.input.value) {
             case Commands.ExitKey:
                 this.stateMachine.enter(ExitState)
                 break
@@ -48,7 +48,7 @@ export class InputHandler {
 
     createCommandFromInputData(): ICommand | null {
 
-        const inputData = parseInt(this.input.getValue())
+        const inputData = parseInt(this.input.value)
         const currentActions = this.model.getCurrentActions()
         const countCurrentActions = currentActions.length
 

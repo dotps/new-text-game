@@ -2,18 +2,18 @@ import {IInput} from "./input.interface"
 
 export class Input implements IInput {
 
-    value: string = ""
+    private _value: string = ""
 
     resetInput(): void {
-        this.value = ""
+        this._value = ""
     }
 
-    getValue(): string {
-        return this.value
+    get value(): string {
+        return this._value
     }
 
-    setValue(value: string): void {
-        this.value = value
+    set value(value: string) {
+        this._value = value
     }
 
 }

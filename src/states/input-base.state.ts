@@ -31,7 +31,7 @@ export class InputBaseState implements IState {
 
         if (inputData) {
             const inputValue = inputData.data ? inputData.data.toUpperCase().trim() : ""
-            this.input.setValue(inputValue)
+            this.input.value = inputValue
             this.stateMachine.enter(this.inputHandlerState)
         }
         else {
