@@ -22,7 +22,7 @@ export class FinishCommand implements ICommand {
     }
 
     execute() {
-        this.model.setCurrentLocation(Locations.FINISH)
+        this.model.setCurrentLocation(Locations.Finish)
         this.view.displayText(this.action?.messageAfterExecute)
         this.stateMachine.enter(LocationState)
         this.stateMachine.enter(ExitState)

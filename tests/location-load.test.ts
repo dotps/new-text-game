@@ -103,13 +103,13 @@ describe("Загрузка локаций", () => {
         try {
             command!.execute()
             const locationAfterCommand = model.getCurrentLocation()
-            if (randomAction.command === Commands.TAKE_THING_COMMAND) {
+            if (randomAction.command === Commands.TakeThingCommand) {
                 const thingId = randomAction.params.thingId?.toString()
                 const inventory = model.getInventory()
                 const thing = inventory.get(thingId!)
                 expect(thing).toBeDefined()
                 expect(thing!.id).toBe(thingId)
-            } else if (randomAction.command === Commands.NEXT_LOCATION_COMMAND) {
+            } else if (randomAction.command === Commands.NextLocationCommand) {
                 const nextLocationId = randomAction.params.locationId?.toString()
                 expect(locationAfterCommand.id).toBe(nextLocationId)
             }

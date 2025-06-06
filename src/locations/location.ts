@@ -11,7 +11,7 @@ export class Location implements ILocation {
     actions: IAction[]
     params: LocationParams
 
-    constructor(id: string = Locations.START, title: string, description: string, actions: IAction[], params: LocationParams) {
+    constructor(id: string = Locations.Start, title: string, description: string, actions: IAction[], params: LocationParams) {
         this.id = id
         this.title = title
         this.description = description

@@ -78,7 +78,7 @@ describe("Тестирование ввода", () => {
         stateMachine.enter(InputHandlerState)
         message = (view.displayText as jest.Mock).mock.calls.slice(-1)[0]
         expect(message[0]).toContain("Неверный ввод")
-        expect(message[0]).toContain(Commands.EXIT_KEY)
+        expect(message[0]).toContain(Commands.ExitKey)
         console.log("Ввод:", input)
         console.log("Сообщение:", message)
         console.log("==============================")
@@ -89,7 +89,7 @@ describe("Тестирование ввода", () => {
         stateMachine.enter(InputHandlerState)
         message = (view.displayText as jest.Mock).mock.calls.slice(-1)[0]
         expect(message[0]).toContain("Неверный ввод")
-        expect(message[0]).toContain(Commands.EXIT_KEY)
+        expect(message[0]).toContain(Commands.ExitKey)
         console.log("Ввод:", input)
         console.log("Сообщение:", message)
         console.log("==============================")

@@ -26,10 +26,10 @@ export class InputHandler {
 
     enter(): void {
         switch (this.input.getValue()) {
-            case Commands.EXIT_KEY:
+            case Commands.ExitKey:
                 this.stateMachine.enter(ExitState)
                 break
-            case Commands.DISPLAY_INVENTORY_KEY:
+            case Commands.DisplayInventoryKey:
                 const command = new DisplayInventoryCommand(this.model, this.stateMachine, this.view)
                 if (command) command.execute()
                 break
@@ -54,20 +54,20 @@ export class InputHandler {
 
         if (this.isNotCorrectInput(inputData, countCurrentActions)) {
             const actionsInputText = countCurrentActions > 0 ? `число от 1 до ${countCurrentActions} или ` : ``
-            this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${Commands.EXIT_KEY}" для выхода`)
+            this.view.displayText(`Неверный ввод. Введите ${actionsInputText}"${Commands.ExitKey}" для выхода`)
             this.view.displayActions(currentActions)
             return null
         }
 
         const inputAction = currentActions[inputData-1]
         if (!inputAction) {
-            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.EXIT_KEY}" для выхода`)
+            this.view.displayText(`Отсутствует выбранное действие, введите другое значение или "${Commands.ExitKey}" для выхода`)
             return null
         }
 
         const command = CommandFactory.createCommand(inputAction, this.model, this.stateMachine, this.view)
         if (!command) {
-            this.view.displayText(`Отсутствует команда выбранного действия, введите другое значение или "${Commands.EXIT_KEY}" для выхода`)
+            this.view.displayText(`Отсутствует команда выбранного действия, введите другое значение или "${Commands.ExitKey}" для выхода`)
         }
 
         return command

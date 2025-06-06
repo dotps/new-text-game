@@ -19,7 +19,7 @@ export class GameOverState implements IState {
     
     enter(): void {
         this.model.setBattle(null)
-        this.model.setCurrentLocation(Locations.GAME_OVER)
+        this.model.setCurrentLocation(Locations.GameOver)
         this.stateMachine.enter(LocationState)
         this.stateMachine.enter(ExitState)
     }

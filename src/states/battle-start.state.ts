@@ -25,7 +25,7 @@ export class BattleStartState implements IState {
         const enemy = this.getEnemy()
         if (!enemy) return
 
-        this.model.setCurrentLocation(Locations.BATTLE)
+        this.model.setCurrentLocation(Locations.Battle)
         const battleLocation = this.model.getCurrentLocation()
         const actions = this.createBattleActions()
         battleLocation.setActions(actions)
@@ -58,12 +58,12 @@ export class BattleStartState implements IState {
             const thingParams = {
                 thingId: thing.id,
             }
-            const action = new Action(Commands.USE_THING_COMMAND, `Использовать - ${thing.title}`, "", thing.damageText, thingParams)
+            const action = new Action(Commands.UseThingCommand, `Использовать - ${thing.title}`, "", thing.damageText, thingParams)
             actions.push(action)
         }
 
-        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", {}))
-        actions.push(new Action(Commands.GAME_OVER_COMMAND, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", {}))
+        actions.push(new Action(Commands.GameOverCommand, `Убежать`, "", "Вы решили бежать от оппонента, но он вас догнал.", {}))
+        actions.push(new Action(Commands.GameOverCommand, `Спрятаться`, "", "Вы решили спрятаться от оппонента, но он вас нашел.", {}))
 
         return actions
     }

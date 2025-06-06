@@ -6,7 +6,7 @@ import {Wolf} from "../models/Creatures/Enemies/wolf"
 export class EnemyFactory {
     static createEnemy(params: ICreatureParams): ICreature | null {
         switch (params.id) {
-            case Enemies.WOLF:
+            case Enemies.Wolf:
                 return new Wolf(params)
 
             default:

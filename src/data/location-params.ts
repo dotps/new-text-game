@@ -6,7 +6,7 @@ export class LocationParams {
     locationDescription: string
 
     constructor(params: IActionParams = {}) {
-        this.locationId = params?.locationId?.toString() || Locations.START
+        this.locationId = params?.locationId?.toString() || Locations.Start
         this.locationDescription = params?.locationDescription?.toString()
     }
 }

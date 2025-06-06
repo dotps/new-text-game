@@ -40,9 +40,9 @@ export class BattleEndState implements IState {
             if (!thing) continue
             const thingParams = {
                 thingId: thing.id,
-                action: new Action(Commands.NEXT_LOCATION_COMMAND, "", "", "", {locationId: nextLocationId, locationDescription: "Пора идти дальше."})
+                action: new Action(Commands.NextLocationCommand, "", "", "", {locationId: nextLocationId, locationDescription: "Пора идти дальше."})
             }
-            const action = new Action(Commands.TAKE_THING_COMMAND, `Взять - ${thing.title}`, ``, `Вы взяли ${thing.title}`, thingParams)
+            const action = new Action(Commands.TakeThingCommand, `Взять - ${thing.title}`, ``, `Вы взяли ${thing.title}`, thingParams)
             actions.push(action)
         }
         return actions

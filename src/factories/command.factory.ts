@@ -15,19 +15,19 @@ import {UseThingCommand} from "../commands/use-thing.command"
 export class CommandFactory {
     static createCommand(action: IAction, model: IModel, stateMachine: IStateMachine, view: IView): ICommand | null {
         switch (action.command) {
-            case Commands.EXIT_GAME_COMMAND:
+            case Commands.ExitGameCommand:
                 return new ExitGameCommand(stateMachine)
-            case Commands.GAME_OVER_COMMAND:
+            case Commands.GameOverCommand:
                 return new GameOverCommand(action, model, stateMachine, view)
-            case Commands.FINISH_COMMAND:
+            case Commands.FinishCommand:
                 return new FinishCommand(action, model, stateMachine, view)
-            case Commands.NEXT_LOCATION_COMMAND:
+            case Commands.NextLocationCommand:
                 return new NextLocationCommand(action, model, stateMachine, view)
-            case Commands.TAKE_THING_COMMAND:
+            case Commands.TakeThingCommand:
                 return new TakeThingCommand(action, model, stateMachine, view)
-            case Commands.BATTLE_COMMAND:
+            case Commands.BattleCommand:
                 return new BattleCommand(action, model, stateMachine)
-            case Commands.USE_THING_COMMAND:
+            case Commands.UseThingCommand:
                 return new UseThingCommand(action, model, stateMachine, view)
             default:
                 return null
