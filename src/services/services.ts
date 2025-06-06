@@ -21,9 +21,11 @@ export class Services {
 
     get<T extends IService>(serviceClass: ServiceClassType): T {
         const service = this.container.get(serviceClass)
+
         if (!service) {
             throw new Error(`Сервис ${serviceClass.name} не найден!`)
         }
+
         return service as T
     }
 }
