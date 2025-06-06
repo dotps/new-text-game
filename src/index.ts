@@ -1,8 +1,8 @@
-import {GameController} from "./Controllers/GameController"
-import {View} from "./Views/View";
-import {Model} from "./Models/Model";
-import {InputOutputService} from "./Services/InputOutputService"
-import {Services} from "./Services/Services"
+import {GameController} from "./controllers/game.controller"
+import {Services} from "./services/services"
+import {Model} from "./models/model"
+import {View} from "./views/view"
+import {InputOutputService} from "./services/input-output.service"
 
 const services = new Services()
 const model = new Model()
