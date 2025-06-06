@@ -101,5 +101,4 @@ export class Model implements IModel {
     getInventory(): IInventory {
         return this.inventory
     }
-
 }
